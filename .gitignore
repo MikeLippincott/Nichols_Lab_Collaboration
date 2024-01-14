@@ -1,9 +1,11 @@
 # cached files
 *.pyc
 
-
 # sqlite database
 *.sqlite
 
 # SAM models
 *.pth
+
+# data
+data/*
