@@ -1,4 +1,4 @@
-name: op_env
+name: op_sam_env
 channels:
   - conda-forge
   - defaults
@@ -20,6 +20,5 @@ dependencies:
     - git+https://github.com/facebookresearch/segment-anything.git
     - roboflow
     - supervision
-    - cellpose
 
 

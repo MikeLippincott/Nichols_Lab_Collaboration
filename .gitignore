@@ -9,3 +9,6 @@
 
 # data
 data/*
+
+# logs
+3.extract_features/notebooks/logs

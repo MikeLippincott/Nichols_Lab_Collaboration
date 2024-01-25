@@ -1,8 +1,8 @@
 CellProfiler Pipeline: http://www.cellprofiler.org
 Version:5
-DateRevision:426
+DateRevision:424
 GitHash:
-ModuleCount:15
+ModuleCount:13
 HasImagePlaneDetails:False
 
 Images:[module_num:1|svn_version:'Unknown'|variable_revision_number:2|show_window:False|notes:['Add images into this section when using the GUI to test segmentation parameters. Remove prior to exporting as a cppipe file and before using in command line.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
@@ -10,7 +10,7 @@ Images:[module_num:1|svn_version:'Unknown'|variable_revision_number:2|show_windo
     Filter images?:Images only
     Select the rule criteria:and (extension does isimage) (directory doesnot containregexp "[\\\\/]\\.")
 
-Metadata:[module_num:2|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:['Find metadata from both the image file names (well, site, channel) and folders (plate).']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+Metadata:[module_num:2|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:['']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Extract metadata?:No
     Metadata data type:Text
     Metadata types:{}
@@ -52,7 +52,7 @@ NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|sho
     Relative pixel spacing in X:1.0
     Relative pixel spacing in Y:1.0
     Relative pixel spacing in Z:1.0
-    Select the rule criteria:and (file does endwith ".tif")
+    Select the rule criteria:and (file does endwith ".tiff")
     Name to assign these images:OP
     Name to assign these objects:Cell
     Select the image type:Grayscale image
@@ -61,7 +61,7 @@ NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|sho
     Select the rule criteria:and (file does endwith ".png")
     Name to assign these images:Mask
     Name to assign these objects:Mask
-    Select the image type:Objects
+    Select the image type:Binary mask
     Set intensity range from:Image metadata
     Maximum intensity:255.0
 
@@ -70,82 +70,35 @@ Groups:[module_num:4|svn_version:'Unknown'|variable_revision_number:2|show_windo
     grouping metadata count:1
     Metadata category:Plate
 
-ConvertImageToObjects:[module_num:5|svn_version:'Unknown'|variable_revision_number:1|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+ConvertImageToObjects:[module_num:5|svn_version:'Unknown'|variable_revision_number:1|show_window:False|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select the input image:Mask
     Name the output object:ConvertImageToObjects
     Convert to boolean image:Yes
-    Preserve original labels:Yes
+    Preserve original labels:No
     Background label:0
-    Connectivity:1
+    Connectivity:0
 
-MaskObjects:[module_num:6|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:[]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
-    Select objects to be masked:Mask
-    Name the masked objects:MaskedNuclei
-    Mask using a region defined by other objects or by binary image?:Objects
-    Select the masking object:Mask
-    Select the masking image:Mask
-    Handling of objects that are partially masked:Keep
-    Fraction of object that must overlap:0.5
-    Numbering of resulting objects:Renumber
-    Invert the mask?:No
-
-IdentifyPrimaryObjects:[module_num:7|svn_version:'Unknown'|variable_revision_number:15|show_window:True|notes:['Note: Blurry images seem to be segmenting very well -> almost better than sharper images', 'This is struggling with two nuclei close together even with the best parameters.', '', 'This module segments the nuclei from the Hoechst channel.', '', 'This does the best for all plates, but struggles greatly if there are smudges/blur (being measured).']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
-    Select the input image:Mask
-    Name the primary objects to be identified:OP_objects
-    Typical diameter of objects, in pixel units (Min,Max):1,500
-    Discard objects outside the diameter range?:No
-    Discard objects touching the border of the image?:Yes
-    Method to distinguish clumped objects:Shape
-    Method to draw dividing lines between clumped objects:Shape
-    Size of smoothing filter:10
-    Suppress local maxima that are closer than this minimum allowed distance:7.0
-    Speed up by using lower-resolution image to find local maxima?:Yes
-    Fill holes in identified objects?:After both thresholding and declumping
-    Automatically calculate size of smoothing filter for declumping?:Yes
-    Automatically calculate minimum allowed distance between local maxima?:Yes
-    Handling of objects if excessive number of objects identified:Continue
-    Maximum number of objects:500
-    Use advanced settings?:Yes
-    Threshold setting version:12
-    Threshold strategy:Global
-    Thresholding method:Otsu
-    Threshold smoothing scale:1.3488
-    Threshold correction factor:1
-    Lower and upper bounds on threshold:0.0,1.0
-    Manual threshold:0.0
-    Select the measurement to threshold with:None
-    Two-class or three-class thresholding?:Two classes
-    Log transform before thresholding?:No
-    Assign pixels in the middle intensity class to the foreground or the background?:Foreground
-    Size of adaptive window:50
-    Lower outlier fraction:0.05
-    Upper outlier fraction:0.05
-    Averaging method:Mean
-    Variance method:Standard deviation
-    # of deviations:2.0
-    Thresholding method:Minimum Cross-Entropy
-
-MeasureGranularity:[module_num:8|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:['This module measures image granularity by default and we have the parameter "measure within objects" turned on so that object measurements for granularity are measured.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+MeasureGranularity:[module_num:6|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:['This module measures image granularity by default and we have the parameter "measure within objects" turned on so that object measurements for granularity are measured.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select images to measure:OP
     Measure within objects?:Yes
-    Select objects to measure:MaskedNuclei
+    Select objects to measure:ConvertImageToObjects
     Subsampling factor for granularity measurements:0.25
     Subsampling factor for background reduction:0.25
     Radius of structuring element:10
     Range of the granular spectrum:16
 
-MeasureObjectIntensity:[module_num:9|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:['This module measures the intensity within each individual object']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+MeasureObjectIntensity:[module_num:7|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:['This module measures the intensity within each individual object']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select images to measure:OP
     Select objects to measure:ConvertImageToObjects
 
-MeasureImageIntensity:[module_num:10|svn_version:'Unknown'|variable_revision_number:4|show_window:True|notes:['This is set to measure intensity for the whole image.']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+MeasureImageIntensity:[module_num:8|svn_version:'Unknown'|variable_revision_number:4|show_window:False|notes:['This is set to measure intensity for the whole image.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select images to measure:OP
     Measure the intensity only from areas enclosed by objects?:No
     Select input object sets:Cells, Cytoplasm, Nuclei
     Calculate custom percentiles:No
     Specify percentiles to measure:10,90
 
-MeasureObjectNeighbors:[module_num:11|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:['This measures adjacent nuclei neighbors.']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+MeasureObjectNeighbors:[module_num:9|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:['This measures adjacent nuclei neighbors.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select objects to measure:ConvertImageToObjects
     Select neighboring objects to measure:ConvertImageToObjects
     Method to determine neighbors:Adjacent
@@ -158,7 +111,7 @@ MeasureObjectNeighbors:[module_num:11|svn_version:'Unknown'|variable_revision_nu
     Name the output image:PercentTouching
     Select colormap:Oranges
 
-MeasureObjectIntensityDistribution:[module_num:12|svn_version:'Unknown'|variable_revision_number:6|show_window:True|notes:['This module measures the intensity distribution within the objects using the center x,y coordinates for each object (not using the other options as it seems better to measure within the whole objects unlike what happens in the other options).']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+MeasureObjectIntensityDistribution:[module_num:10|svn_version:'Unknown'|variable_revision_number:6|show_window:False|notes:['This module measures the intensity distribution within the objects using the center x,y coordinates for each object (not using the other options as it seems better to measure within the whole objects unlike what happens in the other options).']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select images to measure:OP
     Hidden:1
     Hidden:1
@@ -172,12 +125,12 @@ MeasureObjectIntensityDistribution:[module_num:12|svn_version:'Unknown'|variable
     Number of bins:4
     Maximum radius:100
 
-MeasureObjectSizeShape:[module_num:13|svn_version:'Unknown'|variable_revision_number:3|show_window:True|notes:['This measures the size and shape (among other measurements) for the objects.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
-    Select object sets to measure:MaskedNuclei
+MeasureObjectSizeShape:[module_num:11|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:['This measures the size and shape (among other measurements) for the objects.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+    Select object sets to measure:ConvertImageToObjects
     Calculate the Zernike features?:Yes
     Calculate the advanced features?:Yes
 
-MeasureTexture:[module_num:14|svn_version:'Unknown'|variable_revision_number:7|show_window:True|notes:['This module will measure the texture within the objects and whole images.']|batch_state:array([], dtype=uint8)|enabled:False|wants_pause:False]
+MeasureTexture:[module_num:12|svn_version:'Unknown'|variable_revision_number:7|show_window:False|notes:['This module will measure the texture within the objects and whole images.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select images to measure:OP
     Select objects to measure:ConvertImageToObjects
     Enter how many gray levels to measure the texture at:256
@@ -185,20 +138,20 @@ MeasureTexture:[module_num:14|svn_version:'Unknown'|variable_revision_number:7|s
     Measure whole images or objects?:Both
     Texture scale to measure:3
 
-ExportToDatabase:[module_num:15|svn_version:'Unknown'|variable_revision_number:28|show_window:True|notes:['This module outputs an sqlite file with all of the image and object features for eahc plate in individual folders.', '', 'The previous module to measure image quality was removed since image quality should be run on raw, uncorrected images.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+ExportToDatabase:[module_num:13|svn_version:'Unknown'|variable_revision_number:28|show_window:False|notes:['This module outputs an sqlite file with all of the image and object features for eahc plate in individual folders.', '', 'The previous module to measure image quality was removed since image quality should be run on raw, uncorrected images.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Database type:SQLite
     Database name:DefaultDB
     Add a prefix to table names?:No
     Table prefix:MyExpt_
-    Output file location:Default Input Folder sub-folder|fish
+    Output file location:Default Output Folder|Documents/Nichols_Lab_Collaboration/data/3.sqlite_output
     Create a CellProfiler Analyst properties file?:No
     Database host:
     Username:
     Password:
     Name the SQLite database file:OP_features.sqlite
-    Calculate the per-image mean values of object measurements?:No
-    Calculate the per-image median values of object measurements?:No
-    Calculate the per-image standard deviation values of object measurements?:No
+    Calculate the per-image mean values of object measurements?:Yes
+    Calculate the per-image median values of object measurements?:Yes
+    Calculate the per-image standard deviation values of object measurements?:Yes
     Calculate the per-well mean values of object measurements?:No
     Calculate the per-well median values of object measurements?:No
     Calculate the per-well standard deviation values of object measurements?:No

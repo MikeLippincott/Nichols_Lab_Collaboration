@@ -1,14 +1,14 @@
 macro "Maximum Intensity Projection" {
-	//INPUT/OUPUT folders
+	//INPUT/OUTPUT folders
 	inDir=getDirectory("Choose the input folder");
-	outDir=getDirectory("Choose the ouput folder");
+	outDir=getDirectory("Choose the output folder");
 	myList=getFileList(inDir);  //an array
 	start = getTime();
 	waitForUser("I solemnly swear I am up to no good");
 	// Make an array of tif files only
 	flist = newArray(0);
 	for (i=0; i<myList.length; i++) {
-		if (endsWith(myList[i], ".tif")) {
+		if (endsWith(myList[i], ".ims")) {
 			flist = append(flist, myList[i]);
 		}
 	}
@@ -18,12 +18,22 @@ macro "Maximum Intensity Projection" {
 		print(progress+"% complete");
 		path=inDir+flist[j];
 		open(path);
-		a = getTitle();
+		a = File.getName(path);
 		print(a);
-		run("Z Project...", "projection=[Max Intensity]");
-		b = "MAX_"+a;
+		tmp_name1=a+" - "+a+" Resolution Level 1";
+		tmp_name2=a+" - "+a+" Resolution Level 2";
+		tmp_name3=a+" - "+a+" Resolution Level 3";
+		tmp_name4=a+" - "+a+" Resolution Level 4";
+		tmp_name5=a+" - "+a+" Resolution Level 5";
 
-		selectWindow(b);
+		close(tmp_name2);
+		close(tmp_name3);
+		close(tmp_name4);
+		close(tmp_name5);
+
+		b=replace(a, ".ims", ".tiff");
+
+
 		saveAs("Tiff", outDir+b);
 		close("*");
 	}
