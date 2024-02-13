@@ -45,7 +45,7 @@ models_path.mkdir(parents=True, exist_ok=True)
 # In[3]:
 
 
-# Generate a list of all the images in the image_path directory of max projection images
+# Generate a list of all the images in the max_projection_path directory of max projection images
 image_list = list(max_projection_path.glob("*.tif"))
 
 
