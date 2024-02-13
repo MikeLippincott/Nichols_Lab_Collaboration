@@ -8,7 +8,7 @@ jupyter nbconvert --to=script --FilesWriter.build_directory=scripts notebooks/*.
 
 cd scripts
 
-python 0.segment_images.py
+python scripts/0.segment_images.py
 
 cd ../
 
