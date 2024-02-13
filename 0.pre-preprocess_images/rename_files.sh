@@ -12,5 +12,5 @@ cd ../
 
 echo "Done!"
 
-# prep the output directory
+# prep the output directory for file type conversion in Fiji
 mkdir ../data/0.raw_images_tiff/
