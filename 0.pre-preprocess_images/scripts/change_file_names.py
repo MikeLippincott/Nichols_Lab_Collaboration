@@ -3,12 +3,12 @@
 
 # Replace the strings to rename the file names
 
-# In[ ]:
+# In[1]:
 
 
 import pathlib
 
-# In[ ]:
+# In[2]:
 
 
 # set path to the input files
@@ -24,10 +24,14 @@ output_path.mkdir(parents=True, exist_ok=True)
 files = input_path.glob("*.ims")
 
 
-# In[ ]:
+# In[3]:
 
 
+# get all files in the input path
+files = input_path.glob("*.ims")
 for file in files:
+    # extract the file path
+    path = file.parent
     new_file = (
         str(file)
         .replace(" ", "_")
@@ -35,8 +39,9 @@ for file in files:
         .replace("Protocol_7_", "")
         .replace("CZC14992TJ", "")
         .split("_2024-")[0]
+        .split("fixed_")[1]
     )
-    new_file = f"{new_file}.ims"
-    print(file)
+    new_file = f"{path}/{new_file}.ims"
+    print(new_file)
     # rename the file
     file.rename(new_file)

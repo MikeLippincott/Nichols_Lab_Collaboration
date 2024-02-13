@@ -46,18 +46,15 @@ else:
 # import image_path
 image_path = pathlib.Path("../../data/0.raw_images/")
 # max_projection paths
-max_projection_path = pathlib.Path("../../data/1.maximum_projections_and_masks/")
+max_projection_path = pathlib.Path("../../data/3.maximum_projections_and_masks/")
 # output mask path
-mask_path = pathlib.Path("../../data/1.maximum_projections_and_masks")
-# sqlite path
-sqlite_path = pathlib.Path("../../data/3.sqlite_output/")
+mask_path = pathlib.Path("../../data/3.maximum_projections_and_masks")
 # models path
 models_path = pathlib.Path("../../data/models/")
 
 # create directories if they don't exist
 max_projection_path.mkdir(parents=True, exist_ok=True)
 mask_path.mkdir(parents=True, exist_ok=True)
-sqlite_path.mkdir(parents=True, exist_ok=True)
 models_path.mkdir(parents=True, exist_ok=True)
 
 
