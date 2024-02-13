@@ -14,7 +14,7 @@ Download ImageJ (FIJI) from [here](https://imagej.net/Fiji/Downloads) and instal
 
 ## Usage
 
-run the script in the terminal:
+Run the script in the terminal:
 
 ``` bash
 cd 1.max_project_images
