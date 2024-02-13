@@ -1,0 +1,14 @@
+# cached files
+*.pyc
+
+# sqlite database
+*.sqlite
+
+# SAM models
+*.pth
+
+# data
+data/*
+
+# logs
+3.extract_features/notebooks/logs
