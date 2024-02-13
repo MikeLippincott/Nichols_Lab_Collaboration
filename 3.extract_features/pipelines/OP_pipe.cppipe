@@ -38,7 +38,7 @@ Metadata:[module_num:2|svn_version:'Unknown'|variable_revision_number:6|show_win
     Metadata file name:None
     Does cached metadata exist?:No
 
-NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:['Assign channels to names.', '', 'Changed channel name for d2 from Golgi to PM as that is better name since plasma membrane is the bigger organelle.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+NamesAndTypes:[module_num:3|svn_version:'Unknown'|variable_revision_number:8|show_window:False|notes:['Assign channels to names.', '', '']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Assign a name to:Images matching rules
     Select the image type:Grayscale image
     Name to assign these images:OP
@@ -98,7 +98,7 @@ MeasureImageIntensity:[module_num:8|svn_version:'Unknown'|variable_revision_numb
     Calculate custom percentiles:No
     Specify percentiles to measure:10,90
 
-MeasureObjectNeighbors:[module_num:9|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:['This measures adjacent nuclei neighbors.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+MeasureObjectNeighbors:[module_num:9|svn_version:'Unknown'|variable_revision_number:3|show_window:False|notes:['This measures adjacent object neighbors.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Select objects to measure:ConvertImageToObjects
     Select neighboring objects to measure:ConvertImageToObjects
     Method to determine neighbors:Adjacent
@@ -138,7 +138,7 @@ MeasureTexture:[module_num:12|svn_version:'Unknown'|variable_revision_number:7|s
     Measure whole images or objects?:Both
     Texture scale to measure:3
 
-ExportToDatabase:[module_num:13|svn_version:'Unknown'|variable_revision_number:28|show_window:False|notes:['This module outputs an sqlite file with all of the image and bone features.',]|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
+ExportToDatabase:[module_num:13|svn_version:'Unknown'|variable_revision_number:28|show_window:False|notes:['This module outputs an sqlite file with all of the image and bone features.']|batch_state:array([], dtype=uint8)|enabled:True|wants_pause:False]
     Database type:SQLite
     Database name:DefaultDB
     Add a prefix to table names?:No

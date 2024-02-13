@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-#
+# Generate masks for each object in each image.
 
 # In[1]:
 
@@ -19,17 +19,36 @@ from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 from skimage import io
 from tqdm import tqdm
 
+# In[2]:
+
+
+# install the model
+# #download the model if it doesn't exist
+if not pathlib.Path("../../data/models/sam_vit_h_4b8939.pth").exists():
+    get_ipython().system(
+        "wget -q 'https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth'"
+    )
+    # move the model to the right place
+    model_path = pathlib.Path("sam_vit_h_4b8939.pth").resolve(strict=True)
+    model_new_path = pathlib.Path("../../data/models/sam_vit_h_4b8939.pth")
+    # move the model
+    model_new_path.parent.mkdir(parents=True, exist_ok=True)
+    model_path.rename(model_new_path)
+else:
+    print("model exists")
+
+
 # ## Define Paths
 
-# In[2]:
+# In[3]:
 
 
 # import image_path
 image_path = pathlib.Path("../../data/0.raw_images/")
 # max_projection paths
-max_projection_path = pathlib.Path("../../data/1.maximum_projections/")
+max_projection_path = pathlib.Path("../../data/1.maximum_projections_and_masks/")
 # output mask path
-mask_path = pathlib.Path("../../data/2.masks/")
+mask_path = pathlib.Path("../../data/1.maximum_projections_and_masks")
 # sqlite path
 sqlite_path = pathlib.Path("../../data/3.sqlite_output/")
 # models path
@@ -42,34 +61,32 @@ sqlite_path.mkdir(parents=True, exist_ok=True)
 models_path.mkdir(parents=True, exist_ok=True)
 
 
-# In[3]:
+# In[4]:
 
 
-# Generate a list of all the images in the max_projection_path directory of max projection images
-image_list = list(max_projection_path.glob("*.tif"))
+# Generate a list of all the images in the image_path directory of max projection images
+image_list = list(max_projection_path.glob("*.tiff"))
+image_list
 
 
 # ## Load in the SAM model
 
-# In[4]:
+# In[5]:
 
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(DEVICE)
 
-# # download the model if it doesn't exist
-# if not pathlib.Path("../../models/vit_h.pth").exists():
-#     !wget
 
 MODEL_TYPE = "vit_h"
-CHECKPOINT_PATH = "../../data/models/vit_h.pth"
+CHECKPOINT_PATH = "../../data/models/sam_vit_h_4b8939.pth"
 sam = sam_model_registry[MODEL_TYPE](checkpoint=CHECKPOINT_PATH).to(device=DEVICE)
 mask_generator = SamAutomaticMaskGenerator(sam)
 
 
 # ## Loop over the files and segment masks
 
-# In[5]:
+# In[6]:
 
 
 for image_path in tqdm(image_list):

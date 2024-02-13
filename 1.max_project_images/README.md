@@ -2,7 +2,7 @@
 
 ## Description
 Perform maximum projection of z-stack images using ImageJ (FIJI).
-This script is used to generate maximum projection images from z-stack images.
+This [script](scripts/max_project.ijm) is used to generate maximum projection images from z-stack images.
 The script will generate a new folder named "max_project_images" in the same directory as the input images.
 The maximum projection images will be saved in the new folder.
 
