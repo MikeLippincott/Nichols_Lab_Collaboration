@@ -12,7 +12,6 @@ The maximum projection images will be saved in the new folder.
 
 Download ImageJ (FIJI) from [here](https://imagej.net/Fiji/Downloads) and install it.
 
-
 ## Usage
 
 run the script in the terminal:
