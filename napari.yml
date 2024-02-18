@@ -1,4 +1,4 @@
-name: op_cell_processing_env
+name: napari
 channels:
   - conda-forge
   - defaults
@@ -10,15 +10,13 @@ dependencies:
   - scikit-learn
   - jupyterlab
   - scikit-image==0.19.3
+  - pytorch
+  - torchvision
   - matplotlib
   - seaborn
   - scipy
   - umap-learn
   - tqdm
-  - conda-forge::gtk2
-  - mysqlclient==1.4.6
-  - conda-forge::wxpython=4.1.0
   - pip:
-    - cytotable
-    - pycytominer
+    - 'napari[all]'
 
