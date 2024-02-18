@@ -71,7 +71,8 @@ df = normalize(
     features=feature_list,
     meta_features=metadata_list,
 )
-
+# write the normalized data to a parquet file
+df.to_parquet("../../data/5.converted_data/normalized_output.parquet")
 print(df.shape, metadata_df.shape, features_df.shape)
 
 df = feature_select(
@@ -80,6 +81,8 @@ df = feature_select(
     operation="variance_threshold",
 )
 print(df.shape, metadata_df.shape, features_df.shape)
+# write the normalized and feature selected data to a parquet file
+df.to_parquet("../../data/5.converted_data/normalized_feature_selected_output.parquet")
 
 
 # In[7]:
@@ -96,7 +99,7 @@ print(df.shape, metadata_df.shape, features_df.shape)
 # ## Get a look at the data
 # Confirm counts across groups - look at latent spaces etc
 
-# In[14]:
+# In[8]:
 
 
 # generate a umap of the features
@@ -135,7 +138,7 @@ plt.show()
 plt.close()
 
 
-# In[15]:
+# In[9]:
 
 
 # Perform PCA
@@ -176,7 +179,7 @@ plt.ylabel("Principal Component 2")
 plt.show()
 
 
-# In[16]:
+# In[10]:
 
 
 # plot the number of objects per genotype
@@ -184,7 +187,7 @@ sns.countplot(data=metadata_df, x="Metadata_identity", palette="viridis")
 plt.show()
 
 
-# In[17]:
+# In[11]:
 
 
 # plot the number of objects per genotype
@@ -192,7 +195,7 @@ sns.countplot(data=metadata_df, x="Metadata_genotype", palette="viridis")
 plt.show()
 
 
-# In[18]:
+# In[12]:
 
 
 # plot the number of objects per genotype and side
@@ -202,7 +205,7 @@ sns.countplot(
 plt.show()
 
 
-# In[19]:
+# In[13]:
 
 
 # plot the AreaShape_FormFactor features for df genotypes
