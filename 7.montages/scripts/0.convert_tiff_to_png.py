@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[19]:
+# In[1]:
 
 
 import pathlib
 
 import cv2
 
-# In[20]:
+# In[2]:
 
 
 # set paths
@@ -17,15 +17,10 @@ output_path = pathlib.Path("../../data/7.montage_images/individual_images/")
 output_path.mkdir(exist_ok=True, parents=True)
 
 
-# In[21]:
+# In[ ]:
 
 
 files = list(input_path.glob("*.tiff"))
-
-
-# In[22]:
-
-
 for image in files:
     img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
     # change the contrast
