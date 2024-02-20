@@ -18,6 +18,9 @@ print(dim(metadata_df))
 print(dim(features_df))
 
 # umap
+width <- 7
+height <- 5
+options(repr.plot.width = width, repr.plot.height = height)
 umap_df <- umap::umap((features_df), n_neighbors = 7, min_dist = 0.7, n_components = 2, metric = "cosine")
 umap_df <- as.data.frame(umap_df$layout)
 colnames(umap_df) <- c("UMAP0", "UMAP1")
@@ -26,10 +29,12 @@ umap_df <- cbind(metadata_df, umap_df)
 # plot umap
 umap_plot <- (
     ggplot(umap_df, aes(x = UMAP0, y = UMAP1, color = Metadata_genotype, shape = Metadata_identity))
-    + geom_point()
+    + geom_point(size = 2)
     + theme_bw()
 )
 umap_plot
+
+
 
 
 # Load necessary packages
