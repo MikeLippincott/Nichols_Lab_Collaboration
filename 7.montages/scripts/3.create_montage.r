@@ -65,7 +65,7 @@ print(length(R_high_plots))
 L_images_unsel
 R_images_unsel
 # drop the third item in R_unsel_plots to keep the lists balanced and paired
-R_unsel_plots <- R_unsel_plots[-3]
+R_images_unsel <- R_images_unsel[-3]
 R_images_unsel
 
 # patch the plots together to make a montage
