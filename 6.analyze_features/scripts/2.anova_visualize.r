@@ -53,6 +53,13 @@ anova_plot <- (
 
 )
 anova_plot
+# save the plot
+ggsave(file = "anova_plot.png", plot = anova_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
+
+# load levene data in
+levene_df_path <- file.path("..","..","data","6.analysis_results","levene_test_results.csv")
+levene_df <- read.csv(levene_df_path)
+head(levene_df)
 
 width <- 4
 height <- 4
@@ -75,7 +82,10 @@ data_df$Metadata_genotype <- factor(
     data_df$Metadata_genotype,
     levels = c("WT", "Unselected", "High")
 )
+head(data_df)
 
+width <- 8
+height <- 8
 
 list_of_genotype_side_identity_anova_plots_split_by_genotype <- list()
 list_of_genotype_side_identity_anova_plots_split_by_genotype_side <- list()
@@ -98,6 +108,9 @@ for (i in 1:length(features)){
         + theme_bw()
         + figure_theme
     )
+    # save var plot
+    ggsave(file = paste0(features[i], "_variance_plot_genotype.png"), plot = var_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
+
     list_of_genotype_side_identity_anova_plots_split_by_genotype[[i]] <- var_plot
     # get the top feature
     tmp <- data_df %>% select(c("Metadata_genotype", "Metadata_identity", "Metadata_side", features[i]))
@@ -115,22 +128,20 @@ for (i in 1:length(features)){
         + theme_bw()
         + figure_theme
     )
+    # save var plot
+    ggsave(file = paste0(features[i], "_variance_plot_genotype_side.png"), plot = var_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
+
     list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[i]] <- var_plot
 }
 
-genotype_side_identity_var_by_genotype <- (
-    list_of_genotype_side_identity_anova_plots_split_by_genotype[[1]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[2]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[3]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[4]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[5]]
-    + list_of_genotype_side_identity_anova_plots_split_by_genotype[[6]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[7]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[8]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[9]] + list_of_genotype_side_identity_anova_plots_split_by_genotype[[10]]
-    + plot_layout(ncol = 3)
-)
-genotype_side_identity_var_by_genotype
+# filter the anova results to only include the top 10 features
+top_10_anova_genotype_df <- anova_genotype_df %>% filter(feature %in% features)
+top_10_anova_genotype_df$`p-adj` <- abs(top_10_anova_genotype_df$`p-adj`)
 
-genotype_side_identity_var_by_genotype_side <- (
-    list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[1]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[2]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[3]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[4]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[5]]
-    + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[6]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[7]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[8]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[9]] + list_of_genotype_side_identity_anova_plots_split_by_genotype_side[[10]]
-    + plot_layout(ncol = 3)
-)
-genotype_side_identity_var_by_genotype_side
+# list_of_genotype_side_identity_anova_plots_split_by_genotype[[1]]
+# # add significance to the plot
+# library(ggsignif)
+
 
 # load in the unormalized data
 df_path <- file.path("..","..","data","5.converted_data","output.parquet")
@@ -157,8 +168,8 @@ df$Metadata_genotype <- factor(
 head(df)
 
 # plot
-width <- 4
-height <- 4
+width <- 8
+height <- 8
 options(repr.plot.width = width, repr.plot.height = height)
 # reorder the genotype factor
 distance_plot <- (
@@ -168,13 +179,16 @@ distance_plot <- (
         x = Neighbors_FirstClosestDistance_Adjacent, fill = Metadata_genotype))
     + geom_boxplot()
     + theme(axis.text.x = element_text(angle = 90, hjust = 1))
-    + labs(title = "Neighbors First Closest Distance Adjacent", x = "Distance (um)", y = "Genotype", fill = "Genotype")
+    + labs(title = "Distance between OP and Br", x = "Distance (um)", y = "Genotype", fill = "Genotype")
     + theme_bw()
     + figure_theme
     # drop legend
     + theme(legend.position = "none")
 )
 distance_plot
+# save the plot
+ggsave(file = "distance_plot_genotype.png", plot = distance_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
+
 # reorder the genotype factor
 df$Metadata_genotype <- factor(df$Metadata_genotype, levels = c("WT", "Unselected", "High"))
 # plot the variance of the Neighbors_FirstClosestDistance_Adjacent feature
@@ -184,11 +198,13 @@ var_plot <- (
     ggplot(tmp, aes(x = Metadata_genotype, y = variance, fill = Metadata_genotype))
     + geom_bar(stat = "identity")
     + theme(axis.text.x = element_text(angle = 90, hjust = 1))
-    + labs(title = "Neighbors First Closest Distance", x = "Genotype", y = "Variance (um)", fill = "Genotype")
+    + labs(title = "Variance of distance between OP and Br", x = "Genotype", y = "Variance (um)", fill = "Genotype")
     + theme_bw()
     + figure_theme
 )
 var_plot
+# save the plot
+ggsave(file = "distance_variance_plot_genotype.png", plot = var_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
 
 width <- 17
 height <- 15

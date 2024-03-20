@@ -23,6 +23,9 @@ dependencies:
   - conda-forge::r-reshape2
   - conda-forge::r-patchwork
   - conda-forge::r-png
+  - conda-forge::r-arrow
+  - conda-forge::r-ggsignif
+  - conda-forge::r-tidyverse
   - pip:
     - pre-commit
     - black
