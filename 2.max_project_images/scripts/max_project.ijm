@@ -15,6 +15,7 @@ macro "Maximum Intensity Projection" {
 
 	for (j = 0 ; j < flist.length ; j++ ){
 		progress = j / flist.length;
+		progress=progress *100;
 		print(progress+"% complete");
 		path=inDir+flist[j];
 		open(path);

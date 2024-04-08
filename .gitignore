@@ -12,3 +12,8 @@ data/*
 
 # logs
 3.extract_features/notebooks/logs
+4.extract_features/notebooks/logs/
+4.extract_features/scripts/logs/
+
+# run info
+5.process_features/notebooks/runinfo/*
