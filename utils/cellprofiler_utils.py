@@ -1,55 +1,22 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # Run CellProfiler `OP_pipe.cppipe` pipeline
-#
-# In this notebook, we run the CellProfiler analysis pipeline to perform feature extraction to output CSV files.
-
-# ## Import libraries
-
-# In[ ]:
-
-
-from __future__ import annotations
-
 import os
 import pathlib
 import subprocess
 from typing import Optional
-
-# ## Set paths and variables
-#
-
-# In[ ]:
-
-
-# set paths for CellProfiler
-path_to_pipeline = pathlib.Path("../pipelines/OP_pipe.cppipe").resolve()
-
-path_to_input = pathlib.Path("../../data/3.maximum_projections_and_masks/").resolve()
-
-path_to_output = pathlib.Path("../../data/4.sqlite_output/").resolve()
-# make sure the output directory exists if not create it
-path_to_output.mkdir(parents=True, exist_ok=True)
-
-
-# ## Run CellProfiler analysis pipeline for each cell type
-#
-# In this notebook, we do not run the full pipelines as we use the python file to complete the whole run.
-
-# In[ ]:
 
 
 def run_cellprofiler(
     path_to_pipeline: str,
     path_to_input: str,
     path_to_output: str,
-    sqlite_name: Optional[None | str] = None,
-    hardcode_sqlite_name: Optional[str | None] = None,
-    analysis_run: Optional[bool | False] = False,
-    rename_sqlite_file: Optional[bool | False] = False,
+    sqlite_name: Optional[str] = None,
+    hardcode_sqlite_name: Optional[str] = None,
+    analysis_run: Optional[bool] = False,
+    rename_sqlite_file: Optional[bool] = False,
 ):
-    """Run CellProfiler on data using LoadData CSV. It can be used for both a illumination correction pipeline and analysis pipeline.
+    """
+    Written by Jenna Tomkinson
+    Grabbed from the NF1 repo: https://github.com/WayScience/nf1_cellpainting_data/blob/main/utils/cp_parallel.py
+    Run CellProfiler on data using LoadData CSV. It can be used for both a illumination correction pipeline and analysis pipeline.
 
     Args:
         path_to_pipeline (str):
@@ -138,27 +105,3 @@ def run_cellprofiler(
                 stderr=cellprofiler_output_file,
                 check=True,
             )
-
-        if rename_sqlite_file:
-            # rename the outputted .sqlite file to the specified sqlite name if running one analysis pipeline
-            rename_sqlite_file(
-                sqlite_dir_path=pathlib.Path(path_to_output),
-                name=sqlite_name,
-                hardcode_sqlite_name=hardcode_sqlite_name,
-            )
-
-
-# In[ ]:
-
-
-# run analysis pipeline
-run_cellprofiler(
-    path_to_pipeline=path_to_pipeline,
-    path_to_input=path_to_input,
-    path_to_output=path_to_output,
-    # name each SQLite file name from each CellProfiler pipeline
-    sqlite_name="OP_quantification",
-    hardcode_sqlite_name="OP_quantification",
-    # make analysis_run True to run an analysis pipeline
-    analysis_run=True,
-)

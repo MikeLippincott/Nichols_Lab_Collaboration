@@ -5,14 +5,13 @@
 
 
 import pathlib
-import sqlite3
 
 # impot open cv
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from cytotable import convert
+from cytotable import convert, presets
 from skimage import io
 
 # In[2]:
@@ -34,39 +33,48 @@ source_path = input_dir / "output.sqlite"
 dest_path = output_dir / f"output.{dest_datatype}"
 
 
-# In[3]:
+# In[ ]:
 
 
-# Read in the sqlite file via sqlite3
-conn = sqlite3.connect(source_path)
-
-tables = pd.read_sql_query("SELECT name FROM sqlite_master WHERE type='table';", conn)
-tables = tables["name"].values
-tables
-
-
-# In[4]:
-
-
-images_df = pd.read_sql_query(f"SELECT * FROM Per_Image", conn)
-# select columns to keep in the final dataframe
-columns_to_keep = ["ImageNumber", "Image_FileName_OP"]
-images_df = images_df[columns_to_keep]
-
-
-# In[5]:
+convert(
+    source_path=source_path,
+    dest_path=dest_path,
+    dest_datatype=dest_datatype,
+    metadata=["image"],
+    compartments=["object"],
+    identifying_columns=["ImageNumber"],
+    joins="""
+        SELECT
+            *
+        FROM
+            read_parquet('per_image.parquet') as per_image
+        INNER JOIN read_parquet('per_object.parquet') AS per_object ON
+            per_object.Metadata_ImageNumber = per_image.Metadata_ImageNumber
+        """,
+)
 
 
-query = "SELECT * FROM Per_Object"
-df = pd.read_sql_query(query, conn)
+# In[12]:
 
 
-# combine the two dataframes on ImageNumber
-df = df.merge(images_df, on="ImageNumber")
-conn.close()
+# read in the parquet file
+df = pd.read_parquet(dest_path)
 
 
-# In[6]:
+# In[13]:
+
+
+# From Jenna Tomkinson:
+# path to unwanted image cols text file
+unwanted_list_path = pathlib.Path("../unwanted_image_cols.txt")
+# Load the list of columns to remove from the text file
+with open(unwanted_list_path, "r") as file:
+    columns_to_remove = [line.strip() for line in file]
+# remove columns from the dataframe
+df = df.drop(columns=columns_to_remove)
+
+
+# In[14]:
 
 
 # get the column names that have BoundingBox in them
@@ -77,16 +85,15 @@ location_cols = [x for x in df.columns if "Location" in x]
 center_cols = [x for x in df.columns if "Center" in x]
 # manual list
 manual_cols = [
-    "ImageNumber",
     "Image_FileName_OP",
     "ObjectNumber",
-    "ConvertImageToObjects_Number_Object_Number",
+    "Object_ConvertImageToObjects_Number_Object_Number",
 ]
 
 final_metadata_cols = manual_cols + bounding_box_cols + location_cols + center_cols
 
 
-# In[7]:
+# In[15]:
 
 
 # select all of the metadata columns
@@ -94,24 +101,34 @@ metadata_df = df[final_metadata_cols]
 metadata_df.head()
 # add "Metadata to the front of the column names"
 metadata_df.columns = ["Metadata_" + x for x in metadata_df.columns]
+metadata_df["Metadata_ImageNumber"] = df["Metadata_ImageNumber"]
 metadata_df.head()
 
 df = df.drop(columns=final_metadata_cols)
 
 
-# In[8]:
+# In[16]:
+
+
+metadata_df
+
+
+# In[17]:
 
 
 # get the ConvertImageToObjects columns and remove the ConvertImageToObjects_ prefix
 convert_cols = [x for x in df.columns if "ConvertImageToObjects" in x]
 convert_df = df[convert_cols]
+
+# replace the ConvertImageToObjects_ prefix with ""
 convert_df.columns = [
     x.replace("ConvertImageToObjects_", "") for x in convert_df.columns
 ]
+convert_df.columns = [x.replace("Object_", "") for x in convert_df.columns]
 convert_df.head()
 
 
-# In[9]:
+# In[18]:
 
 
 # add the metadata and convert dataframes together
@@ -122,9 +139,13 @@ print("Duplicate columns are:", duplicates)
 df = df.loc[:, ~df.columns.duplicated()]
 # filter out small objects
 df = df[df["AreaShape_Area"] > 100]
+# if column contains Image_Mean then remove
+df = df.loc[:, ~df.columns.str.contains("Image_Mean_")]
+df = df.loc[:, ~df.columns.str.contains("Image_Median_")]
+df = df.loc[:, ~df.columns.str.contains("Image_StDev_")]
 
 
-# In[10]:
+# In[19]:
 
 
 # split the dataframe into 3 dataframes by genotype
@@ -178,7 +199,7 @@ df = pd.concat([df1, df2, df3])
 #
 # Total = 120-150 objects theoretically
 
-# In[11]:
+# In[20]:
 
 
 # keep the two largest areas for each image
@@ -192,9 +213,15 @@ df.rename(
 df.shape
 
 
+# In[21]:
+
+
+df
+
+
 # ## Annotate objects
 
-# In[12]:
+# In[22]:
 
 
 # sort by Metadata_ImageNumber
@@ -202,20 +229,20 @@ df = df.sort_values(by=["Metadata_ImageNumber"], ascending=True)
 df.reset_index(drop=True, inplace=True)
 
 
-# In[13]:
+# In[23]:
 
 
 input_dir = pathlib.Path("../../data/3.maximum_projections_and_masks").resolve()
 
 
-# In[14]:
+# In[24]:
 
 
 # set the image size when printed
 plt.rcParams["figure.figsize"] = (1, 1)
 
 
-# In[15]:
+# In[26]:
 
 
 for i in range(df.shape[0]):
@@ -224,16 +251,16 @@ for i in range(df.shape[0]):
     print(i, image_path)
     image_path = input_dir / image_path
     x_min = df.loc[
-        i, "Metadata_ConvertImageToObjects_AreaShape_BoundingBoxMaximum_X"
+        i, "Metadata_Object_ConvertImageToObjects_AreaShape_BoundingBoxMaximum_X"
     ].astype(int)
     x_max = df.loc[
-        i, "Metadata_ConvertImageToObjects_AreaShape_BoundingBoxMinimum_X"
+        i, "Metadata_Object_ConvertImageToObjects_AreaShape_BoundingBoxMinimum_X"
     ].astype(int)
     y_min = df.loc[
-        i, "Metadata_ConvertImageToObjects_AreaShape_BoundingBoxMaximum_Y"
+        i, "Metadata_Object_ConvertImageToObjects_AreaShape_BoundingBoxMaximum_Y"
     ].astype(int)
     y_max = df.loc[
-        i, "Metadata_ConvertImageToObjects_AreaShape_BoundingBoxMinimum_Y"
+        i, "Metadata_Object_ConvertImageToObjects_AreaShape_BoundingBoxMinimum_Y"
     ].astype(int)
     # read the image
     img = cv2.imread(str(image_path))
@@ -245,7 +272,7 @@ for i in range(df.shape[0]):
     plt.close()
 
 
-# In[16]:
+# In[27]:
 
 
 identity_list = [
@@ -389,7 +416,7 @@ identity_list = [
 df["Metadata_identity"] = identity_list
 
 
-# In[17]:
+# In[28]:
 
 
 # write the df to a parquet file

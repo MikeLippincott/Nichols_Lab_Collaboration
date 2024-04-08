@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Running feature extraction..."
+echo "Running feature preprocessing..."
 
 conda activate op_cellprofiler_env
 
@@ -8,7 +8,8 @@ jupyter nbconvert --to=script --FilesWriter.build_directory=scripts notebooks/*.
 
 cd scripts
 
-python 0.extract_features.py
+python 0.process_objects.py
+python 1.preprocess_features.py
 
 cd ../
 

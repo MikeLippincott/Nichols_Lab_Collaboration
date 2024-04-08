@@ -131,6 +131,7 @@ def mask_image(
     """
     This function takes in an image path and applies a gaussian blur, contrast adjustment, and thresholding to the image
     to create a binary mask image. The mask image is then saved to the mask_path directory with the same basename as the
+    original tiff image.
 
     Args:
     image_path: str: path to the image
@@ -159,8 +160,6 @@ def mask_image(
     # define the file basename
     image_path = pathlib.Path(image_path)
     file_basename = image_path.stem
-    # convert the image to RGB format
-    # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     # convert to unit8 format
     image = (image * 255).astype(np.uint8)
     # invert the image
@@ -365,6 +364,3 @@ mask_image(
 mask_image(
     "../../data/3.maximum_projections_and_masks/MAX_wt_9_R.tiff", alpha=60, beta=0
 )
-
-
-# In[ ]:

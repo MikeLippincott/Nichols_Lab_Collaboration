@@ -15,10 +15,9 @@ dependencies:
   - scipy
   - umap-learn
   - tqdm
-  - conda-forge::gtk2
-  - mysqlclient==1.4.6
-  - conda-forge::wxpython=4.1.0
+  - conda-forge::opencv
+  - conda-forge::seaborn
   - pip:
-    - cytotable
+    - cytotable==0.0.6
     - pycytominer
 
