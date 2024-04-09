@@ -18,7 +18,8 @@ df = pd.read_parquet(file_path)
 df.head()
 
 
-# We want to remove features that do not accuratly contribute to the shape variance.
+# We want to remove CellProfiler features that do not accurately contribute to the shape variance.
+# See CellProfiler documentation for more information on the measurements taken for shape and size: https://cellprofiler-manual.s3.amazonaws.com/CellProfiler-4.2.4/modules/measurement.html#id20
 #
 #
 # Spatial moment features are removed as they are not invariant to rotation and translation.
