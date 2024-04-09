@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[1]:
 
 
 import pathlib
@@ -14,7 +14,7 @@ import umap
 from pycytominer import feature_select, normalize
 from sklearn.decomposition import PCA
 
-# In[5]:
+# In[2]:
 
 
 df_path = pathlib.Path("../../data/5.converted_data/output.parquet").resolve(
@@ -24,13 +24,7 @@ df_path = pathlib.Path("../../data/5.converted_data/output.parquet").resolve(
 df = pd.read_parquet(df_path)
 
 
-# In[6]:
-
-
-df
-
-
-# In[7]:
+# In[3]:
 
 
 df["Metadata_genotype"] = df["Metadata_Image_FileName_OP"].str.split("_").str[1]
@@ -41,20 +35,7 @@ df["Metadata_side"] = (
 df["Metadata_genotype"].value_counts()
 
 
-# In[8]:
-
-
-# get the columns that contain nan
-nan_columns = df.columns[df.isna().any()].tolist()
-# pop AreaShape_FormFactor from nan_columns list
-nan_columns.pop(0)
-nan_columns
-# remove nan from the dataframe
-df = df.drop(nan_columns, axis=1)
-df.head(2)
-
-
-# In[9]:
+# In[5]:
 
 
 # split the data into metadata and features by columns that contain metadata
@@ -65,7 +46,7 @@ features_df = df.drop(metadata, axis=1)
 print(df.shape, metadata_df.shape, features_df.shape)
 
 
-# In[10]:
+# In[6]:
 
 
 feature_list = features_df.columns.to_list()
@@ -91,7 +72,7 @@ print(df.shape, metadata_df.shape, features_df.shape)
 df.to_parquet("../../data/5.converted_data/normalized_feature_selected_output.parquet")
 
 
-# In[11]:
+# In[7]:
 
 
 # split the data into metadata and features by columns that contain metadata
@@ -105,7 +86,7 @@ print(df.shape, metadata_df.shape, features_df.shape)
 # ## Get a look at the data
 # Confirm counts across groups - look at latent spaces etc
 
-# In[12]:
+# In[8]:
 
 
 # generate a umap of the features
@@ -144,7 +125,7 @@ plt.show()
 plt.close()
 
 
-# In[13]:
+# In[9]:
 
 
 # Perform PCA
@@ -185,7 +166,7 @@ plt.ylabel("Principal Component 2")
 plt.show()
 
 
-# In[14]:
+# In[10]:
 
 
 # plot the number of objects per genotype
@@ -193,7 +174,7 @@ sns.countplot(data=metadata_df, x="Metadata_identity", palette="viridis")
 plt.show()
 
 
-# In[15]:
+# In[11]:
 
 
 # plot the number of objects per genotype
@@ -201,7 +182,7 @@ sns.countplot(data=metadata_df, x="Metadata_genotype", palette="viridis")
 plt.show()
 
 
-# In[16]:
+# In[12]:
 
 
 # plot the number of objects per genotype and side
@@ -211,7 +192,7 @@ sns.countplot(
 plt.show()
 
 
-# In[17]:
+# In[13]:
 
 
 # plot the AreaShape_FormFactor features for df genotypes

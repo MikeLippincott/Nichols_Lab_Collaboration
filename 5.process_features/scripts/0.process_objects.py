@@ -20,9 +20,6 @@ from skimage import io
 # set paths
 dest_datatype = "parquet"
 
-# common configurations to use based on typical CellProfiler SQLite outputs
-preset = "cellprofiler_sqlite_pycytominer"
-
 input_dir = pathlib.Path("../../data/4.sqlite_output")
 
 # directory where parquet files are saved to
@@ -33,7 +30,7 @@ source_path = input_dir / "output.sqlite"
 dest_path = output_dir / f"output.{dest_datatype}"
 
 
-# In[ ]:
+# In[3]:
 
 
 convert(
@@ -54,14 +51,14 @@ convert(
 )
 
 
-# In[12]:
+# In[4]:
 
 
 # read in the parquet file
 df = pd.read_parquet(dest_path)
 
 
-# In[13]:
+# In[5]:
 
 
 # From Jenna Tomkinson:
@@ -74,7 +71,7 @@ with open(unwanted_list_path, "r") as file:
 df = df.drop(columns=columns_to_remove)
 
 
-# In[14]:
+# In[6]:
 
 
 # get the column names that have BoundingBox in them
@@ -93,7 +90,7 @@ manual_cols = [
 final_metadata_cols = manual_cols + bounding_box_cols + location_cols + center_cols
 
 
-# In[15]:
+# In[7]:
 
 
 # select all of the metadata columns
@@ -107,13 +104,13 @@ metadata_df.head()
 df = df.drop(columns=final_metadata_cols)
 
 
-# In[16]:
+# In[8]:
 
 
 metadata_df
 
 
-# In[17]:
+# In[9]:
 
 
 # get the ConvertImageToObjects columns and remove the ConvertImageToObjects_ prefix
@@ -128,7 +125,7 @@ convert_df.columns = [x.replace("Object_", "") for x in convert_df.columns]
 convert_df.head()
 
 
-# In[18]:
+# In[10]:
 
 
 # add the metadata and convert dataframes together
@@ -145,7 +142,7 @@ df = df.loc[:, ~df.columns.str.contains("Image_Median_")]
 df = df.loc[:, ~df.columns.str.contains("Image_StDev_")]
 
 
-# In[19]:
+# In[11]:
 
 
 # split the dataframe into 3 dataframes by genotype
@@ -199,7 +196,7 @@ df = pd.concat([df1, df2, df3])
 #
 # Total = 120-150 objects theoretically
 
-# In[20]:
+# In[12]:
 
 
 # keep the two largest areas for each image
@@ -213,7 +210,7 @@ df.rename(
 df.shape
 
 
-# In[21]:
+# In[13]:
 
 
 df
@@ -221,7 +218,7 @@ df
 
 # ## Annotate objects
 
-# In[22]:
+# In[14]:
 
 
 # sort by Metadata_ImageNumber
@@ -229,20 +226,20 @@ df = df.sort_values(by=["Metadata_ImageNumber"], ascending=True)
 df.reset_index(drop=True, inplace=True)
 
 
-# In[23]:
+# In[15]:
 
 
 input_dir = pathlib.Path("../../data/3.maximum_projections_and_masks").resolve()
 
 
-# In[24]:
+# In[16]:
 
 
 # set the image size when printed
 plt.rcParams["figure.figsize"] = (1, 1)
 
 
-# In[26]:
+# In[17]:
 
 
 for i in range(df.shape[0]):
@@ -272,7 +269,7 @@ for i in range(df.shape[0]):
     plt.close()
 
 
-# In[27]:
+# In[18]:
 
 
 identity_list = [
@@ -416,7 +413,7 @@ identity_list = [
 df["Metadata_identity"] = identity_list
 
 
-# In[28]:
+# In[19]:
 
 
 # write the df to a parquet file
