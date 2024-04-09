@@ -52,6 +52,14 @@ variance_df <- variance_df %>%
 
 head(variance_df)
 
+# replace the Metadata_genotype with the actual genotype name
+variance_df$Metadata_genotype <- gsub("high", "High-Severity", variance_df$Metadata_genotype)
+variance_df$Metadata_genotype <- gsub("unsel", "Mid-Severity", variance_df$Metadata_genotype)
+variance_df$Metadata_genotype <- gsub("wt", "Wild Type", variance_df$Metadata_genotype)
+# factorize the genotype
+variance_df$Metadata_genotype <- factor(variance_df$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+head(variance_df,2)
+
 width <- 6
 height <- 4
 options(repr.plot.width=width, repr.plot.height=height)
@@ -93,7 +101,13 @@ variance_df <- features_df %>%
   group_by(Metadata_genotype, Metadata_side) %>%
   summarize_all(var) %>%
   pivot_longer(cols = -c(Metadata_genotype, Metadata_side), names_to = "feature", values_to = "variance")
-head(variance_df)
+# replace the Metadata_genotype with the actual genotype name
+variance_df$Metadata_genotype <- gsub("high", "High-Severity", variance_df$Metadata_genotype)
+variance_df$Metadata_genotype <- gsub("unsel", "Mid-Severity", variance_df$Metadata_genotype)
+variance_df$Metadata_genotype <- gsub("wt", "Wild Type", variance_df$Metadata_genotype)
+# factorize the genotype
+variance_df$Metadata_genotype <- factor(variance_df$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+head(variance_df,2)
 
 # order the df by variance
 variance_df <- variance_df %>% arrange(desc(variance))
@@ -123,7 +137,7 @@ variance_df <- variance_df %>%
 
 
 width <- 8
-height <- 4
+height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
 
 coef_gg <- (

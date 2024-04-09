@@ -17,28 +17,13 @@ output_path = pathlib.Path("../../data/7.montage_images/individual_images/")
 output_path.mkdir(exist_ok=True, parents=True)
 
 
+# images need to be manually rotated or mirrored so that each are in the correct orientation.
+
 # In[3]:
 
 
-files = list(input_path.glob("*.png"))
-# for image in files:
-#     img = cv2.imread(str(image), cv2.IMREAD_UNCHANGED)
-#     # define dimensions of the image
-#     x = img.shape[0]
-#     y = img.shape[1]
-#     # print(x, y, image)
-#     if y > x:
+files = sorted(input_path.glob("*.png"))
 
-#         # resize the image
-#         img_rotated = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-#         # save the image and overwrite the original image
-#         cv2.imwrite(str(image), img_rotated)
-
-#     else:
-#         pass
-
-
-# images need to be manually rotated or mirrored so that each are in the correct orientation.
 
 # In[4]:
 
@@ -61,8 +46,6 @@ high.sort()
 
 img = cv2.imread(str(wt[1]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[1]), img)
@@ -72,11 +55,7 @@ cv2.imwrite(str(wt[1]), img)
 
 
 img = cv2.imread(str(wt[2]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[2]), img)
 
 
@@ -85,9 +64,6 @@ cv2.imwrite(str(wt[2]), img)
 
 img = cv2.imread(str(wt[3]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[3]), img)
 
@@ -96,11 +72,6 @@ cv2.imwrite(str(wt[3]), img)
 
 
 img = cv2.imread(str(wt[4]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[4]), img)
 
 
@@ -109,9 +80,6 @@ cv2.imwrite(str(wt[4]), img)
 
 img = cv2.imread(str(wt[5]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[5]), img)
 
@@ -120,11 +88,6 @@ cv2.imwrite(str(wt[5]), img)
 
 
 img = cv2.imread(str(wt[6]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[6]), img)
 
 
@@ -133,9 +96,6 @@ cv2.imwrite(str(wt[6]), img)
 
 img = cv2.imread(str(wt[7]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[7]), img)
 
@@ -144,11 +104,6 @@ cv2.imwrite(str(wt[7]), img)
 
 
 img = cv2.imread(str(wt[8]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[8]), img)
 
 
@@ -157,9 +112,6 @@ cv2.imwrite(str(wt[8]), img)
 
 img = cv2.imread(str(wt[9]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[9]), img)
 
@@ -168,11 +120,7 @@ cv2.imwrite(str(wt[9]), img)
 
 
 img = cv2.imread(str(wt[10]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[10]), img)
 
 
@@ -181,9 +129,7 @@ cv2.imwrite(str(wt[10]), img)
 
 img = cv2.imread(str(wt[11]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[11]), img)
 
@@ -192,11 +138,8 @@ cv2.imwrite(str(wt[11]), img)
 
 
 img = cv2.imread(str(wt[12]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[12]), img)
 
 
@@ -205,9 +148,7 @@ cv2.imwrite(str(wt[12]), img)
 
 img = cv2.imread(str(wt[13]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[13]), img)
 
@@ -216,11 +157,7 @@ cv2.imwrite(str(wt[13]), img)
 
 
 img = cv2.imread(str(wt[14]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[14]), img)
 
 
@@ -229,9 +166,7 @@ cv2.imwrite(str(wt[14]), img)
 
 img = cv2.imread(str(wt[15]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[15]), img)
 
@@ -240,11 +175,8 @@ cv2.imwrite(str(wt[15]), img)
 
 
 img = cv2.imread(str(wt[16]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[16]), img)
 
 
@@ -253,9 +185,7 @@ cv2.imwrite(str(wt[16]), img)
 
 img = cv2.imread(str(wt[17]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[17]), img)
 
@@ -264,11 +194,7 @@ cv2.imwrite(str(wt[17]), img)
 
 
 img = cv2.imread(str(wt[18]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[18]), img)
 
 
@@ -277,9 +203,7 @@ cv2.imwrite(str(wt[18]), img)
 
 img = cv2.imread(str(wt[19]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[19]), img)
 
@@ -288,11 +212,8 @@ cv2.imwrite(str(wt[19]), img)
 
 
 img = cv2.imread(str(wt[20]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[20]), img)
 
 
@@ -301,9 +222,7 @@ cv2.imwrite(str(wt[20]), img)
 
 img = cv2.imread(str(wt[21]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[21]), img)
 
@@ -312,11 +231,6 @@ cv2.imwrite(str(wt[21]), img)
 
 
 img = cv2.imread(str(wt[22]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[22]), img)
 
 
@@ -336,11 +250,7 @@ cv2.imwrite(str(wt[23]), img)
 
 
 img = cv2.imread(str(wt[24]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(wt[24]), img)
 
 
@@ -349,8 +259,7 @@ cv2.imwrite(str(wt[24]), img)
 
 img = cv2.imread(str(wt[25]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
+
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[25]), img)
@@ -360,11 +269,9 @@ cv2.imwrite(str(wt[25]), img)
 
 
 img = cv2.imread(str(wt[26]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
+
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[26]), img)
 
 
@@ -373,8 +280,7 @@ cv2.imwrite(str(wt[26]), img)
 
 img = cv2.imread(str(wt[27]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
+
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(wt[27]), img)
@@ -386,11 +292,8 @@ cv2.imwrite(str(wt[27]), img)
 
 
 img = cv2.imread(str(unsel[0]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[0]), img)
 
 
@@ -399,8 +302,7 @@ cv2.imwrite(str(unsel[0]), img)
 
 img = cv2.imread(str(unsel[1]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
+
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[1]), img)
@@ -410,11 +312,9 @@ cv2.imwrite(str(unsel[1]), img)
 
 
 img = cv2.imread(str(unsel[2]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[2]), img)
 # view the image
 
@@ -423,11 +323,9 @@ cv2.imwrite(str(unsel[2]), img)
 
 
 img = cv2.imread(str(unsel[3]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
+
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[3]), img)
 
 
@@ -436,9 +334,7 @@ cv2.imwrite(str(unsel[3]), img)
 
 img = cv2.imread(str(unsel[4]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[4]), img)
 
@@ -447,11 +343,8 @@ cv2.imwrite(str(unsel[4]), img)
 
 
 img = cv2.imread(str(unsel[5]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
-# img = cv2.flip(img, 1)\
 cv2.imwrite(str(unsel[5]), img)
 
 
@@ -459,8 +352,6 @@ cv2.imwrite(str(unsel[5]), img)
 
 
 img = cv2.imread(str(unsel[6]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCL OCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -471,11 +362,8 @@ cv2.imwrite(str(unsel[6]), img)
 
 
 img = cv2.imread(str(unsel[7]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[7]), img)
 
 
@@ -483,10 +371,8 @@ cv2.imwrite(str(unsel[7]), img)
 
 
 img = cv2.imread(str(unsel[8]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[8]), img)
 
@@ -495,11 +381,8 @@ cv2.imwrite(str(unsel[8]), img)
 
 
 img = cv2.imread(str(unsel[9]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[9]), img)
 
 
@@ -508,9 +391,7 @@ cv2.imwrite(str(unsel[9]), img)
 
 img = cv2.imread(str(unsel[10]), cv2.IMREAD_UNCHANGED)
 img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[10]), img)
 
@@ -519,11 +400,7 @@ cv2.imwrite(str(unsel[10]), img)
 
 
 img = cv2.imread(str(unsel[11]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[11]), img)
 
 
@@ -543,11 +420,8 @@ cv2.imwrite(str(unsel[12]), img)
 
 
 img = cv2.imread(str(unsel[13]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[13]), img)
 
 
@@ -555,8 +429,7 @@ cv2.imwrite(str(unsel[13]), img)
 
 
 img = cv2.imread(str(unsel[14]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -567,11 +440,9 @@ cv2.imwrite(str(unsel[14]), img)
 
 
 img = cv2.imread(str(unsel[15]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[15]), img)
 
 
@@ -579,8 +450,6 @@ cv2.imwrite(str(unsel[15]), img)
 
 
 img = cv2.imread(str(unsel[16]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -591,11 +460,8 @@ cv2.imwrite(str(unsel[16]), img)
 
 
 img = cv2.imread(str(unsel[17]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[17]), img)
 
 
@@ -603,11 +469,9 @@ cv2.imwrite(str(unsel[17]), img)
 
 
 img = cv2.imread(str(unsel[18]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[18]), img)
 
 
@@ -615,11 +479,8 @@ cv2.imwrite(str(unsel[18]), img)
 
 
 img = cv2.imread(str(unsel[19]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[19]), img)
 
 
@@ -627,11 +488,9 @@ cv2.imwrite(str(unsel[19]), img)
 
 
 img = cv2.imread(str(unsel[20]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[20]), img)
 
 
@@ -639,11 +498,8 @@ cv2.imwrite(str(unsel[20]), img)
 
 
 img = cv2.imread(str(unsel[21]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
-# img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[21]), img)
 
 
@@ -651,10 +507,8 @@ cv2.imwrite(str(unsel[21]), img)
 
 
 img = cv2.imread(str(unsel[22]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
+
 img = cv2.flip(img, 1)
 cv2.imwrite(str(unsel[22]), img)
 
@@ -663,11 +517,7 @@ cv2.imwrite(str(unsel[22]), img)
 
 
 img = cv2.imread(str(unsel[23]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[23]), img)
 
 
@@ -675,8 +525,7 @@ cv2.imwrite(str(unsel[23]), img)
 
 
 img = cv2.imread(str(unsel[24]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -687,11 +536,7 @@ cv2.imwrite(str(unsel[24]), img)
 
 
 img = cv2.imread(str(unsel[25]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_180)
-# mirror image
-# img = cv2.flip(img, 1)
+
 cv2.imwrite(str(unsel[25]), img)
 
 
@@ -699,8 +544,7 @@ cv2.imwrite(str(unsel[25]), img)
 
 
 img = cv2.imread(str(unsel[26]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -713,8 +557,6 @@ cv2.imwrite(str(unsel[26]), img)
 
 
 img = cv2.imread(str(high[0]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -725,8 +567,6 @@ cv2.imwrite(str(high[0]), img)
 
 
 img = cv2.imread(str(high[1]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -749,8 +589,6 @@ cv2.imwrite(str(high[2]), img)
 
 
 img = cv2.imread(str(high[3]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -761,20 +599,16 @@ cv2.imwrite(str(high[3]), img)
 
 
 img = cv2.imread(str(high[4]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(high[4]), img)
 
 
-# In[67]:
+# In[64]:
 
 
 img = cv2.imread(str(high[5]), cv2.IMREAD_UNCHANGED)
-# img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
-# img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
@@ -913,6 +747,3 @@ img = cv2.rotate(img, cv2.ROTATE_180)
 # mirror image
 img = cv2.flip(img, 1)
 cv2.imwrite(str(high[27]), img)
-
-
-# In[ ]:

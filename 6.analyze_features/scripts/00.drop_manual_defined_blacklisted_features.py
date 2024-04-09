@@ -24,7 +24,7 @@ df.head()
 #
 # Spatial moment features are removed as they are not invariant to rotation and translation.
 #
-# Central moment features are removed as size is not of interest.
+# Central moment features are removed as measurements of size is not of interest.
 #
 # Normalized moment features are removed as they do not contribute to the shape variance.
 #
@@ -33,8 +33,12 @@ df.head()
 # Extent is removed as we do not care about the ratio of pixels in the bounding box to the pixels in the shape.
 #
 # Orientation is removed as we are not concerned with the angle of the major axis of the shape.
+#
+# Zernike features are removed as they are not invariant to rotation and translation.
+#
+# Texturre features are removed as we are not interested in the texture of the shape.
 
-# In[3]:
+# In[4]:
 
 
 list_to_drop = [
@@ -49,7 +53,7 @@ list_to_drop = [
 ]
 
 
-# In[4]:
+# In[5]:
 
 
 # drop columns that contain Metadata
@@ -65,6 +69,20 @@ print(df1.shape)
 df1["Metadata_genotype"] = df["Metadata_genotype"]
 df1["Metadata_side"] = df["Metadata_side"]
 df1["Metadata_identity"] = df["Metadata_identity"]
+df1["Metadata_Fish_ID"] = df["Metadata_Fish_ID"]
+# remove Image_Count_ConvertImageToObjects column
+df1 = df1.drop(columns=["Image_Count_ConvertImageToObjects"])
+
+
+# In[8]:
+
+
+df1.head()
+
+
+# In[9]:
+
+
 # save the dataframe
 df_path = pathlib.Path(
     "../../data/5.converted_data/normalized_manual_feature_selected_output.parquet"

@@ -14,7 +14,7 @@ import statsmodels.api as sm
 import tqdm
 from scipy.stats import levene
 
-# improt anova and tukeyhsd
+# import anova and tukeyhsd
 from statsmodels.formula.api import ols
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
@@ -38,9 +38,6 @@ def anova_function(features_df: pd.DataFrame, Metdata_column: str) -> pd.DataFra
     pd.DataFrame
         A dataframe containing the results of the anova and tukeyhsd test for each feature
     """
-
-    # get dfs
-    # split the df into three genotypes
 
     # anova and tukeyhsd for each feature
     # create a pandas data frame to store the results
@@ -100,21 +97,6 @@ features_df = df.loc[:, ~metadata]
 # In[5]:
 
 
-# genotype_df = features_df.copy()
-# genotype_df.loc[:, "Metadata_genotype"] = metadata_df["Metadata_genotype"]
-# anova_results = anova_function(genotype_df, "Metadata_genotype")
-# # export the anova results
-# # out dir
-# out_dir = pathlib.Path("../../data/6.analysis_results/")
-# # create the dir if it does not exist
-# out_dir.mkdir(parents=True, exist_ok=True)
-# anova_results_path = out_dir / "anova_results_genotype.parquet"
-# anova_results.to_parquet(anova_results_path)
-
-
-# In[6]:
-
-
 # split the df into three genotypes
 high_df = df[df["Metadata_genotype"] == "high"]
 unsel_df = df[df["Metadata_genotype"] == "unsel"]
@@ -131,53 +113,9 @@ levene_test_results_df = pd.DataFrame(levene_test_results)
 levene_test_results_df
 
 
-# ## Anova for genotype and side
-
-# In[7]:
-
-
-# genotype_df = features_df.copy()
-# genotype_df.loc[:, "Metadata_genotype_side"] = metadata_df["Metadata_genotype_side"]
-# anova_results = anova_function(genotype_df, "Metadata_genotype_side")
-# # export the anova results
-# # out dir
-# out_dir = pathlib.Path("../../data/6.analysis_results/")
-# # create the dir if it does not exist
-# out_dir.mkdir(parents=True, exist_ok=True)
-# anova_results_path = out_dir / "anova_results_genotype_side.parquet"
-# anova_results.to_parquet(anova_results_path)
-
-
-# ## Anova for genotype, side, and identity
-
-# In[8]:
-
-
-# genotype_df = features_df.copy()
-# genotype_df.loc[:, "Metadata_genotype_identity_side"] = metadata_df[
-#     "Metadata_genotype_identity_side"
-# ]
-
-# anova_results = anova_function(genotype_df, "Metadata_genotype_identity_side")
-
-# # export the anova results
-# # out dir
-# out_dir = pathlib.Path("../../data/6.analysis_results/")
-# # create the dir if it does not exist
-# out_dir.mkdir(parents=True, exist_ok=True)
-# anova_results_path = out_dir / "anova_results_genotype_side_identity.parquet"
-# anova_results.to_parquet(anova_results_path)
-
-
-# In[9]:
-
-
-df["Metadata_genotype"].unique()
-
-
 # ## Calculate the levenes test statistic for the equality of variances
 
-# In[10]:
+# In[6]:
 
 
 # split the df into three genotypes
@@ -233,7 +171,7 @@ levene_test_results_df = levene_test_results_df.sort_values(
 levene_test_results_df
 
 
-# In[11]:
+# In[7]:
 
 
 # save the levene test results
@@ -241,5 +179,5 @@ levene_test_results_df
 out_dir = pathlib.Path("../../data/6.analysis_results/")
 # create the dir if it does not exist
 out_dir.mkdir(parents=True, exist_ok=True)
-levene_test_results_path = out_dir / "levene_test_results.csv"
+levene_test_results_path = pathlib.Path(out_dir / "levene_test_results.csv")
 levene_test_results_df.to_csv(levene_test_results_path)

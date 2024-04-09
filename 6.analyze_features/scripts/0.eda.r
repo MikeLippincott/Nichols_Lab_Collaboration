@@ -12,6 +12,20 @@ file_path <- file.path("..","..","data", "5.converted_data","normalized_feature_
 
 # read the data
 df <- arrow::read_parquet(file_path)
+df$Metadata_genotype <- gsub("wt", "Wild Type", df$Metadata_genotype)
+df$Metadata_genotype <- gsub("unsel", "Mid-Severity", df$Metadata_genotype)
+df$Metadata_genotype <- gsub("high", "High-Severity", df$Metadata_genotype)
+df$Metadata_genotype <- factor(
+    df$Metadata_genotype,
+    levels = c("Wild Type", "Mid-Severity", "High-Severity")
+)
+df$Metadata_identity <- gsub("both", "Merged", df$Metadata_identity)
+df$Metadata_identity <- gsub("br", "Br", df$Metadata_identity)
+df$Metadata_identity <- gsub("op", "Op", df$Metadata_identity)
+df$Metadata_identity <- factor(
+    df$Metadata_identity,
+    levels = c("Br","Op", "Merged")
+)
 head(df)
 
 # split the data into metadata and features
@@ -58,7 +72,7 @@ umap_plot <- (
     + geom_point(size = 2)
 
     + theme_bw()
-    + guides(color = guide_legend(title = "Genotype"), shape = guide_legend(title = "Identity"))
+    + guides(color = guide_legend(title = "Genotype"), shape = guide_legend(title = "Bone"))
 )
 umap_plot
 # save the plot
@@ -131,7 +145,6 @@ pca_plot <- (
     + theme_bw()
     + guides(color = guide_legend(title = "Genotype"), shape = guide_legend(title = "Identity"))
 )
-pca_plot
 # save the plot
 ggsave("pca_plot_genotype_and_bone.png", path = file.path("..","figures"), width = width, height = height, units = "in", dpi = 600)
 
@@ -150,19 +163,6 @@ pca_plot <- (
 pca_plot
 # save the plot
 ggsave("pca_plot_genotype_and_side.png", path = file.path("..","figures"), width = width, height = height, units = "in", dpi = 600)
-
-
-# split the data by genotype
-unique(df$Metadata_genotype)
-# remove metadata columns
-tmp_df <- df %>% select(-contains("Metadata"))
-tmp_df$Metadata_genotype <- df$Metadata_genotype
-tmp_df$Metadata_identity <- df$Metadata_identity
-
-agg_df <- tmp_df %>% group_by(Metadata_identity, Metadata_genotype) %>% summarize_all(c("mean", "sd"))
-# remove grouping
-agg_df <- agg_df %>% ungroup()
-agg_df
 
 
 # set path to the data

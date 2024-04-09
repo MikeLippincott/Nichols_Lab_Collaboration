@@ -75,12 +75,12 @@ top_10_anova_genotype_side_identity_df <- anova_genotype_side_identity_df %>% fi
 top_10_anova_genotype_side_identity_df$log10_tukey_p_value <- -log10(top_10_anova_genotype_side_identity_df$`p-adj`)
 # make the genotype a factor
 # replace the genotype values
-data_df$Metadata_genotype <- gsub("wt", "WT", data_df$Metadata_genotype)
-data_df$Metadata_genotype <- gsub("unsel", "Unselected", data_df$Metadata_genotype)
-data_df$Metadata_genotype <- gsub("high", "High", data_df$Metadata_genotype)
+data_df$Metadata_genotype <- gsub("wt", "Wild Type", data_df$Metadata_genotype)
+data_df$Metadata_genotype <- gsub("unsel", "Mid-Severity", data_df$Metadata_genotype)
+data_df$Metadata_genotype <- gsub("high", "High-Severity", data_df$Metadata_genotype)
 data_df$Metadata_genotype <- factor(
     data_df$Metadata_genotype,
-    levels = c("WT", "Unselected", "High")
+    levels = c("Wild Type", "Mid-Severity", "High-Severity")
 )
 head(data_df)
 
@@ -157,18 +157,18 @@ df$Neighbors_FirstClosestDistance_Adjacent[df$Metadata_genotype == "high"] <- 0
 # units are in pixels so convert to microns
 resolution = 1.6585 # pixels per micron
 df$Neighbors_FirstClosestDistance_Adjacent <- df$Neighbors_FirstClosestDistance_Adjacent / resolution
-df$Metadata_genotype <- gsub("wt", "WT", df$Metadata_genotype)
-df$Metadata_genotype <- gsub("unsel", "Unselected", df$Metadata_genotype)
-df$Metadata_genotype <- gsub("high", "High", df$Metadata_genotype)
+df$Metadata_genotype <- gsub("wt", "Wild Type", df$Metadata_genotype)
+df$Metadata_genotype <- gsub("unsel", "Mid-Severity", df$Metadata_genotype)
+df$Metadata_genotype <- gsub("high", "High-Severity", df$Metadata_genotype)
 df$Metadata_genotype <- factor(
     df$Metadata_genotype,
-    levels = c("WT", "Unselected", "High")
+    levels = c("Wild Type", "Mid-Severity", "High-Severity")
 )
 
 head(df)
 
 # plot
-width <- 8
+width <- 10
 height <- 8
 options(repr.plot.width = width, repr.plot.height = height)
 # reorder the genotype factor
@@ -190,7 +190,7 @@ distance_plot
 ggsave(file = "distance_plot_genotype.png", plot = distance_plot, path = file.path("..", "figures"), width = width, height = height, dpi = 600)
 
 # reorder the genotype factor
-df$Metadata_genotype <- factor(df$Metadata_genotype, levels = c("WT", "Unselected", "High"))
+df$Metadata_genotype <- factor(df$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 # plot the variance of the Neighbors_FirstClosestDistance_Adjacent feature
 tmp <- df %>% group_by(Metadata_genotype) %>% summarise(mean = mean(Neighbors_FirstClosestDistance_Adjacent), sd = sd(Neighbors_FirstClosestDistance_Adjacent))
 tmp$variance <- tmp$sd^2
@@ -201,6 +201,7 @@ var_plot <- (
     + labs(title = "Variance of distance between OP and Br", x = "Genotype", y = "Variance (um)", fill = "Genotype")
     + theme_bw()
     + figure_theme
+    + theme(legend.position = "none")
 )
 var_plot
 # save the plot
