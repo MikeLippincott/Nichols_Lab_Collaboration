@@ -43,7 +43,7 @@ def anova_function(features_df: pd.DataFrame, Metdata_column: str) -> pd.DataFra
     # split the df into three genotypes
 
     # anova and tukeyhsd for each feature
-    # create a list to store the results
+    # create a pandas data frame to store the results
     anova_results = pd.DataFrame()
 
     # loop through each feature
