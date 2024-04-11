@@ -49,7 +49,7 @@ variance_df_RadialDistribution <- variance_stats_df %>% filter(feature_group == 
 
 head(variance_stats_df)
 
-width <- 8
+width <- 7
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
 
@@ -77,7 +77,7 @@ coef_gg <- (
         )
 coef_gg
 # save the plot
-ggsave(file="top_variance_per_genotype_and_side.png", plot=coef_gg, path= file.path("..","figures"), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
+ggsave(file="top_variance_per_genotype.png", plot=coef_gg, path= file.path("..","figures"), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
 WT_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area_v_wt_area")
 WT_vs_unsel_significance <- levene_df_AreaShape %>% filter(group == "unsel_area_v_wt_area")
