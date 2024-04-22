@@ -57,6 +57,17 @@ data_df$Metadata_genotype <- factor(
     levels = c("Wild Type", "Mid-Severity", "High-Severity")
 )
 head(data_df)
+# add features to the features list
+features <- c(
+    features,
+    'AreaShape_HuMoment_0',
+    'AreaShape_HuMoment_1',
+    'AreaShape_HuMoment_2',
+    'AreaShape_HuMoment_3',
+    'AreaShape_HuMoment_4',
+    'AreaShape_HuMoment_5',
+    'AreaShape_HuMoment_6'
+)
 
 width <- 10
 height <- 8
@@ -94,7 +105,7 @@ for (i in 1:length(features)){
         + labs(title = title, x = "Genotype", y = "Variance", fill = "Genotype")
         + theme_bw()
         + figure_theme
-        + ylim(0,1)
+        # + ylim(0,1)
         # add significance bars
         + geom_signif(
             comparisons = list(c("High-Severity","Mid-Severity")),
@@ -155,4 +166,11 @@ list_of_genotype_side_identity_anova_plots_split_by_genotype[[7]]
 list_of_genotype_side_identity_anova_plots_split_by_genotype[[8]]
 list_of_genotype_side_identity_anova_plots_split_by_genotype[[9]]
 list_of_genotype_side_identity_anova_plots_split_by_genotype[[10]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[11]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[12]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[13]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[14]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[15]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[16]]
+list_of_genotype_side_identity_anova_plots_split_by_genotype[[17]]
 

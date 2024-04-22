@@ -48,11 +48,13 @@ variance_df_RadialDistribution <- variance_stats_df %>% filter(feature_group == 
 
 
 head(variance_stats_df)
+unique(variance_stats_df$Metadata_genotype)
 
 width <- 7
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
-
+# make genotypes and sides into factors
+variance_stats_df$Metadata_genotype <- factor(variance_stats_df$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 coef_gg <- (
         ggplot(variance_stats_df, aes(x = Metadata_genotype, y = feature_group))
         + geom_point(aes(fill = abs(variance_max)), pch = 22, size = 16)
@@ -129,6 +131,8 @@ unsel_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area
 WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
+# make genotype a factor
+areashape_var$Metadata_genotype <- factor(areashape_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)

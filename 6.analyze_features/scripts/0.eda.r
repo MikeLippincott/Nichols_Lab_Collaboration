@@ -165,6 +165,33 @@ pca_plot
 ggsave("pca_plot_genotype_and_side.png", path = file.path("..","figures"), width = width, height = height, units = "in", dpi = 600)
 
 
+
+# remove all metadata columns
+df_selected <- df %>% select(-contains("Metadata"))
+df_selected$Metadata_genotype <- df$Metadata_genotype
+df_selected$Metadata_replicate <- df$Metadata_replicate
+# aggregate by Metadata_genotype, FileName, Metadata_ImageNumber, side, Metdata_replicate
+df_agg <- df_selected %>%
+    group_by(Metadata_genotype, Metadata_replicate) %>%
+    summarise_all(mean)
+# ungroup the data
+df_agg <- ungroup(df_agg)
+# # generate the pca for the aggregated data
+res.pca <- prcomp(df_agg %>% select(-contains("Metadata")), scale = TRUE)
+# # create the pca plot
+pca_df <- as.data.frame(res.pca$x)
+pca_df <- cbind(df_agg %>% select(contains("Metadata")), pca_df)
+pca_plot <- (
+    ggplot(pca_df, aes(x = PC1, y = PC2, color = Metadata_genotype))
+    + geom_point()
+    + theme_bw()
+    + guides(color = guide_legend(title = "Genotype"))
+)
+pca_plot
+# save the plot
+ggsave("pca_plot_genotype_aggregated.png", path = file.path("..","figures"), width = width, height = height, units = "in", dpi = 600)
+
+
 # set path to the data
 file_path <- file.path("..","..","data", "5.converted_data","normalized_manual_feature_selected_output.parquet")
 
@@ -325,3 +352,5 @@ pca_plot
 # save the plot
 ggsave("pca_plot_side_manual_selection.png", path = file.path("..","figures"), width = width, height = height, units = "in", dpi = 600)
 
+
+pca_df

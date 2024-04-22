@@ -80,13 +80,13 @@ df1["Metadata_Fish_ID"] = df["Metadata_Fish_ID"]
 df1 = df1.drop(columns=["Image_Count_ConvertImageToObjects"])
 
 
-# In[8]:
+# In[6]:
 
 
 df1.head()
 
 
-# In[9]:
+# In[7]:
 
 
 # save the dataframe
