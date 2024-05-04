@@ -1,0 +1,800 @@
+1714844522.384342 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:91 __init__ INFO: Starting DataFlowKernel with config
+Config(
+    app_cache=True,
+    checkpoint_files=None,
+    checkpoint_mode=None,
+    checkpoint_period=None,
+    executors=(HighThroughputExecutor(
+        address=None,
+        address_probe_timeout=None,
+        available_accelerators=[],
+        block_error_handler=<function simple_error_handler at 0x7f92b89acca0>,
+        cores_per_worker=1.0,
+        cpu_affinity='none',
+        encrypted=False,
+        heartbeat_period=30,
+        heartbeat_threshold=120,
+        interchange_port_range=(55000, 56000),
+        label='htex_default_for_cytotable',
+        launch_cmd='process_worker_pool.py {debug} {max_workers} -a {addresses} -p {prefetch_capacity} -c {cores_per_worker} -m {mem_per_worker} --poll {poll_period} --task_port={task_port} --result_port={result_port} --cert_dir {cert_dir} --logdir={logdir} --block_id={{block_id}} --hb_period={heartbeat_period} {address_probe_timeout_string} --hb_threshold={heartbeat_threshold} --cpu-affinity {cpu_affinity} --available-accelerators {accelerators}',
+        max_workers=inf,
+        mem_per_worker=None,
+        poll_period=10,
+        prefetch_capacity=0,
+        provider=LocalProvider(
+            channel=LocalChannel(
+                envs={},
+                script_dir=None,
+                userhome='/home/lippincm/Documents/Nichols_Lab_Collaboration/5.process_features/scripts'
+            ),
+            cmd_timeout=30,
+            init_blocks=1,
+            launcher=SingleNodeLauncher(debug=True, fail_on_any=False),
+            max_blocks=1,
+            min_blocks=0,
+            move_files=None,
+            nodes_per_block=1,
+            parallelism=1,
+            worker_init=''
+        ),
+        storage_access=None,
+        worker_debug=False,
+        worker_logdir_root=None,
+        worker_port_range=(54000, 55000),
+        worker_ports=None,
+        working_dir=None
+    ),),
+    garbage_collect=True,
+    initialize_logging=True,
+    internal_tasks_max_threads=10,
+    max_idletime=120.0,
+    monitoring=None,
+    retries=0,
+    retry_handler=None,
+    run_dir='runinfo',
+    strategy='simple',
+    usage_tracking=False
+)
+1714844522.384479 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:93 __init__ INFO: Parsl version: 2024.02.12
+1714844522.384566 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.usage_tracking.usage:127 __init__ DEBUG: Tracking status: False
+1714844522.384658 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:121 __init__ INFO: Run id is: daa107b8-1d95-48e9-aeef-07dd652ab8d6
+1714844522.570521 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:128 __init__ DEBUG: Considering candidate for workflow name: /home/lippincm/miniconda3/envs/op_cell_processing_env/lib/python3.8/site-packages/parsl/dataflow/dflow.py
+1714844522.578761 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:128 __init__ DEBUG: Considering candidate for workflow name: /home/lippincm/miniconda3/envs/op_cell_processing_env/lib/python3.8/site-packages/parsl/dataflow/dflow.py
+1714844522.578801 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:128 __init__ DEBUG: Considering candidate for workflow name: /home/lippincm/miniconda3/envs/op_cell_processing_env/lib/python3.8/site-packages/cytotable/convert.py
+1714844522.578840 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:134 __init__ DEBUG: Using convert.py as workflow name
+1714844522.579038 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.memoization:163 __init__ INFO: App caching initialized
+1714844522.579099 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.jobs.strategy:143 __init__ DEBUG: Scaling strategy: simple
+1714844522.585326 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:507 _start_queue_management_thread DEBUG: Starting queue management thread
+1714844522.589861 2024-05-04 11:42:02 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:396 _queue_management_worker DEBUG: Queue management worker starting
+1714844522.589921 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:511 _start_queue_management_thread DEBUG: Started queue management thread
+1714844522.590087 2024-05-04 11:42:02 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844522.623814 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:369 start DEBUG: Created management thread: <Thread(HTEX-Queue-Management-Thread, started daemon 140265456105024)>
+1714844522.624159 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:328 initialize_scaling DEBUG: Launch command: process_worker_pool.py   -a 172.17.0.1,10.13.161.59,10.53.188.1,140.226.13.16,127.0.0.1 -p 0 -c 1.0 -m None --poll 10 --task_port=54554 --result_port=54073 --cert_dir None --logdir=/home/lippincm/Documents/Nichols_Lab_Collaboration/5.process_features/scripts/runinfo/000/htex_default_for_cytotable --block_id={block_id} --hb_period=30  --hb_threshold=120 --cpu-affinity none --available-accelerators
+1714844522.624205 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:330 initialize_scaling DEBUG: Starting HighThroughputExecutor with provider:
+LocalProvider(
+    channel=LocalChannel(
+        envs={},
+        script_dir='/home/lippincm/Documents/Nichols_Lab_Collaboration/5.process_features/scripts/runinfo/000/submit_scripts',
+        userhome='/home/lippincm/Documents/Nichols_Lab_Collaboration/5.process_features/scripts'
+    ),
+    cmd_timeout=30,
+    init_blocks=1,
+    launcher=SingleNodeLauncher(debug=True, fail_on_any=False),
+    max_blocks=1,
+    min_blocks=0,
+    move_files=None,
+    nodes_per_block=1,
+    parallelism=1,
+    worker_init=''
+)
+1714844522.625445 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.status_handling:194 scale_out INFO: Scaling out by 1 blocks
+1714844522.625499 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.status_handling:197 scale_out INFO: Allocated block ID 0
+1714844522.625540 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.status_handling:225 _launch_block DEBUG: Submitting to provider with job_name parsl.htex_default_for_cytotable.block-0
+1714844522.625935 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.providers.local.local:219 submit DEBUG: Launching
+1714844522.678965 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.executors.status_handling:228 _launch_block DEBUG: Launched block 0 on executor htex_default_for_cytotable with job ID 252884
+1714844522.679243 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.jobs.job_status_poller:128 add_executors DEBUG: Adding executor htex_default_for_cytotable
+1714844522.679736 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:949 submit DEBUG: Task 0 will be sent to executor _parsl_internal
+1714844522.679910 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.679964 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1031 submit INFO: Task 0 submitted for App _to_parquet, not waiting on any dependency
+1714844522.680017 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1037 submit DEBUG: Task 0 set to pending state with AppFuture: <AppFuture at 0x7f92c9aaf160 state=pending>
+1714844522.680085 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.memoization:222 check_memo DEBUG: Task 0 will not be memoized
+1714844522.684746 2024-05-04 11:42:02 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:727 launch_task INFO: Parsl task 0 try 0 launched on executor _parsl_internal
+1714844522.687908 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 1 will be sent to executor _parsl_internal
+1714844522.688037 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.688082 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 1 submitted for App _gather_sources, not waiting on any dependency
+1714844522.688123 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 1 set to pending state with AppFuture: <AppFuture at 0x7f92c9aaf8b0 state=pending>
+1714844522.688162 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 1 will not be memoized
+1714844522.692609 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:949 submit DEBUG: Task 2 will be sent to executor htex_default_for_cytotable
+1714844522.692775 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:727 launch_task INFO: Parsl task 1 try 0 launched on executor _parsl_internal
+1714844522.692876 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.692981 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1031 submit INFO: Task 2 submitted for App _build_path, not waiting on any dependency
+1714844522.693022 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1037 submit DEBUG: Task 2 set to pending state with AppFuture: <AppFuture at 0x7f92c9aafe20 state=pending>
+1714844522.693060 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.memoization:222 check_memo DEBUG: Task 2 will not be memoized
+1714844522.693133 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _build_path at 0x7f92c9aace50> to queue with args ()
+1714844522.695084 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844522.695167 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844522.695204 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 2 try 0 launched on executor htex_default_for_cytotable with executor id 1
+1714844522.695249 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:949 submit DEBUG: Task 3 will be sent to executor htex_default_for_cytotable
+1714844522.695294 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.695329 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1031 submit INFO: Task 3 submitted for App _get_source_filepaths, waiting on task 2
+1714844522.695362 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1037 submit DEBUG: Task 3 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4a60 state=pending>
+1714844522.695403 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 3 has outstanding dependencies, so launch_if_ready skipping
+1714844522.695435 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:949 submit DEBUG: Task 4 will be sent to executor htex_default_for_cytotable
+1714844522.695472 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.695501 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1031 submit INFO: Task 4 submitted for App _infer_source_datatype, waiting on task 3
+1714844522.695531 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1037 submit DEBUG: Task 4 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4880 state=pending>
+1714844522.695558 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 4 has outstanding dependencies, so launch_if_ready skipping
+1714844522.695587 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:949 submit DEBUG: Task 5 will be sent to executor htex_default_for_cytotable
+1714844522.695622 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844522.695653 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1031 submit INFO: Task 5 submitted for App _filter_source_filepaths, waiting on task 3, task 4
+1714844522.695682 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:1037 submit DEBUG: Task 5 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4190 state=pending>
+1714844522.695712 2024-05-04 11:42:02 MainProcess-252805 ThreadPoolExecutor-0_1-140265100666432 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 5 has outstanding dependencies, so launch_if_ready skipping
+1714844523.649103 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844523.649306 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844523.649488 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844523.649602 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844523.649650 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844523.649680 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844523.649713 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844523.649799 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844523.649843 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 1
+1714844523.649879 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844523.649910 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844523.649965 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844523.649994 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844523.650023 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844523.650076 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844523.650103 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 1 active tasks, 1/0 running/pending blocks, and 0 connected workers
+1714844523.650137 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:301 _general_strategy DEBUG: Strategy case 3: no changes necessary to current block load
+1714844523.650182 2024-05-04 11:42:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844525.170900 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844525.171513 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 2 completed (launched -> exec_done)
+1714844525.171675 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 3 will not be memoized
+1714844525.171747 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_source_filepaths at 0x7f92c9ac71f0> to queue with args ()
+1714844525.174346 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844525.175385 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844525.175526 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 3 try 0 launched on executor htex_default_for_cytotable with executor id 2
+1714844525.175683 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844525.943464 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844525.943706 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 3 completed (launched -> exec_done)
+1714844525.943786 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 4 will not be memoized
+1714844525.943847 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _infer_source_datatype at 0x7f92c9ac7550> to queue with args ()
+1714844525.945432 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844525.945491 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844525.945536 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 4 try 0 launched on executor htex_default_for_cytotable with executor id 3
+1714844525.945585 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 5 has outstanding dependencies, so launch_if_ready skipping
+1714844525.945617 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844525.965278 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844525.965429 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 4 completed (launched -> exec_done)
+1714844525.965499 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 5 will not be memoized
+1714844525.965544 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _filter_source_filepaths at 0x7f92c9ac78b0> to queue with args ()
+1714844525.967119 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844525.967172 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844525.967207 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 5 try 0 launched on executor htex_default_for_cytotable with executor id 4
+1714844525.967246 2024-05-04 11:42:05 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844526.253418 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844526.253657 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 5 completed (launched -> exec_done)
+1714844526.253742 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:434 handle_join_update DEBUG: Join callback for task 1, inner_app_future <AppFuture at 0x7f92c9ac4190 state=finished returned dict>
+1714844526.253795 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 1 completed (joining -> exec_done)
+1714844526.253853 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844526.254170 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 6 will be sent to executor htex_default_for_cytotable
+1714844526.254268 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844526.254310 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 6 submitted for App _get_table_chunk_offsets, not waiting on any dependency
+1714844526.254348 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 6 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace3a0 state=pending>
+1714844526.254382 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 6 will not be memoized
+1714844526.254422 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_table_chunk_offsets at 0x7f928595c280> to queue with args ()
+1714844526.256216 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844526.256286 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844526.256328 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 6 try 0 launched on executor htex_default_for_cytotable with executor id 5
+1714844526.631111 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844526.631324 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 6 completed (launched -> exec_done)
+1714844526.631421 2024-05-04 11:42:06 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844526.631504 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 7 will be sent to executor htex_default_for_cytotable
+1714844526.631606 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844526.631649 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 7 submitted for App _get_table_chunk_offsets, not waiting on any dependency
+1714844526.631691 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 7 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace160 state=pending>
+1714844526.631729 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 7 will not be memoized
+1714844526.631774 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_table_chunk_offsets at 0x7f928595c280> to queue with args ()
+1714844526.631871 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844526.631922 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844526.631959 2024-05-04 11:42:06 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 7 try 0 launched on executor htex_default_for_cytotable with executor id 6
+1714844527.100173 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844527.100340 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 7 completed (launched -> exec_done)
+1714844527.100415 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844527.100494 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 8 will be sent to executor htex_default_for_cytotable
+1714844527.100565 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844527.100603 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 8 submitted for App _get_table_columns_and_types, not waiting on any dependency
+1714844527.100641 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 8 set to pending state with AppFuture: <AppFuture at 0x7f92c9acebe0 state=pending>
+1714844527.100676 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 8 will not be memoized
+1714844527.100716 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_table_columns_and_types at 0x7f9285955dc0> to queue with args ()
+1714844527.102368 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844527.102427 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844527.102464 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 8 try 0 launched on executor htex_default_for_cytotable with executor id 7
+1714844527.102512 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 9 will be sent to executor htex_default_for_cytotable
+1714844527.102582 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844527.102618 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 9 submitted for App _prep_cast_column_data_types, waiting on task 8
+1714844527.102650 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 9 set to pending state with AppFuture: <AppFuture at 0x7f92c9acedc0 state=pending>
+1714844527.102681 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 9 has outstanding dependencies, so launch_if_ready skipping
+1714844527.670567 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844527.671283 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 8 completed (launched -> exec_done)
+1714844527.671375 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 9 will not be memoized
+1714844527.671425 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _prep_cast_column_data_types at 0x7f92859555e0> to queue with args ()
+1714844527.673223 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844527.673301 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844527.673342 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 9 try 0 launched on executor htex_default_for_cytotable with executor id 8
+1714844527.673387 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844527.911747 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844527.912208 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 9 completed (launched -> exec_done)
+1714844527.912270 2024-05-04 11:42:07 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844527.912336 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 10 will be sent to executor htex_default_for_cytotable
+1714844527.912422 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844527.912460 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 10 submitted for App _get_table_columns_and_types, not waiting on any dependency
+1714844527.912496 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 10 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace730 state=pending>
+1714844527.912528 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 10 will not be memoized
+1714844527.912560 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_table_columns_and_types at 0x7f9285955dc0> to queue with args ()
+1714844527.912627 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844527.912673 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844527.912703 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 10 try 0 launched on executor htex_default_for_cytotable with executor id 9
+1714844527.912740 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 11 will be sent to executor htex_default_for_cytotable
+1714844527.912778 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844527.912808 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 11 submitted for App _prep_cast_column_data_types, waiting on task 10
+1714844527.912835 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 11 set to pending state with AppFuture: <AppFuture at 0x7f92c9a510d0 state=pending>
+1714844527.912868 2024-05-04 11:42:07 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 11 has outstanding dependencies, so launch_if_ready skipping
+1714844528.208349 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844528.209888 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 10 completed (launched -> exec_done)
+1714844528.209958 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 11 will not be memoized
+1714844528.210006 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _prep_cast_column_data_types at 0x7f92859555e0> to queue with args ()
+1714844528.210160 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844528.210213 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844528.210249 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 11 try 0 launched on executor htex_default_for_cytotable with executor id 10
+1714844528.210288 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844528.494252 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844528.494543 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 11 completed (launched -> exec_done)
+1714844528.494618 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844528.494705 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 12 will be sent to executor htex_default_for_cytotable
+1714844528.494808 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844528.494851 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 12 submitted for App _source_chunk_to_parquet, not waiting on any dependency
+1714844528.494891 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 12 set to pending state with AppFuture: <AppFuture at 0x7f92c9acedc0 state=pending>
+1714844528.494928 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 12 will not be memoized
+1714844528.494967 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _source_chunk_to_parquet at 0x7f928595c5e0> to queue with args ()
+1714844528.497141 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844528.497216 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844528.497255 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 12 try 0 launched on executor htex_default_for_cytotable with executor id 11
+1714844528.497326 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 13 will be sent to executor htex_default_for_cytotable
+1714844528.497378 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844528.497415 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 13 submitted for App _prepend_column_name, waiting on task 12
+1714844528.497449 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 13 set to pending state with AppFuture: <AppFuture at 0x7f92c9acea60 state=pending>
+1714844528.497480 2024-05-04 11:42:08 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 13 has outstanding dependencies, so launch_if_ready skipping
+1714844528.650769 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844528.651014 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844528.651283 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844528.651421 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844528.651473 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844528.651505 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844528.651539 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844528.651745 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844528.651800 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 1
+1714844528.651831 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844528.651864 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844528.652035 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844528.652077 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844528.652111 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844528.652290 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844528.652329 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 1 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844528.652364 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:301 _general_strategy DEBUG: Strategy case 3: no changes necessary to current block load
+1714844528.652392 2024-05-04 11:42:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844528.980770 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844528.981005 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 12 completed (launched -> exec_done)
+1714844528.981109 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 13 will not be memoized
+1714844528.981174 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _prepend_column_name at 0x7f928595c940> to queue with args ()
+1714844528.983228 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844528.983341 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844528.983388 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 13 try 0 launched on executor htex_default_for_cytotable with executor id 12
+1714844528.983435 2024-05-04 11:42:08 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844529.668993 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844529.669213 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 13 completed (launched -> exec_done)
+1714844529.669299 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844529.669429 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 14 will be sent to executor htex_default_for_cytotable
+1714844529.669520 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844529.669562 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 14 submitted for App _source_chunk_to_parquet, not waiting on any dependency
+1714844529.669600 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 14 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace880 state=pending>
+1714844529.669638 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 14 will not be memoized
+1714844529.669693 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _source_chunk_to_parquet at 0x7f928595c5e0> to queue with args ()
+1714844529.670031 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844529.670090 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844529.670125 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 14 try 0 launched on executor htex_default_for_cytotable with executor id 13
+1714844529.670167 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 15 will be sent to executor htex_default_for_cytotable
+1714844529.670208 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844529.670242 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 15 submitted for App _prepend_column_name, waiting on task 14
+1714844529.670272 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 15 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace250 state=pending>
+1714844529.670301 2024-05-04 11:42:09 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 15 has outstanding dependencies, so launch_if_ready skipping
+1714844529.931634 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844529.931794 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 14 completed (launched -> exec_done)
+1714844529.931866 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 15 will not be memoized
+1714844529.931915 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _prepend_column_name at 0x7f928595c940> to queue with args ()
+1714844529.931987 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844529.932033 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844529.932068 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 15 try 0 launched on executor htex_default_for_cytotable with executor id 14
+1714844529.932106 2024-05-04 11:42:09 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844530.301434 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844530.301670 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 15 completed (launched -> exec_done)
+1714844530.301763 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844530.301867 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 16 will be sent to executor htex_default_for_cytotable
+1714844530.301983 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844530.302026 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 16 submitted for App _infer_source_group_common_schema, not waiting on any dependency
+1714844530.302068 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 16 set to pending state with AppFuture: <AppFuture at 0x7f92c9aced90 state=pending>
+1714844530.302107 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 16 will not be memoized
+1714844530.302151 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _infer_source_group_common_schema at 0x7f9285966a60> to queue with args ()
+1714844530.303952 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844530.304010 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844530.304039 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 16 try 0 launched on executor htex_default_for_cytotable with executor id 15
+1714844530.304088 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 17 will be sent to executor htex_default_for_cytotable
+1714844530.304126 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844530.304149 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 17 submitted for App _infer_source_group_common_schema, not waiting on any dependency
+1714844530.304172 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 17 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4a90 state=pending>
+1714844530.304196 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 17 will not be memoized
+1714844530.304219 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _infer_source_group_common_schema at 0x7f9285966a60> to queue with args ()
+1714844530.304474 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844530.304503 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844530.304525 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 17 try 0 launched on executor htex_default_for_cytotable with executor id 16
+1714844530.304556 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 18 will be sent to executor htex_default_for_cytotable
+1714844530.304584 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844530.304614 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 18 submitted for App _concat_source_group, waiting on task 16
+1714844530.304637 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 18 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4640 state=pending>
+1714844530.304657 2024-05-04 11:42:10 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:614 launch_if_ready DEBUG: Task 18 has outstanding dependencies, so launch_if_ready skipping
+1714844530.599725 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844530.600252 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 16 completed (launched -> exec_done)
+1714844530.600327 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.memoization:222 check_memo DEBUG: Task 18 will not be memoized
+1714844530.600379 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _concat_source_group at 0x7f928595cca0> to queue with args ()
+1714844530.602889 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844530.603032 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844530.603077 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 18 try 0 launched on executor htex_default_for_cytotable with executor id 17
+1714844530.603120 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844530.712238 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844530.712449 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 17 completed (launched -> exec_done)
+1714844530.712511 2024-05-04 11:42:10 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844531.290550 2024-05-04 11:42:11 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844531.290818 2024-05-04 11:42:11 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 18 completed (launched -> exec_done)
+1714844531.290899 2024-05-04 11:42:11 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844531.290969 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 19 will be sent to executor htex_default_for_cytotable
+1714844531.291070 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844531.291118 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 19 submitted for App _concat_source_group, waiting on task 17
+1714844531.291158 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 19 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace880 state=pending>
+1714844531.291217 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 19 will not be memoized
+1714844531.291265 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _concat_source_group at 0x7f928595cca0> to queue with args ()
+1714844531.291524 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844531.291581 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844531.291617 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 19 try 0 launched on executor htex_default_for_cytotable with executor id 18
+1714844531.291650 2024-05-04 11:42:11 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:610 launch_if_ready DEBUG: Task 19 is not pending, so launch_if_ready skipping
+1714844532.057805 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844532.058012 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 19 completed (launched -> exec_done)
+1714844532.058080 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844532.058146 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 20 will be sent to executor htex_default_for_cytotable
+1714844532.058214 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844532.058241 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 20 submitted for App _prepare_join_sql, not waiting on any dependency
+1714844532.058269 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 20 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace9d0 state=pending>
+1714844532.058294 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 20 will not be memoized
+1714844532.058322 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _prepare_join_sql at 0x7f9285966040> to queue with args ()
+1714844532.059333 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844532.059377 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844532.059404 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 20 try 0 launched on executor htex_default_for_cytotable with executor id 19
+1714844532.239436 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844532.239520 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 20 completed (launched -> exec_done)
+1714844532.239574 2024-05-04 11:42:12 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844532.239632 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 21 will be sent to executor htex_default_for_cytotable
+1714844532.239708 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844532.239743 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 21 submitted for App _get_table_chunk_offsets, not waiting on any dependency
+1714844532.239776 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 21 set to pending state with AppFuture: <AppFuture at 0x7f92c9ace4f0 state=pending>
+1714844532.239805 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 21 will not be memoized
+1714844532.239836 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _get_table_chunk_offsets at 0x7f928595c280> to queue with args ()
+1714844532.239885 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844532.239923 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844532.239959 2024-05-04 11:42:12 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 21 try 0 launched on executor htex_default_for_cytotable with executor id 20
+1714844533.498910 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844533.499106 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 21 completed (launched -> exec_done)
+1714844533.499180 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844533.499248 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 22 will be sent to executor htex_default_for_cytotable
+1714844533.499341 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844533.499379 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 22 submitted for App _join_source_chunk, not waiting on any dependency
+1714844533.499417 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 22 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4310 state=pending>
+1714844533.499453 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 22 will not be memoized
+1714844533.499493 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _join_source_chunk at 0x7f92859663a0> to queue with args ()
+1714844533.501002 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844533.501060 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844533.501108 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 22 try 0 launched on executor htex_default_for_cytotable with executor id 21
+1714844533.643667 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844533.643861 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844533.644023 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844533.644135 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844533.644184 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844533.644216 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844533.644253 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844533.644368 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844533.644413 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 1
+1714844533.644442 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844533.644474 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844533.644583 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844533.644619 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844533.644656 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844533.644765 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844533.644798 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 1 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844533.644832 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:301 _general_strategy DEBUG: Strategy case 3: no changes necessary to current block load
+1714844533.644861 2024-05-04 11:42:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844533.968837 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844533.969040 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 22 completed (launched -> exec_done)
+1714844533.969123 2024-05-04 11:42:13 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844533.969210 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 23 will be sent to executor htex_default_for_cytotable
+1714844533.969311 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844533.969348 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 23 submitted for App _concat_join_sources, not waiting on any dependency
+1714844533.969383 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 23 set to pending state with AppFuture: <AppFuture at 0x7f92c9ac4b50 state=pending>
+1714844533.969417 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 23 will not be memoized
+1714844533.969457 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _concat_join_sources at 0x7f9285966700> to queue with args ()
+1714844533.970953 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844533.971010 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844533.971044 2024-05-04 11:42:13 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 23 try 0 launched on executor htex_default_for_cytotable with executor id 22
+1714844534.785230 2024-05-04 11:42:14 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844534.785658 2024-05-04 11:42:14 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 23 completed (launched -> exec_done)
+1714844534.785834 2024-05-04 11:42:14 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844534.785971 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:949 submit DEBUG: Task 24 will be sent to executor htex_default_for_cytotable
+1714844534.786149 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:764 _add_output_deps DEBUG: Adding output dependencies
+1714844534.786215 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1031 submit INFO: Task 24 submitted for App _return_future, not waiting on any dependency
+1714844534.786274 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:1037 submit DEBUG: Task 24 set to pending state with AppFuture: <AppFuture at 0x7f92c9a51520 state=pending>
+1714844534.786325 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.memoization:222 check_memo DEBUG: Task 24 will not be memoized
+1714844534.786432 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.executor:601 submit DEBUG: Pushing function <function _return_future at 0x7f9285966dc0> to queue with args ("PosixPath('/home/lippincm/Documents/Nichols_Lab_Collaboration/data/5.converted_data/output.parquet')...",)
+1714844534.787870 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:124 put DEBUG: Sending TasksOutgoing message
+1714844534.787937 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.executors.high_throughput.zmq_pipes:126 put DEBUG: Sent TasksOutgoing message
+1714844534.787980 2024-05-04 11:42:14 MainProcess-252805 ThreadPoolExecutor-0_0-140265109059136 parsl.dataflow.dflow:725 launch_task INFO: Parsl task 24 try 0 launched on executor htex_default_for_cytotable with executor id 23
+1714844535.067850 2024-05-04 11:42:15 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844535.068172 2024-05-04 11:42:15 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 24 completed (launched -> exec_done)
+1714844535.068266 2024-05-04 11:42:15 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:434 handle_join_update DEBUG: Join callback for task 0, inner_app_future <AppFuture at 0x7f92c9a51520 state=finished returned PosixPath>
+1714844535.068316 2024-05-04 11:42:15 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.dataflow.dflow:551 _complete_task INFO: Task 0 completed (joining -> exec_done)
+1714844535.068390 2024-05-04 11:42:15 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844538.621233 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844538.621476 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844538.621707 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844538.621823 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844538.621872 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844538.621901 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844538.621933 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844538.622021 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844538.622067 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844538.622095 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844538.622126 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844538.622334 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844538.622368 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844538.622400 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844538.622465 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844538.622497 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844538.622521 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844538.622551 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844538.622588 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:236 _general_strategy DEBUG: Starting idle timer for executor. If idle time exceeds 120.0s, blocks will be scaled in
+1714844538.622622 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 4.76837158203125e-07s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844538.622649 2024-05-04 11:42:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844543.623212 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844543.623455 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844543.623751 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844543.623896 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844543.623947 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844543.623980 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844543.624017 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844543.624132 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844543.624196 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844543.624228 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844543.624262 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844543.624359 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844543.624399 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844543.624431 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844543.624521 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844543.624557 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844543.624584 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844543.624608 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844543.624644 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 5.00202488899231s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844543.624674 2024-05-04 11:42:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844548.627452 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844548.627724 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844548.628036 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844548.628167 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844548.628220 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844548.628253 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844548.628299 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844548.628439 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844548.628491 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844548.628523 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844548.628556 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844548.628680 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844548.628718 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844548.628749 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844548.628865 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844548.628901 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844548.628928 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844548.628953 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844548.628990 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 10.006369352340698s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844548.629019 2024-05-04 11:42:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844553.657720 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844553.657928 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844553.658273 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844553.659000 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844553.659170 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844553.659537 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844553.659588 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844553.662442 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844553.662591 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844553.662631 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844553.662667 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844553.662772 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844553.662810 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844553.662842 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844553.662932 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844553.662995 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844553.663048 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844553.663080 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844553.663118 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 15.040498971939087s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844553.663148 2024-05-04 11:42:33 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844554.158944 2024-05-04 11:42:34 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844554.159108 2024-05-04 11:42:34 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844558.656468 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844558.656673 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844558.657044 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844558.657153 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844558.657193 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844558.657223 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844558.657256 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844558.657440 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844558.657491 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844558.657521 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844558.657552 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844558.657716 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844558.657756 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844558.657787 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844558.657947 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844558.657986 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844558.658015 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844558.658039 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844558.658071 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 20.03545355796814s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844558.658098 2024-05-04 11:42:38 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844563.605939 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844563.606269 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844563.606575 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844563.606767 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844563.606842 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844563.606880 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844563.606916 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844563.606990 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844563.607040 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844563.607067 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844563.607098 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844563.607144 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844563.607170 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844563.607197 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844563.607235 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844563.607258 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844563.607278 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844563.607298 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844563.607344 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 24.984723329544067s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844563.607371 2024-05-04 11:42:43 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844568.600515 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844568.600698 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844568.600916 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844568.601010 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844568.601049 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844568.601078 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844568.601106 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844568.601197 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844568.601225 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844568.601246 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844568.601269 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844568.601338 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844568.601359 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844568.601379 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844568.601444 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844568.601463 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844568.601480 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844568.601504 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844568.601527 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 29.97891116142273s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844568.601546 2024-05-04 11:42:48 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844573.602453 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844573.602763 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844573.603209 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844573.603334 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844573.603375 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844573.603403 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844573.603432 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844573.603515 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844573.603546 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844573.603567 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844573.603589 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844573.603658 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844573.603677 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844573.603699 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844573.603758 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844573.603775 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844573.603800 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844573.603817 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844573.603842 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 34.98122501373291s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844573.603862 2024-05-04 11:42:53 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844578.607109 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844578.607292 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844578.607479 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844578.607561 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844578.607594 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844578.607616 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844578.607639 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844578.607698 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844578.607726 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844578.607746 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844578.607766 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844578.607811 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844578.607830 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844578.607850 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844578.607893 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844578.607940 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844578.607962 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844578.607980 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844578.608003 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 39.985387086868286s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844578.608021 2024-05-04 11:42:58 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844583.604641 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844583.604851 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844583.605090 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844583.605193 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844583.605229 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844583.605252 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844583.605275 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844583.605341 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844583.605368 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844583.605387 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844583.605407 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844583.605479 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844583.605507 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844583.605528 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844583.605568 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844583.605586 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844583.605601 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844583.605617 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844583.605640 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 44.98302388191223s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844583.605658 2024-05-04 11:43:03 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844584.163583 2024-05-04 11:43:04 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:164 get DEBUG: Received ResultsIncoming message
+1714844584.163708 2024-05-04 11:43:04 MainProcess-252805 HTEX-Queue-Management-Thread-140265456105024 parsl.executors.high_throughput.zmq_pipes:162 get DEBUG: Waiting for ResultsIncoming message
+1714844588.601520 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844588.601693 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844588.601875 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844588.601984 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844588.602034 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844588.602061 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844588.602089 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844588.602149 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844588.602182 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844588.602214 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844588.602240 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844588.602281 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844588.602300 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844588.602320 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844588.602356 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844588.602374 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844588.602390 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844588.602405 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844588.602426 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 49.97981095314026s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844588.602444 2024-05-04 11:43:08 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844593.614420 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844593.614872 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844593.615515 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844593.616025 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844593.617038 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844593.618312 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844593.620780 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844593.620854 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844593.620916 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844593.620953 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844593.620988 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844593.621079 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844593.621120 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844593.621152 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844593.621239 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844593.621276 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844593.621303 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844593.621327 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844593.621358 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 54.99874019622803s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844593.621384 2024-05-04 11:43:13 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844598.610678 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844598.610867 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844598.611017 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844598.611120 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844598.611162 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844598.611197 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844598.611224 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844598.611291 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844598.611319 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844598.611338 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844598.611359 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844598.611404 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844598.611424 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844598.611444 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844598.611480 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844598.611498 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844598.611514 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844598.611530 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844598.611553 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 59.98893666267395s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844598.611570 2024-05-04 11:43:18 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844603.620893 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844603.623737 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844603.623903 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844603.624006 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844603.624277 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844603.624312 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844603.624347 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844603.624416 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844603.624450 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844603.624477 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844603.624506 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844603.624559 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844603.624584 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844603.624611 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844603.624663 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844603.624686 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844603.624710 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844603.624734 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844603.624766 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 65.00214886665344s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844603.624793 2024-05-04 11:43:23 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844608.612474 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844608.612651 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844608.612818 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844608.612905 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:176 _general_strategy DEBUG: general strategy starting with strategy_type simple for 1 executors
+1714844608.612942 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:184 _general_strategy DEBUG: Strategizing for executor htex_default_for_cytotable
+1714844608.612967 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844608.612993 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844608.613058 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844608.613089 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:205 _general_strategy DEBUG: Slot ratio calculation: active_slots = 1, active_tasks = 0
+1714844608.613112 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844608.613136 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844608.613189 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844608.613212 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844608.613235 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844608.613280 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844608.613298 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:208 _general_strategy DEBUG: Executor htex_default_for_cytotable has 0 active tasks, 1/0 running/pending blocks, and 24 connected workers
+1714844608.613315 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:223 _general_strategy DEBUG: Strategy case 1: Executor has no active tasks
+1714844608.613330 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:233 _general_strategy DEBUG: Strategy case 1b: Executor has no active tasks, and more (1) than minimum blocks (0)
+1714844608.613352 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.jobs.strategy:248 _general_strategy DEBUG: Idle time 69.99073624610901s is less than max_idletime 120.0s for executor htex_default_for_cytotable; not scaling in
+1714844608.613369 2024-05-04 11:43:28 MainProcess-252805 JobStatusPoller-Timer-Thread-140268426304912-140265514853952 parsl.process_loggers:28 wrapped DEBUG: Normal ending for _general_strategy on thread JobStatusPoller-Timer-Thread-140268426304912
+1714844612.294026 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1145 atexit_cleanup INFO: DFK cleanup because python process is exiting
+1714844612.295388 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1182 cleanup INFO: DFK cleanup initiated
+1714844612.295581 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1075 log_task_states INFO: Summary of tasks in DFK:
+1714844612.295736 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.unsched: 0
+1714844612.295855 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.pending: 0
+1714844612.295992 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.running: 0
+1714844612.296140 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.exec_done: 25
+1714844612.296497 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.failed: 0
+1714844612.296689 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.dep_fail: 0
+1714844612.296877 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.launched: 0
+1714844612.297053 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.fail_retryable: 0
+1714844612.297215 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.memo_done: 0
+1714844612.297365 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.joining: 0
+1714844612.297524 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1079 log_task_states INFO: Tasks in state States.running_ended: 0
+1714844612.297686 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1081 log_task_states INFO: End of summary
+1714844612.297902 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1206 cleanup INFO: Closing job status poller
+1714844612.298210 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1208 cleanup INFO: Terminated job status poller
+1714844612.298385 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1210 cleanup INFO: Scaling in and shutting down executors
+1714844612.298551 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1215 cleanup INFO: Scaling in executor htex_default_for_cytotable
+1714844612.298729 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:671 scale_in DEBUG: Scale in called, blocks=1
+1714844612.298911 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844612.299199 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844612.299416 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844612.299606 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:684 scale_in DEBUG: Scale in selecting from 1 blocks
+1714844612.299792 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844612.299967 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844612.300134 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844612.300287 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:566 _hold_block DEBUG: Sending hold to manager: 14f9d1427dd3
+1714844612.300431 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:61 run DEBUG: Sending command client command
+1714844612.300581 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:63 run DEBUG: Waiting for command client response
+1714844612.300849 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.zmq_pipes:65 run DEBUG: Received command client response
+1714844612.300996 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:529 hold_worker DEBUG: Sent hold request to manager: 14f9d1427dd3
+1714844612.301207 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.providers.local.local:269 cancel DEBUG: Terminating job/proc_id: 252884
+1714844612.391062 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1228 cleanup INFO: Shutting down executor htex_default_for_cytotable
+1714844612.391261 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:746 shutdown INFO: Attempting HighThroughputExecutor shutdown
+1714844612.391343 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.high_throughput.executor:748 shutdown INFO: Finished HighThroughputExecutor shutdown attempt
+1714844612.391372 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1230 cleanup INFO: Shut down executor htex_default_for_cytotable
+1714844612.391407 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1228 cleanup INFO: Shutting down executor _parsl_internal
+1714844612.391446 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.threads:74 shutdown DEBUG: Shutting down executor, which involves waiting for running tasks to complete
+1714844612.391626 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.executors.threads:76 shutdown DEBUG: Done with executor shutdown
+1714844612.391681 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1230 cleanup INFO: Shut down executor _parsl_internal
+1714844612.391716 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1232 cleanup INFO: Terminated executors
+1714844612.391753 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.dataflow.dflow:1249 cleanup INFO: DFK cleanup complete
+1714844612.391789 2024-05-04 11:43:32 MainProcess-252805 MainThread-140269460150080 parsl.process_loggers:28 wrapped DEBUG: Normal ending for cleanup on thread MainThread

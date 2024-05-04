@@ -1,0 +1,37 @@
+name: R_env
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - python=3.10
+  - conda-forge::pip
+  - conda-forge::r-irkernel
+  - conda-forge::nb_conda_kernels
+  - conda-forge::widgetsnbextension
+  - conda-forge::jupyter_contrib_nbextensions
+  - conda-forge::jupyter
+  - conda-forge::jupyterlab
+  - conda-forge::r-base=4.2.2
+  - conda-forge::r-dplyr=1.0.10
+  - conda-forge::r-tidyr
+  - conda-forge::r-readr
+  - conda-forge::r-stringr
+  - conda-forge::r-ggplot2
+  - conda-forge::r-ggrepel
+  - conda-forge::r-gridextra
+  - conda-forge::r-devtools
+  - conda-forge::r-reshape2
+  - conda-forge::r-patchwork
+  - conda-forge::r-png
+  - conda-forge::r-arrow
+  - conda-forge::r-ggsignif
+  - conda-forge::r-tidyverse
+  - conda-forge::r-umap
+  - conda-forge::r-factoextra
+  - pip:
+    - pre-commit
+    - black
+    - ipywidgets
+    - nbformat>=4.2.0
+    - nbqa
+    - papermill

@@ -1,0 +1,65 @@
+2024-05-04 14:14:31.763 parsl:781 322523 MainThread [INFO]  Python version: 3.8.15 | packaged by conda-forge | (default, Nov 22 2022, 08:46:39)
+[GCC 10.4.0]
+2024-05-04 14:14:31.763 parsl:782 322523 MainThread [INFO]  Debug logging: False
+2024-05-04 14:14:31.763 parsl:783 322523 MainThread [INFO]  Certificates dir: None
+2024-05-04 14:14:31.763 parsl:784 322523 MainThread [INFO]  Log dir: /home/lippincm/Documents/Nichols_Lab_Collaboration/5.process_features/scripts/runinfo/001/htex_default_for_cytotable
+2024-05-04 14:14:31.763 parsl:785 322523 MainThread [INFO]  Manager ID: 5f2f5b0918f8
+2024-05-04 14:14:31.763 parsl:786 322523 MainThread [INFO]  Block ID: 0
+2024-05-04 14:14:31.763 parsl:787 322523 MainThread [INFO]  cores_per_worker: 1.0
+2024-05-04 14:14:31.763 parsl:788 322523 MainThread [INFO]  mem_per_worker: None
+2024-05-04 14:14:31.763 parsl:789 322523 MainThread [INFO]  task_port: 54758
+2024-05-04 14:14:31.763 parsl:790 322523 MainThread [INFO]  result_port: 54612
+2024-05-04 14:14:31.763 parsl:791 322523 MainThread [INFO]  addresses: 140.226.13.16,172.17.0.1,10.13.161.59,127.0.0.1,10.53.188.1
+2024-05-04 14:14:31.763 parsl:792 322523 MainThread [INFO]  max_workers: inf
+2024-05-04 14:14:31.763 parsl:793 322523 MainThread [INFO]  poll_period: 10
+2024-05-04 14:14:31.763 parsl:794 322523 MainThread [INFO]  address_probe_timeout: 30
+2024-05-04 14:14:31.763 parsl:795 322523 MainThread [INFO]  Prefetch capacity: 0
+2024-05-04 14:14:31.763 parsl:796 322523 MainThread [INFO]  Heartbeat threshold: 120
+2024-05-04 14:14:31.763 parsl:797 322523 MainThread [INFO]  Heartbeat period: 30
+2024-05-04 14:14:31.763 parsl:798 322523 MainThread [INFO]  CPU affinity: none
+2024-05-04 14:14:31.763 parsl:799 322523 MainThread [INFO]  Accelerators:
+2024-05-04 14:14:31.763 parsl:127 322523 MainThread [INFO]  Manager started
+2024-05-04 14:14:31.774 parsl.executors.high_throughput.probe:47 322523 MainThread [INFO]  Connected to interchange on 172.17.0.1
+2024-05-04 14:14:31.774 parsl:134 322523 MainThread [INFO]  Connection to Interchange successful on 172.17.0.1
+2024-05-04 14:14:31.774 parsl:137 322523 MainThread [INFO]  Task url : tcp://172.17.0.1:54758
+2024-05-04 14:14:31.774 parsl:138 322523 MainThread [INFO]  Result url : tcp://172.17.0.1:54612
+2024-05-04 14:14:31.774 parsl:157 322523 MainThread [INFO]  Manager connected to interchange
+2024-05-04 14:14:32.163 parsl:205 322523 MainThread [INFO]  Manager will spawn 24 workers
+2024-05-04 14:14:32.302 parsl:245 322523 Task-Puller [INFO]  starting
+2024-05-04 14:14:32.337 parsl:456 322523 MainThread [INFO]  Loop start
+2024-05-04 14:15:02.317 parsl:339 322523 Result-Pusher [INFO]  Sending heartbeat via results connection: last_result_beat=1714853672.314703 heartbeat_period=30 seconds
+2024-05-04 14:15:32.322 parsl:339 322523 Result-Pusher [INFO]  Sending heartbeat via results connection: last_result_beat=1714853702.317836 heartbeat_period=30 seconds
+2024-05-04 14:16:02.322 parsl:339 322523 Result-Pusher [INFO]  Sending heartbeat via results connection: last_result_beat=1714853732.3225074 heartbeat_period=30 seconds
+2024-05-04 14:16:32.332 parsl:339 322523 Result-Pusher [INFO]  Sending heartbeat via results connection: last_result_beat=1714853762.3227787 heartbeat_period=30 seconds
+2024-05-04 14:16:49.506 parsl:303 322523 Task-Puller [CRITICAL]  Missing contact with interchange beyond heartbeat_threshold
+2024-05-04 14:16:49.506 parsl:305 322523 Task-Puller [CRITICAL]  Exiting
+2024-05-04 14:16:49.506 parsl:461 322523 MainThread [CRITICAL]  Received kill event, terminating worker processes
+2024-05-04 14:16:49.507 parsl:390 322523 worker-watchdog [CRITICAL]  Exiting
+2024-05-04 14:16:49.514 parsl:355 322523 Result-Pusher [CRITICAL]  Exiting
+2024-05-04 14:16:49.515 parsl:420 322523 Monitoring-Handler [CRITICAL]  Exiting
+2024-05-04 14:16:49.515 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-0' pid=322540 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.530 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-1' pid=322541 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.542 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-2' pid=322542 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.559 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-3' pid=322543 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.580 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-4' pid=322544 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.590 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-5' pid=322545 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.606 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-6' pid=322546 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.617 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-7' pid=322547 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.634 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-8' pid=322548 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.653 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-9' pid=322549 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.661 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-10' pid=322550 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.691 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-11' pid=322551 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.703 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-12' pid=322552 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.713 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-13' pid=322553 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.727 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-14' pid=322554 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.738 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-15' pid=322555 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.746 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-16' pid=322558 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.762 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-17' pid=322560 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.786 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-18' pid=322576 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.808 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-19' pid=322577 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.812 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-20' pid=322578 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.828 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-21' pid=322579 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.849 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-22' pid=322580 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.862 parsl:469 322523 MainThread [CRITICAL]  Terminating worker <SpawnProcess name='HTEX-Worker-23' pid=322581 parent=322523 started>: is_alive()=True
+2024-05-04 14:16:49.876 parsl:478 322523 MainThread [INFO]  process_worker_pool ran for 137.71208715438843 seconds
+2024-05-04 14:16:49.876 parsl:823 322523 MainThread [INFO]  Process worker pool exiting normally
