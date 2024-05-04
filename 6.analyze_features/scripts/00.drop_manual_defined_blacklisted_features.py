@@ -18,8 +18,14 @@ df = pd.read_parquet(file_path)
 df.head()
 
 
+# In[3]:
+
+
+# split the Metadata_Image_FileName column contents
+df["Metadata_Fish_ID"] = df["Metadata_Image_FileName_OP"].str.split("_", expand=True)[2]
+
+
 # We want to remove CellProfiler features that do not accurately contribute to the shape variance.
-# See CellProfiler documentation for more information on the measurements taken for shape and size: https://cellprofiler-manual.s3.amazonaws.com/CellProfiler-4.2.4/modules/measurement.html#id20
 #
 #
 # Spatial moment features are removed as they are not invariant to rotation and translation.
@@ -74,13 +80,13 @@ df1["Metadata_Fish_ID"] = df["Metadata_Fish_ID"]
 df1 = df1.drop(columns=["Image_Count_ConvertImageToObjects"])
 
 
-# In[8]:
+# In[6]:
 
 
 df1.head()
 
 
-# In[9]:
+# In[7]:
 
 
 # save the dataframe

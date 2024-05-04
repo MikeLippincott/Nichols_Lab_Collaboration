@@ -181,3 +181,210 @@ out_dir = pathlib.Path("../../data/6.analysis_results/")
 out_dir.mkdir(parents=True, exist_ok=True)
 levene_test_results_path = pathlib.Path(out_dir / "levene_test_results.csv")
 levene_test_results_df.to_csv(levene_test_results_path)
+
+
+# ### Calculate the levene test statistic for the aggregated data across feature types and genotypes
+
+# In[8]:
+
+
+data_path = pathlib.Path(
+    "../../data/5.converted_data/normalized_manual_feature_selected_output.parquet"
+).resolve(strict=True)
+# Read the data
+data = pd.read_parquet(data_path)
+
+# Drop all metadata except for the genotype data
+features_df = data.drop(columns=data.filter(like="Metadata").columns)
+features_df["Metadata_genotype"] = data["Metadata_genotype"]
+
+
+# turn the features into a long format
+features_long_df = features_df.melt(
+    id_vars="Metadata_genotype", var_name="feature", value_name="value"
+)
+features_long_df.head()
+# Separate the feature into different parts
+features_long_df[
+    ["feature_group", "measurement", "parameter1", "parameter2"]
+] = features_long_df["feature"].str.split("_", expand=True)
+
+# Replace the Metadata_genotype with the actual genotype name
+features_long_df["Metadata_genotype"] = features_long_df["Metadata_genotype"].replace(
+    {"high": "High-Severity", "unsel": "Mid-Severity", "wt": "Wild Type"}
+)
+features_long_df.head()
+
+
+# In[9]:
+
+
+# break each genotype and featuretype into a separate dataframe
+high_df = features_long_df[features_long_df["Metadata_genotype"] == "High-Severity"]
+unsel_df = features_long_df[features_long_df["Metadata_genotype"] == "Mid-Severity"]
+wt_df = features_long_df[features_long_df["Metadata_genotype"] == "Wild Type"]
+
+# each feature group
+high_df_AreaShape = high_df[high_df["feature_group"] == "AreaShape"]
+high_df_Intensity = high_df[high_df["feature_group"] == "Intensity"]
+high_df_Neighbors = high_df[high_df["feature_group"] == "Neighbors"]
+high_df_radial = high_df[high_df["feature_group"] == "RadialDistribution"]
+high_df_Granularity = high_df[high_df["feature_group"] == "Granularity"]
+
+unsel_df_AreaShape = unsel_df[unsel_df["feature_group"] == "AreaShape"]
+unsel_df_Intensity = unsel_df[unsel_df["feature_group"] == "Intensity"]
+unsel_df_Neighbors = unsel_df[unsel_df["feature_group"] == "Neighbors"]
+unsel_df_radial = unsel_df[unsel_df["feature_group"] == "RadialDistribution"]
+unsel_df_Granularity = unsel_df[unsel_df["feature_group"] == "Granularity"]
+
+wt_df_AreaShape = wt_df[wt_df["feature_group"] == "AreaShape"]
+wt_df_Intensity = wt_df[wt_df["feature_group"] == "Intensity"]
+wt_df_Neighbors = wt_df[wt_df["feature_group"] == "Neighbors"]
+wt_df_radial = wt_df[wt_df["feature_group"] == "RadialDistribution"]
+wt_df_Granularity = wt_df[wt_df["feature_group"] == "Granularity"]
+
+# levene test for each feature group
+levene_test_results = {
+    "feature_group": [],
+    "levene_statistic": [],
+    "levene_p_value": [],
+    "group": [],
+}
+
+group_dict = {
+    "AreaShape": {
+        "high_area_v_unsel_area": [high_df_AreaShape, unsel_df_AreaShape],
+        "high_area_v_wt_area": [high_df_AreaShape, wt_df_AreaShape],
+        "unsel_area_v_wt_area": [wt_df_AreaShape, unsel_df_AreaShape],
+    },
+    "Intensity": {
+        "high_intensity_v_unsel_intensity": [high_df_Intensity, unsel_df_Intensity],
+        "high_intensity_v_wt_intensity": [high_df_Intensity, wt_df_Intensity],
+        "unsel_intensity_v_wt_intensity": [wt_df_Intensity, unsel_df_Intensity],
+    },
+    "Neighbors": {
+        "high_neighbors_v_unsel_neighbors": [high_df_Neighbors, unsel_df_Neighbors],
+        "high_neighbors_v_wt_neighbors": [high_df_Neighbors, wt_df_Neighbors],
+        "unsel_neighbors_v_wt_neighbors": [wt_df_Neighbors, unsel_df_Neighbors],
+    },
+    "RadialDistribution": {
+        "high_radial_v_unsel_radial": [high_df_radial, unsel_df_radial],
+        "high_radial_v_wt_radial": [high_df_radial, wt_df_radial],
+        "unsel_radial_v_wt_radial": [wt_df_radial, unsel_df_radial],
+    },
+    "Granularity": {
+        "high_granularity_v_unsel_granularity": [
+            high_df_Granularity,
+            unsel_df_Granularity,
+        ],
+        "high_granularity_v_wt_granularity": [high_df_Granularity, wt_df_Granularity],
+        "unsel_granularity_v_wt_granularity": [wt_df_Granularity, unsel_df_Granularity],
+    },
+}
+
+for feature_group in tqdm.tqdm(group_dict.keys()):
+    for group in group_dict[feature_group].keys():
+        if not group == "all":
+            levene_results = levene(
+                group_dict[feature_group][group][0]["value"],
+                group_dict[feature_group][group][1]["value"],
+            )
+            # calculate the variance for each feature group
+
+            levene_test_results["feature_group"].append(feature_group)
+            levene_test_results["levene_statistic"].append(levene_results.statistic)
+            levene_test_results["levene_p_value"].append(levene_results.pvalue)
+            levene_test_results["group"].append(group)
+        else:
+            pass
+
+levene_test_results_df = pd.DataFrame(levene_test_results)
+levene_test_results_df.head()
+
+
+# In[10]:
+
+
+# save the levene test results
+# out dir
+out_dir = pathlib.Path("../../data/6.analysis_results/")
+# create the dir if it does not exist
+out_dir.mkdir(parents=True, exist_ok=True)
+levene_test_results_path = pathlib.Path(
+    out_dir / "levene_test_results_feature_types.csv"
+)
+levene_test_results_df.to_csv(levene_test_results_path, index=False)
+
+
+# In[11]:
+
+
+# Drop all metadata except for the genotype data
+features_df = data.drop(columns=data.filter(like="Metadata").columns)
+features_df["Metadata_genotype"] = data["Metadata_genotype"]
+
+# turn the features into a long format
+features_long_df = features_df.melt(
+    id_vars="Metadata_genotype", var_name="feature", value_name="value"
+)
+features_long_df
+
+
+# In[12]:
+
+
+# get the variance for each feature group
+# var_df = features_long_df.drop(columns=["feature", "measurement", "parameter1", "parameter2"])
+var_df = features_long_df.groupby(["Metadata_genotype", "feature"]).var().reset_index()
+var_df.head()
+# change the value column name to variance
+var_df.rename(columns={"value": "variance"}, inplace=True)
+
+
+# In[13]:
+
+
+var_df[["feature_group", "measurement", "parameter1", "parameter2"]] = var_df[
+    "feature"
+].str.split("_", expand=True)
+
+# Replace the Metadata_genotype with the actual genotype name
+var_df["Metadata_genotype"] = var_df["Metadata_genotype"].replace(
+    {"high": "High-Severity", "unsel": "Mid-Severity", "wt": "Wild Type"}
+)
+var_df
+var_df = var_df.drop(columns=["feature", "measurement", "parameter1", "parameter2"])
+var_df
+# save the variance results
+var_path = pathlib.Path(out_dir / "variance_results_feature_types.csv")
+var_df.to_csv(var_path, index=False)
+
+
+# In[14]:
+
+
+# get the mean and stdev for each feature group's variance
+var_df = (
+    var_df.groupby(["Metadata_genotype", "feature_group"])
+    .agg(["mean", "std", "max", "min", "count"])
+    .reset_index()
+)
+# ungroup the columns
+var_df.columns = ["_".join(col).strip() for col in var_df.columns.values]
+# rename the Metadata_genotype_ column and the feature_group_ column
+var_df.rename(
+    columns={
+        "Metadata_genotype_": "Metadata_genotype",
+        "feature_group_": "feature_group",
+    },
+    inplace=True,
+)
+var_df
+
+
+# In[15]:
+
+
+# save the variance results
+var_path = pathlib.Path(out_dir / "variance_results_feature_types_stats.csv")
+var_df.to_csv(var_path, index=False)
