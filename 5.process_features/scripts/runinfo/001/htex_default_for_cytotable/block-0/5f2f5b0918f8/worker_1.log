@@ -1,4 +1,0 @@
-2024-05-04 14:14:32.898 worker_log:579 322541 MainThread [INFO]  Worker 1 started
-2024-05-04 14:14:33.094 worker_log:664 322541 MainThread [INFO]  Received executor task 2
-2024-05-04 14:14:33.395 worker_log:680 322541 MainThread [INFO]  Completed executor task 2
-2024-05-04 14:14:33.395 worker_log:691 322541 MainThread [INFO]  All processing finished for executor task 2

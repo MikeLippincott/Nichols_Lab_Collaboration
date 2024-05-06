@@ -1,7 +1,0 @@
-2024-05-04 14:14:32.881 worker_log:579 322543 MainThread [INFO]  Worker 3 started
-2024-05-04 14:14:32.882 worker_log:664 322543 MainThread [INFO]  Received executor task 1
-2024-05-04 14:14:33.072 worker_log:680 322543 MainThread [INFO]  Completed executor task 1
-2024-05-04 14:14:33.073 worker_log:691 322543 MainThread [INFO]  All processing finished for executor task 1
-2024-05-04 14:14:37.439 worker_log:664 322543 MainThread [INFO]  Received executor task 21
-2024-05-04 14:14:37.594 worker_log:680 322543 MainThread [INFO]  Completed executor task 21
-2024-05-04 14:14:37.594 worker_log:691 322543 MainThread [INFO]  All processing finished for executor task 21

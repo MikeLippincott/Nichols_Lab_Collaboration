@@ -17,3 +17,4 @@ data/*
 
 # run info
 5.process_features/notebooks/runinfo/*
+5.process_features/scripts/runinfo/*
