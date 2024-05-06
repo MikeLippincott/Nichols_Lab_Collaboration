@@ -1,5 +1,5 @@
 # Analysis of the features
-Here we analyze the features of the dataset.
+Here, we analyze the CellProfiler features of the dataset.
 We are interested in how the variance of the features is distributed.
 
 ## Running the analysis
