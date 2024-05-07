@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# This notebook calculates the Mahalanobis distance between points on a PCA.
-# I will document more about what mahalnobis distance is and how it is calculated in this notebook.
+# This notebook calculates the Mahalanobis distance between points on a pca.
+# I will document more about what Mahalanobis distance is and how it is calculated in this notebook.
 
 # In[1]:
 
@@ -18,14 +18,14 @@ from scipy.spatial.distance import mahalanobis
 
 
 # set the path to the data
-mean_aggregated_data_pca_path = pathlib.Path(
-    "../../data/6.analysis_results/mean_aggregated_pca.parquet"
+non_aggregated_data_pca_path = pathlib.Path(
+    "../../data/6.analysis_results/non_aggregated_pca.parquet"
 ).resolve(strict=True)
 
 # read the data
-mean_aggregated_data_pca = pd.read_parquet(mean_aggregated_data_pca_path)
-print(mean_aggregated_data_pca.shape)
-mean_aggregated_data_pca.head()
+non_aggregated_data_pca = pd.read_parquet(non_aggregated_data_pca_path)
+print(non_aggregated_data_pca.shape)
+non_aggregated_data_pca.head()
 
 
 # # Mahalanobis Distance
@@ -45,14 +45,14 @@ mean_aggregated_data_pca.head()
 
 
 # split the genotypes
-high_severity = mean_aggregated_data_pca[
-    mean_aggregated_data_pca["Metadata_genotype"] == "High-Severity"
+high_severity = non_aggregated_data_pca[
+    non_aggregated_data_pca["Metadata_genotype"] == "High-Severity"
 ]
-low_severity = mean_aggregated_data_pca[
-    mean_aggregated_data_pca["Metadata_genotype"] == "Mid-Severity"
+low_severity = non_aggregated_data_pca[
+    non_aggregated_data_pca["Metadata_genotype"] == "Mid-Severity"
 ]
-wt = mean_aggregated_data_pca[
-    mean_aggregated_data_pca["Metadata_genotype"] == "Wild Type"
+wt = non_aggregated_data_pca[
+    non_aggregated_data_pca["Metadata_genotype"] == "Wild Type"
 ]
 print(len(high_severity), len(low_severity), len(wt))
 
@@ -61,9 +61,10 @@ print(len(high_severity), len(low_severity), len(wt))
 
 
 # drop the the Metadata columns
-high_severity = high_severity.drop(columns=["Metadata_genotype", "Metadata_replicate"])
-low_severity = low_severity.drop(columns=["Metadata_genotype", "Metadata_replicate"])
-wt = wt.drop(columns=["Metadata_genotype", "Metadata_replicate"])
+metadata_cols = [col for col in non_aggregated_data_pca.columns if "Metadata" in col]
+high_severity = high_severity.drop(columns=metadata_cols)
+low_severity = low_severity.drop(columns=metadata_cols)
+wt = wt.drop(columns=metadata_cols)
 # convert the df to coordinates
 high_severity_coords = high_severity.to_numpy()
 low_severity_coords = low_severity.to_numpy()
@@ -78,7 +79,7 @@ print(high_severity_coords.shape, low_severity_coords.shape, wt_coords.shape)
 
 # define the mean and the inverse covariance matrix needed for the mahalanobis distance calculation
 cov_matrix = np.cov(high_severity_coords, rowvar=False)
-inv_cov_matrix = np.linalg.inv(cov_matrix)  # Use pseudo-inverse instead of inverse
+inv_cov_matrix = np.linalg.inv(cov_matrix)
 # calculate the mahalanobis distance for each point within each genotype
 high_severity_mahalanobis_distances = []
 # calculate the mahalanobis distance for each point combination
@@ -100,7 +101,7 @@ print(
 
 # define the mean and the inverse covariance matrix needed for the mahalanobis distance calculation
 cov_matrix = np.cov(low_severity_coords, rowvar=False)
-inv_cov_matrix = np.linalg.inv(cov_matrix)  # Use pseudo-inverse instead of inverse
+inv_cov_matrix = np.linalg.inv(cov_matrix)
 # calculate the mahalanobis distance for each point within each genotype
 low_severity_mahalanobis_distances = []
 # calculate the mahalanobis distance for each point
@@ -122,7 +123,7 @@ print(
 
 # define the mean and the inverse covariance matrix needed for the mahalanobis distance calculation
 cov_matrix = np.cov(wt_coords, rowvar=False)
-inv_cov_matrix = np.linalg.inv(cov_matrix)  # Use pseudo-inverse instead of inverse
+inv_cov_matrix = np.linalg.inv(cov_matrix)
 # calculate the mahalanobis distance for each point within each genotype
 wt_mahalanobis_distances = []
 # calculate the mahalanobis distance for each point
@@ -135,3 +136,15 @@ mean_wt_mahalanobis_distance = np.mean(wt_mahalanobis_distances)
 print(
     f"The mean mahalanobis distance for the Wild Type genotype is {mean_wt_mahalanobis_distance}"
 )
+
+
+# ### Show the mahalanobis distance for each genotype
+
+# In[8]:
+
+
+print(
+    "Mahalanobis distance for High-Severity: ", mean_high_severity_mahalanobis_distance
+)
+print("Mahalanobis distance for Low-Severity: ", mean_low_severity_mahalanobis_distance)
+print("Mahalanobis distance for Wild Type: ", mean_wt_mahalanobis_distance)
