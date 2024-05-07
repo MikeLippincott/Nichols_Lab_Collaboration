@@ -15,6 +15,8 @@ fig_path <- file.path("..","figures","custom_aggregated")
 if (!dir.exists(fig_path)) {
     dir.create(fig_path, recursive = TRUE)
 }
+pca_file_path <- file.path("..","..","data", "6.analysis_results","custom_aggregated_pca.parquet")
+
 # read the data
 df <- arrow::read_parquet(file_path)
 df$Metadata_genotype <- gsub("wt", "Wild Type", df$Metadata_genotype)
@@ -91,3 +93,6 @@ pca_plot
 # save the plot
 ggsave("custom_aggregated_pca_plot_genotype.png", path = file.path(fig_path), width = width, height = height, units = "in", dpi = 600)
 
+
+# save the pca results as a parquet file
+arrow::write_parquet(pca_df, pca_file_path)

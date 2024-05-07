@@ -10,6 +10,7 @@ papermill 0.aggregate_bones.ipynb 0.aggregate_bones.ipynb
 papermill 1a.mean_aggregated_drop_manual_defined_blacklisted_features.ipynb 1a.mean_aggregated_drop_manual_defined_blacklisted_features.ipynb
 papermill 1b.sum_aggregated_drop_manual_defined_blacklisted_features.ipynb 1b.sum_aggregated_drop_manual_defined_blacklisted_features.ipynb
 papermill 1c.custom_aggregated_drop_manual_defined_blacklisted_features.ipynb 1c.custom_aggregated_drop_manual_defined_blacklisted_features.ipynb
+papermill 1d.non_aggregated_drop_manual_defined_blacklisted_features.ipynb 1d.non_aggregated_drop_manual_defined_blacklisted_features.ipynb
 
 # change environment to R environment
 conda deactivate
@@ -20,7 +21,7 @@ papermill 2b.sum_aggregated_eda.ipynb 2b.sum_aggregated_eda.ipynb
 papermill 2c.custom_aggregated_eda.ipynb 2c.custom_aggregated_eda.ipynb
 papermill 2d.non_aggregated_eda.ipynb 2d.non_aggregated_eda.ipynb
 
-# change environment to R environment
+# change environment to op_cell_processing_env environment
 conda deactivate
 conda activate op_cell_processing_env
 
@@ -40,14 +41,21 @@ papermill 5a.mean_aggregated_anova_visualize.ipynb 5a.mean_aggregated_anova_visu
 papermill 5b.sum_aggregated_anova_visualize.ipynb 5b.sum_aggregated_anova_visualize.ipynb
 papermill 5c.custom_aggregated_anova_visualize.ipynb 5c.custom_aggregated_anova_visualize.ipynb
 papermill 5d.non_aggregated_anova_visualize.ipynb 5d.non_aggregated_anova_visualize.ipynb
+papermill 6.object_distance_analysis.ipynb 6.object_distance_analysis.ipynb
 
-papermill 6.object_distance_analysis.ipynb 7.object_distance_analysis.ipynb
+# change environment to op_cell_processing_env environment
+conda deactivate
+conda activate op_cell_processing_env
+# run the mahalanobis distance analysis
+papermill 8a.mean_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8a.mean_aggregated_PCA_calculate_mahalanobis_distance.ipynb
+papermill 8b.sum_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8b.sum_aggregated_PCA_calculate_mahalanobis_distance.ipynb
+papermill 8c.custom_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8c.custom_aggregated_PCA_calculate_mahalanobis_distance.ipynb
+papermill 8d.non_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8d.non_aggregated_PCA_calculate_mahalanobis_distance.ipynb
 
 # return to the main directory
 cd ..
 
 # convert all notebooks to scripts
-conda activate op_cell_processing_env
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts notebooks/*.ipynb
 
 # deactivate R environment
