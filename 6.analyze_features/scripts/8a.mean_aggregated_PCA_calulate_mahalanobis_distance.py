@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# This notebooke calculates the mahalnobis distance between points on a pca.
+# This notebook calculates the Mahalanobis distance between points on a PCA.
 # I will document more about what mahalnobis distance is and how it is calculated in this notebook.
 
 # In[1]:
