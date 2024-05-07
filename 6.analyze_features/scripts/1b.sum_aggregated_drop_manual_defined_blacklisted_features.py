@@ -35,7 +35,7 @@ df.head()
 #
 # Zernike features are removed as they are not invariant to rotation and translation.
 #
-# Texturre features are removed as we are not interested in the texture of the shape.
+# Texture features are removed as we are not interested in the texture of the shape.
 
 # In[3]:
 

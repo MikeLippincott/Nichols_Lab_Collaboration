@@ -78,6 +78,8 @@ coef_gg <- (
         + theme(
             axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
         )
+        + theme(legend.text=element_text(size=14))
+
         # rotate x axis labels
         + theme(axis.text.x = element_text(angle = 45, hjust = 1))
         + theme(plot.title = element_text(hjust = 0.5))
@@ -115,23 +117,23 @@ areashape_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)       )
+            y_position = c(4,5)       )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(4, 5)        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(6, 7)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 8)
     )
 areashape_plot
 ggsave(file="non_aggregated_variance_across_genotype_AreaShape.png", plot=areashape_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)

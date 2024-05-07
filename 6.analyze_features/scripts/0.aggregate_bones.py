@@ -75,11 +75,6 @@ print(f"fs_data shape: {fs_data.shape}")
 fs_data.head()
 
 
-# ## Aggregate the bone features for each fish using methods:
-# - Mean
-# - Sum
-# - Custom defined per feature
-
 # ### Mean
 
 # In[5]:

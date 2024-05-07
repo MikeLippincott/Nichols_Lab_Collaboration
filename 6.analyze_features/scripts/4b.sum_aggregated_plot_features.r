@@ -78,6 +78,8 @@ coef_gg <- (
         + theme(
             axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
         )
+        + theme(legend.text=element_text(size=14))
+
         # rotate x axis labels
         + theme(axis.text.x = element_text(angle = 45, hjust = 1))
         + theme(plot.title = element_text(hjust = 0.5))
@@ -115,23 +117,25 @@ areashape_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)       )
+            y_position = c(8,9)
+            )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(8,9)
+             )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(9,9.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 10)
     )
 areashape_plot
 ggsave(file="sum_aggregated_variance_across_genotype_AreaShape.png", plot=areashape_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
@@ -166,23 +170,23 @@ intensity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(10, 11)        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(16.5, 17.5)        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(18.5, 19)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 20)
     )
 intensity_plot
 ggsave(file="mean_aggregated_variance_across_genotype_Intensity.png", plot=intensity_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
@@ -217,23 +221,23 @@ granularity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(6, 7)        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(6, 7)        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(8,9)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 10)
     )
 granularity_plot
 ggsave(file="sum_aggregated_variance_across_genotype_Granularity.png", plot=granularity_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
@@ -268,23 +272,25 @@ neighbors_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(7,8)
+            )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(7,8)
+        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(8,9)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 10)
     )
 neighbors_plot
 ggsave(file="sum_aggregated_variance_across_genotype_Neighbors.png", plot=neighbors_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
@@ -320,23 +326,23 @@ RadialDistribution_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(16, 17)        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(2.5, 3)        )
+            y_position = c(16, 17)        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(1.8, 2)
+            y_position = c(18, 19)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 3)
+        + ylim(0, 20)
     )
 RadialDistribution_plot
 ggsave(file="sum_aggregated_variance_across_genotype_RadialDistribution.png", plot=RadialDistribution_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
