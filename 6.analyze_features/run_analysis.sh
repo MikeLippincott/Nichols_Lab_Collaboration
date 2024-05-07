@@ -40,14 +40,21 @@ papermill 5a.mean_aggregated_anova_visualize.ipynb 5a.mean_aggregated_anova_visu
 papermill 5b.sum_aggregated_anova_visualize.ipynb 5b.sum_aggregated_anova_visualize.ipynb
 papermill 5c.custom_aggregated_anova_visualize.ipynb 5c.custom_aggregated_anova_visualize.ipynb
 papermill 5d.non_aggregated_anova_visualize.ipynb 5d.non_aggregated_anova_visualize.ipynb
+papermill 6.object_distance_analysis.ipynb 6.object_distance_analysis.ipynb
 
-papermill 6.object_distance_analysis.ipynb 7.object_distance_analysis.ipynb
+# change environment to R environment
+conda deactivate
+conda activate op_cell_processing_env
+# run the mahalanobis distance analysis
+papermill 8a.mean_aggregated_PCA_calulate_mahalanobis_distance.ipynb 8a.mean_aggregated_PCA_calulate_mahalanobis_distance.ipynb
+papermill 8b.sum_aggregated_PCA_calulate_mahalanobis_distanc.ipynb 8b.sum_aggregated_PCA_calulate_mahalanobis_distanc.ipynb
+papermill 8c.custom_aggregated_PCA_calulate_mahalanobis_distanc.ipynb 8c.custom_aggregated_PCA_calulate_mahalanobis_distanc.ipynb
+papermill 8d.non_aggregated_PCA_calulate_mahalanobis_distance.ipynb 8d.non_aggregated_PCA_calulate_mahalanobis_distance.ipynb
 
 # return to the main directory
 cd ..
 
 # convert all notebooks to scripts
-conda activate op_cell_processing_env
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts notebooks/*.ipynb
 
 # deactivate R environment
