@@ -122,6 +122,7 @@ convert_df.columns = [
     x.replace("ConvertImageToObjects_", "") for x in convert_df.columns
 ]
 convert_df.columns = [x.replace("Object_", "") for x in convert_df.columns]
+convert_df.drop(columns=["Image_Count_ConvertImageToObjects"], inplace=True)
 convert_df.head()
 
 
@@ -414,6 +415,12 @@ df["Metadata_identity"] = identity_list
 
 
 # In[19]:
+
+
+df.head()
+
+
+# In[20]:
 
 
 # write the df to a parquet file

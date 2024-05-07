@@ -1,0 +1,24 @@
+name: op_cell_processing_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.8
+  - pip
+  - pandas
+  - numpy
+  - scikit-learn
+  - jupyterlab
+  - scikit-image==0.19.3
+  - matplotlib
+  - seaborn
+  - scipy
+  - umap-learn
+  - tqdm
+  - conda-forge::opencv
+  - conda-forge::seaborn
+  - pip:
+    - cytotable==0.0.6
+    - pycytominer
+    - papermill
+

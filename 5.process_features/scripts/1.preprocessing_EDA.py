@@ -35,7 +35,7 @@ df["Metadata_side"] = (
 df["Metadata_genotype"].value_counts()
 
 
-# In[5]:
+# In[4]:
 
 
 # split the data into metadata and features by columns that contain metadata
@@ -46,7 +46,7 @@ features_df = df.drop(metadata, axis=1)
 print(df.shape, metadata_df.shape, features_df.shape)
 
 
-# In[6]:
+# In[5]:
 
 
 feature_list = features_df.columns.to_list()
@@ -72,7 +72,7 @@ print(df.shape, metadata_df.shape, features_df.shape)
 df.to_parquet("../../data/5.converted_data/normalized_feature_selected_output.parquet")
 
 
-# In[7]:
+# In[6]:
 
 
 # split the data into metadata and features by columns that contain metadata
@@ -81,12 +81,13 @@ metadata_df = df[metadata]
 features_df = df.drop(metadata, axis=1)
 
 print(df.shape, metadata_df.shape, features_df.shape)
+df.head()
 
 
 # ## Get a look at the data
 # Confirm counts across groups - look at latent spaces etc
 
-# In[8]:
+# In[7]:
 
 
 # generate a umap of the features
@@ -125,7 +126,7 @@ plt.show()
 plt.close()
 
 
-# In[9]:
+# In[8]:
 
 
 # Perform PCA
@@ -166,7 +167,7 @@ plt.ylabel("Principal Component 2")
 plt.show()
 
 
-# In[10]:
+# In[9]:
 
 
 # plot the number of objects per genotype
@@ -174,7 +175,7 @@ sns.countplot(data=metadata_df, x="Metadata_identity", palette="viridis")
 plt.show()
 
 
-# In[11]:
+# In[10]:
 
 
 # plot the number of objects per genotype
@@ -182,7 +183,7 @@ sns.countplot(data=metadata_df, x="Metadata_genotype", palette="viridis")
 plt.show()
 
 
-# In[12]:
+# In[11]:
 
 
 # plot the number of objects per genotype and side
@@ -192,7 +193,7 @@ sns.countplot(
 plt.show()
 
 
-# In[13]:
+# In[12]:
 
 
 # plot the AreaShape_FormFactor features for df genotypes
