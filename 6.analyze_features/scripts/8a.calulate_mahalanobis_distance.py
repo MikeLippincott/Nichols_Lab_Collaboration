@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # This notebook calculates the Mahalanobis distance between points on a PCA.
-# I will document more about what mahalnobis distance is and how it is calculated in this notebook.
+# I will document more about what Mahalanobis distance is and how it is calculated in this notebook.
 
 # In[4]:
 
