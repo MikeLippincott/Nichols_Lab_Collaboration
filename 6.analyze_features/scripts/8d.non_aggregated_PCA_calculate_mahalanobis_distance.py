@@ -307,7 +307,49 @@ print(
 )
 
 
+# ### write the Mahanobis distance stats to a file
+
 # In[13]:
+
+
+# set the output dir
+mahalanobis_output_dir = pathlib.Path("../results/non_aggregation_results/").resolve()
+# make the dir if it does not exist
+mahalanobis_output_dir.mkdir(parents=True, exist_ok=True)
+
+# define the output file path
+mahalanobis_output_file_path = pathlib.Path(
+    mahalanobis_output_dir / "non_aggregation_mahalanobis_distance_results.csv"
+).resolve()
+
+# compile the results into a df
+mahalanobis_results_df = pd.DataFrame(
+    {
+        "Genotype": ["High-Severity", "Low-Severity", "Wild Type"],
+        "Actual Mahalanobis Distance": [
+            mean_high_severity_mahalanobis_distance,
+            mean_low_severity_mahalanobis_distance,
+            mean_wt_mahalanobis_distance,
+        ],
+        "Sampled Mahalanobis Distance": [
+            np.mean(mean_high_severity_sampled_mahalanobis_distances_from_trials),
+            np.mean(mean_low_severity_sampled_mahalanobis_distances_from_trials),
+            np.mean(mean_wt_sampled_mahalanobis_distances_from_trials),
+        ],
+        "P-Value": [high_severity_p_value, low_severity_p_value, wt_p_value],
+    }
+)
+mahalanobis_results_df
+
+
+# In[14]:
+
+
+# output the results
+mahalanobis_results_df.to_csv(mahalanobis_output_file_path, index=False)
+
+
+# In[15]:
 
 
 # Visualization of the last trial's sampled points

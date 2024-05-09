@@ -78,8 +78,8 @@ coef_gg <- (
         + theme(
             axis.text.x = element_text(angle = 45, hjust = 1, size = 14),
         )
+        # make legend text smaller
         + theme(legend.text=element_text(size=14))
-
         # rotate x axis labels
         + theme(axis.text.x = element_text(angle = 45, hjust = 1))
         + theme(plot.title = element_text(hjust = 0.5))
@@ -88,7 +88,6 @@ coef_gg
 # save the plot
 ggsave(file="sum_aggregated_top_variance_per_genotype.png", plot=coef_gg, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
-areashape_var <- variance_df %>% filter(feature_group == "AreaShape")
 WT_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area_v_wt_area")
 WT_vs_unsel_significance <- levene_df_AreaShape %>% filter(group == "unsel_area_v_wt_area")
 unsel_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area_v_unsel_area")
@@ -96,14 +95,19 @@ WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
 # make genotype a factor
-areashape_var$Metadata_genotype <- factor(areashape_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+variance_df_AreaShape$Metadata_genotype <- factor(variance_df_AreaShape$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
+
+# get the max value of the variance
+max_var <- max(variance_df_AreaShape$variance_mean)
+# add 0.3 to the max value to get the y max
+max_var_plot <- max_var + 3
 areashape_plot <- (
-        ggplot(areashape_var, aes(x = Metadata_genotype, y = variance))
-        + geom_boxplot(aes(fill = Metadata_genotype))
-        + labs(x = "Genotype", y = "Variance", fill = "Genotype")
+        ggplot(variance_df_AreaShape, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
+        + geom_bar(stat = "identity")
+        + labs(x = "Genotype", y = "Mean AreaShape variance", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -117,30 +121,29 @@ areashape_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(8,9)
-            )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(8,9)
-             )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(9,9.5)
+            y_position = c(max_var+2, max_var+2.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 10)
+        + ylim(0,max_var_plot)
     )
 areashape_plot
 ggsave(file="sum_aggregated_variance_across_genotype_AreaShape.png", plot=areashape_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
-intensity_var <- variance_df %>% filter(feature_group == "Intensity")
 WT_vs_high_significance <- levene_df_Intensity %>% filter(group == "high_intensity_v_wt_intensity")
 WT_vs_unsel_significance <- levene_df_Intensity %>% filter(group == "unsel_intensity_v_wt_intensity")
 unsel_vs_high_significance <- levene_df_Intensity %>% filter(group == "high_intensity_v_unsel_intensity")
@@ -148,15 +151,18 @@ WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
 # make genotype a factor
-intensity_var$Metadata_genotype <- factor(intensity_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+variance_df_Intensity$Metadata_genotype <- factor(variance_df_Intensity$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
-
+# get the max value of the variance
+max_var <- max(variance_df_Intensity$variance_mean)
+# add 0.3 to the max value to get the y max
+max_var_plot <- max_var + 3
 intensity_plot <- (
-        ggplot(intensity_var, aes(x = Metadata_genotype, y = variance))
-        + geom_boxplot(aes(fill = Metadata_genotype))
-        + labs(x = "Genotype", y = "Variance", fill = "Genotype")
+        ggplot(variance_df_Intensity, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
+        + geom_bar(stat = "identity")
+        + labs(x = "Genotype", y = "Mean Intensity variance", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -170,28 +176,29 @@ intensity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(10, 11)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(16.5, 17.5)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(18.5, 19)
+            y_position = c(max_var+2, max_var+2.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 20)
+        + ylim(0,max_var_plot)
     )
 intensity_plot
-ggsave(file="mean_aggregated_variance_across_genotype_Intensity.png", plot=intensity_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
+ggsave(file="sum_aggregated_variance_across_genotype_Intensity.png", plot=intensity_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
-granularity_var <- variance_df %>% filter(feature_group == "Granularity")
 WT_vs_high_significance <- levene_df_Granularity %>% filter(group == "high_granularity_v_wt_granularity")
 WT_vs_unsel_significance <- levene_df_Granularity %>% filter(group == "unsel_granularity_v_wt_granularity")
 unsel_vs_high_significance <- levene_df_Granularity %>% filter(group == "high_granularity_v_unsel_granularity")
@@ -199,15 +206,18 @@ WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
 # make genotype a factor
-granularity_var$Metadata_genotype <- factor(granularity_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+variance_df_Granularity$Metadata_genotype <- factor(variance_df_Granularity$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
-
+# get the max value of the variance
+max_var <- max(variance_df_Granularity$variance_mean)
+# add 0.3 to the max value to get the y max
+max_var_plot <- max_var + 3
 granularity_plot <- (
-        ggplot(granularity_var, aes(x = Metadata_genotype, y = variance))
-        + geom_boxplot(aes(fill = Metadata_genotype))
-        + labs(x = "Genotype", y = "Variance", fill = "Genotype")
+        ggplot(variance_df_Granularity, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
+        + geom_bar(stat = "identity")
+        + labs(x = "Genotype", y = "Mean Granularity variance", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -221,28 +231,29 @@ granularity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(6, 7)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(6, 7)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(8,9)
+            y_position = c(max_var+2, max_var+2.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 10)
+        + ylim(0,max_var_plot)
     )
 granularity_plot
 ggsave(file="sum_aggregated_variance_across_genotype_Granularity.png", plot=granularity_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
-neighbors_var <- variance_df %>% filter(feature_group == "Neighbors")
 WT_vs_high_significance <- levene_df_Neighbors %>% filter(group == "high_neighbors_v_wt_neighbors")
 WT_vs_unsel_significance <- levene_df_Neighbors %>% filter(group == "unsel_neighbors_v_wt_neighbors")
 unsel_vs_high_significance <- levene_df_Neighbors %>% filter(group == "high_neighbors_v_unsel_neighbors")
@@ -250,15 +261,18 @@ WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
 # make genotype a factor
-neighbors_var$Metadata_genotype <- factor(neighbors_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+variance_df_Neighbors$Metadata_genotype <- factor(variance_df_Neighbors$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
-
+# get the max value of the variance
+max_var <- max(variance_df_Neighbors$variance_mean)
+# add 0.3 to the max value to get the y max
+max_var_plot <- max_var + 3
 neighbors_plot <- (
-        ggplot(neighbors_var, aes(x = Metadata_genotype, y = variance))
-        + geom_boxplot(aes(fill = Metadata_genotype))
-        + labs(x = "Genotype", y = "Variance", fill = "Genotype")
+        ggplot(variance_df_Neighbors, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
+        + geom_bar(stat = "identity")
+        + labs(x = "Genotype", y = "Mean Neighbors variance", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -272,31 +286,30 @@ neighbors_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(7,8)
-            )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(7,8)
+            y_position = c(max_var+1, max_var+1.5)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(8,9)
+            y_position = c(max_var+2, max_var+2.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 10)
+        + ylim(0,max_var_plot)
     )
 neighbors_plot
 ggsave(file="sum_aggregated_variance_across_genotype_Neighbors.png", plot=neighbors_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
 
-RadialDistribution_var <- variance_df %>% filter(feature_group == "RadialDistribution")
 WT_vs_high_significance <- levene_df_RadialDistribution %>% filter(group == "high_radial_v_wt_radial")
 WT_vs_unsel_significance <- levene_df_RadialDistribution %>% filter(group == "unsel_radial_v_wt_radial")
 unsel_vs_high_significance <- levene_df_RadialDistribution %>% filter(group == "high_radial_v_unsel_radial")
@@ -304,15 +317,18 @@ WT_vs_high_significance <- WT_vs_high_significance$significance
 WT_vs_unsel_significance <- WT_vs_unsel_significance$significance
 unsel_vs_high_significance <- unsel_vs_high_significance$significance
 # make genotype a factor
-RadialDistribution_var$Metadata_genotype <- factor(RadialDistribution_var$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
+variance_df_RadialDistribution$Metadata_genotype <- factor(variance_df_RadialDistribution$Metadata_genotype, levels = c("Wild Type", "Mid-Severity", "High-Severity"))
 width <- 8
 height <- 5
 options(repr.plot.width=width, repr.plot.height=height)
-
+# get the max value of the variance
+max_var <- max(variance_df_RadialDistribution$variance_mean)
+# add 0.3 to the max value to get the y max
+max_var_plot <- max_var + 3
 RadialDistribution_plot <- (
-        ggplot(RadialDistribution_var, aes(x = Metadata_genotype, y = variance))
-        + geom_boxplot(aes(fill = Metadata_genotype))
-        + labs(x = "Genotype", y = "Variance", fill = "Genotype")
+        ggplot(variance_df_RadialDistribution, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
+        + geom_bar(stat = "identity")
+        + labs(x = "Genotype", y = "Mean RadialDistribution variance", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -326,23 +342,25 @@ RadialDistribution_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(16, 17)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(16, 17)        )
+            y_position = c(max_var+1, max_var+1.5)
+        )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(18, 19)
+            y_position = c(max_var+2, max_var+2.5)
 
         )
         # # remove the legend
         + theme(legend.position = "none")
-        + ylim(0, 20)
+        + ylim(0,max_var_plot)
     )
 RadialDistribution_plot
 ggsave(file="sum_aggregated_variance_across_genotype_RadialDistribution.png", plot=RadialDistribution_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
