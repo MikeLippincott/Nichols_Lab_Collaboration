@@ -88,8 +88,6 @@ coef_gg
 # save the plot
 ggsave(file="non_aggregated_top_variance_per_genotype.png", plot=coef_gg, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
-
-
 WT_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area_v_wt_area")
 WT_vs_unsel_significance <- levene_df_AreaShape %>% filter(group == "unsel_area_v_wt_area")
 unsel_vs_high_significance <- levene_df_AreaShape %>% filter(group == "high_area_v_unsel_area")
@@ -105,7 +103,7 @@ options(repr.plot.width=width, repr.plot.height=height)
 # get the max value of the variance
 max_var <- max(variance_df_AreaShape$variance_mean)
 # add 0.3 to the max value to get the y max
-max_var_plot <- max_var + 0.4
+max_var_plot <- max_var + 0.5
 areashape_plot <- (
         ggplot(variance_df_AreaShape, aes(x = Metadata_genotype, y = variance_mean, fill = Metadata_genotype))
         + geom_bar(stat = "identity")
@@ -123,20 +121,20 @@ areashape_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(max_var+0.2, max_var+0.25)
+                        y_position = c(max_var+0.3, max_var+0.35)
 
         )
         # # remove the legend
@@ -178,20 +176,20 @@ intensity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(max_var+0.2, max_var+0.25)
+            y_position = c(max_var+0.3, max_var+0.35)
 
         )
         # # remove the legend
@@ -233,20 +231,20 @@ granularity_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(max_var+0.2, max_var+0.25)
+            y_position = c(max_var+0.3, max_var+0.35)
 
         )
         # # remove the legend
@@ -288,20 +286,20 @@ neighbors_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(max_var+0.2, max_var+0.25)
+            y_position = c(max_var+0.3, max_var+0.35)
 
         )
         # # remove the legend
@@ -344,20 +342,20 @@ RadialDistribution_plot <- (
             comparisons = list(c("High-Severity","Mid-Severity")),
             annotations = unsel_vs_high_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("Wild Type","Mid-Severity")),
             annotations = WT_vs_unsel_significance,
             textsize = 7,
-            y_position = c(max_var+0.1, max_var+0.15)
+            y_position = c(max_var+0.1, max_var+0.2)
         )
         + geom_signif(
             comparisons = list(c("High-Severity","Wild Type")),
             annotations = WT_vs_high_significance,
             textsize = 7,
             vjust = 0.1,
-            y_position = c(max_var+0.2, max_var+0.25)
+                        y_position = c(max_var+0.3, max_var+0.35)
 
         )
         # # remove the legend
