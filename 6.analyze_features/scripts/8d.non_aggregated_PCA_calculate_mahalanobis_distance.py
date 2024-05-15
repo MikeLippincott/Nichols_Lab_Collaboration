@@ -356,13 +356,13 @@ tukeys_result_across_genotypes_df
 
 
 # set the output dir
-mahalanobis_output_dir = pathlib.Path("../results/mean_aggregation_results/").resolve()
+mahalanobis_output_dir = pathlib.Path("../results/non_aggregated_results/").resolve()
 # make the dir if it does not exist
 mahalanobis_output_dir.mkdir(parents=True, exist_ok=True)
 
 # define the output file path
 mahalanobis_output_file_path = pathlib.Path(
-    mahalanobis_output_dir / "mean_aggregation_mahalanobis_distance_results.csv"
+    mahalanobis_output_dir / "non_aggregated_mahalanobis_distance_results.csv"
 ).resolve()
 
 # compile the results into a df
