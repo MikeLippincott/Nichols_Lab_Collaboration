@@ -1,4 +1,4 @@
-Genotype,Actual Mahalanobis Distance,Sampled Mahalanobis Distance,P-Value
-High-Severity,8.097040543955758,9.133815129929726,3.562004291130502e-19
-Low-Severity,9.470999807830797,9.133782770982146,0.000928560785482819
-Wild Type,11.67177275625835,9.133810709990975,9.302819894651246e-63
+Genotype,Actual Mean Mahalanobis Distance,Sampled Mean Mahalanobis Distance,p-Value for Actual compared to sampled,ANOVA Compared to High-Severity p-adj,ANOVA Compared to Low-Severity p-adj,ANOVA Compared to Wild Type p-adj
+High-Severity,8.097040543955758,9.133744310340687,3.5810924544581466e-19,NA,0.1752,0.0
+Low-Severity,9.470999807830797,9.133774657013564,0.0009282946542248641,0.1752,NA,0.015
+Wild Type,11.67177275625835,9.133832241753316,9.322481781018884e-63,0.0,0.015,NA

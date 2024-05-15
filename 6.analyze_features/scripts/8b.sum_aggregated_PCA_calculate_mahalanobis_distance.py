@@ -16,7 +16,9 @@ import pandas as pd
 import seaborn as sns
 import tqdm
 from scipy.spatial.distance import mahalanobis
+from scipy.stats import f_oneway as anova
 from scipy.stats import ttest_ind
+from statsmodels.stats.multicomp import pairwise_tukeyhsd
 
 # In[2]:
 
@@ -42,7 +44,7 @@ sum_aggregated_data_pca.head()
 # where:
 # - $D$ is the Mahalanobis distance
 
-# ## Caluclating Mahalanobis Distance on PCA components 1 and 2
+# ## Caluclating Mahalanobis Distance on PCA
 # Here I calculate the Mahalanobis distance between the points on the first two principal components of the data for each of the three genotypes.
 
 # In[3]:
@@ -306,52 +308,110 @@ print(
 )
 
 
-# ### write the Mahanobis distance stats to a file
-
 # In[13]:
 
 
+# anova test the mahalanobis distance between the genotypes
+anova_result_across_genotypes = anova(
+    high_severity_mahalanobis_distances,
+    low_severity_mahalanobis_distances,
+    wt_mahalanobis_distances,
+)
+
+print(
+    f"The p-value for the ANOVA across the genotypes is {anova_result_across_genotypes.pvalue}"
+)
+
+# tukeys HSD test for the mahalanobis distance between the genotypes
+tukeys_result_across_genotypes = pairwise_tukeyhsd(
+    np.concatenate(
+        [
+            high_severity_mahalanobis_distances,
+            low_severity_mahalanobis_distances,
+            wt_mahalanobis_distances,
+        ]
+    ),
+    np.concatenate(
+        [
+            ["High Severity"] * len(high_severity_mahalanobis_distances),
+            ["Low Severity"] * len(low_severity_mahalanobis_distances),
+            ["Wild Type"] * len(wt_mahalanobis_distances),
+        ]
+    ),
+)
+# get the tukeys HSD results as a dataframe
+tukeys_result_across_genotypes_df = pd.DataFrame(
+    data=tukeys_result_across_genotypes._results_table.data[1:],
+    columns=tukeys_result_across_genotypes._results_table.data[0],
+)
+tukeys_result_across_genotypes_df
+
+
+# ### write the Mahanobis distance stats to a file
+
+# In[14]:
+
+
 # set the output dir
-mahalanobis_output_dir = pathlib.Path("../results/sum_aggregation_results/").resolve()
+mahalanobis_output_dir = pathlib.Path("../results/sum_aggregated_results/").resolve()
 # make the dir if it does not exist
 mahalanobis_output_dir.mkdir(parents=True, exist_ok=True)
 
 # define the output file path
 mahalanobis_output_file_path = pathlib.Path(
-    mahalanobis_output_dir / "sum_aggregation_mahalanobis_distance_results.csv"
+    mahalanobis_output_dir / "sum_aggregated_mahalanobis_distance_results.csv"
 ).resolve()
 
 # compile the results into a df
 mahalanobis_results_df = pd.DataFrame(
     {
         "Genotype": ["High-Severity", "Low-Severity", "Wild Type"],
-        "Actual Mahalanobis Distance": [
+        "Actual Mean Mahalanobis Distance": [
             mean_high_severity_mahalanobis_distance,
             mean_low_severity_mahalanobis_distance,
             mean_wt_mahalanobis_distance,
         ],
-        "Sampled Mahalanobis Distance": [
+        "Sampled Mean Mahalanobis Distance": [
             np.mean(mean_high_severity_sampled_mahalanobis_distances_from_trials),
             np.mean(mean_low_severity_sampled_mahalanobis_distances_from_trials),
             np.mean(mean_wt_sampled_mahalanobis_distances_from_trials),
         ],
-        "P-Value": [high_severity_p_value, low_severity_p_value, wt_p_value],
+        "p-Value for Actual compared to sampled": [
+            high_severity_p_value,
+            low_severity_p_value,
+            wt_p_value,
+        ],
+        "ANOVA Compared to High-Severity p-adj": [
+            "NA",
+            tukeys_result_across_genotypes_df.loc[0, "p-adj"],
+            tukeys_result_across_genotypes_df.loc[1, "p-adj"],
+        ],
+        "ANOVA Compared to Low-Severity p-adj": [
+            tukeys_result_across_genotypes_df.loc[0, "p-adj"],
+            "NA",
+            tukeys_result_across_genotypes_df.loc[2, "p-adj"],
+        ],
+        "ANOVA Compared to Wild Type p-adj": [
+            tukeys_result_across_genotypes_df.loc[1, "p-adj"],
+            tukeys_result_across_genotypes_df.loc[2, "p-adj"],
+            "NA",
+        ],
     }
 )
 mahalanobis_results_df
 
 
-# In[14]:
+# In[15]:
 
 
 # output the results
 mahalanobis_results_df.to_csv(mahalanobis_output_file_path, index=False)
 
 
-# In[15]:
+# #### Visualization of the last trial's sampled points
 
+# In[16]:
 
-# Visualization of the last trial's sampled points
 
 # annotate the genotypes of the sampled points
 high_severity_sampled_points["Metadata_genotype"] = "High-Severity"
