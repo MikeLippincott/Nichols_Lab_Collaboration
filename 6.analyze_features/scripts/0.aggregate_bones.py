@@ -44,6 +44,11 @@ custom_aggregated_data_path = pathlib.Path(
     "../../data/5.converted_data/custom_aggregated_data.parquet"
 ).resolve()
 
+# unaggregated data path
+unaggregated_data_path = pathlib.Path(
+    "../../data/5.converted_data/non_aggregated_data.parquet"
+).resolve()
+
 
 # In[3]:
 
@@ -71,6 +76,7 @@ metadata_cols
 fs_data = unaggregated_fs_data.drop(metadata_cols, axis=1)
 fs_data.insert(0, "Metadata_replicate", unaggregated_fs_data["Metadata_replicate"])
 fs_data.insert(0, "Metadata_genotype", unaggregated_fs_data["Metadata_genotype"])
+fs_data.insert(0, "Metadata_side", unaggregated_fs_data["Metadata_side"])
 print(f"fs_data shape: {fs_data.shape}")
 fs_data.head()
 
@@ -82,7 +88,9 @@ fs_data.head()
 
 # aggregate the data and get the mean
 mean_aggreated_data = (
-    fs_data.groupby(["Metadata_genotype", "Metadata_replicate"]).mean().reset_index()
+    fs_data.groupby(["Metadata_genotype", "Metadata_replicate", "Metadata_side"])
+    .mean()
+    .reset_index()
 )
 print(f"aggreated_data shape: {mean_aggreated_data.shape}")
 # save the data
@@ -96,7 +104,9 @@ mean_aggreated_data.to_parquet(mean_aggregated_data_path)
 
 # aggregate the data and get the sum
 sum_aggreated_data = (
-    fs_data.groupby(["Metadata_genotype", "Metadata_replicate"]).sum().reset_index()
+    fs_data.groupby(["Metadata_genotype", "Metadata_replicate", "Metadata_side"])
+    .sum()
+    .reset_index()
 )
 print(f"aggreated_data shape: {sum_aggreated_data.shape}")
 # save the data
@@ -123,7 +133,7 @@ for feature in custom_aggregated_method["Feature"]:
 custom_aggregated_data = pd.DataFrame()
 
 # define the metadata columns to aggregate by
-metadata_cols = ["Metadata_genotype", "Metadata_replicate"]
+metadata_cols = ["Metadata_genotype", "Metadata_replicate", "Metadata_side"]
 
 # loop through the features and aggregate the data
 for feature in custom_aggregated_method["Feature"]:
@@ -151,3 +161,13 @@ print(f"custom_aggregated_data shape: {custom_aggregated_data.shape}")
 
 # save the data
 custom_aggregated_data.to_parquet(custom_aggregated_data_path)
+
+
+# ## non-aggregated features
+
+# In[9]:
+
+
+# non aggregated data
+non_aggregated_data = fs_data.copy()
+non_aggregated_data.to_parquet(unaggregated_data_path)

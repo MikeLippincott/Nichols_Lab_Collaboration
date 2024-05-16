@@ -67,9 +67,12 @@ print(len(high_severity), len(low_severity), len(wt))
 
 
 # drop the the Metadata columns
-high_severity = high_severity.drop(columns=["Metadata_genotype", "Metadata_replicate"])
-low_severity = low_severity.drop(columns=["Metadata_genotype", "Metadata_replicate"])
-wt = wt.drop(columns=["Metadata_genotype", "Metadata_replicate"])
+metadata_columns = high_severity.columns[high_severity.columns.str.contains("Metadata")]
+high_severity = high_severity.drop(metadata_columns, axis=1)
+low_severity = low_severity.drop(metadata_columns, axis=1)
+wt = wt.drop(metadata_columns, axis=1)
+
+
 # convert the df to coordinates
 high_severity_coords = high_severity.to_numpy()
 low_severity_coords = low_severity.to_numpy()
