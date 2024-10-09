@@ -9,14 +9,19 @@ import pathlib
 import numpy as np
 import pandas as pd
 
-# In[7]:
+# In[28]:
 
 
 file_path = pathlib.Path(
     "../../data/6.analysis_results/mean_aggregated_levene_test_results.csv"
-)
+).resolve(strict=True)
+raw_data_df_path = pathlib.Path(
+    "../../data/5.converted_data/mean_aggregated_data.parquet"
+).resolve(strict=True)
+
 df = pd.read_csv(file_path, index_col=0).reset_index(drop=True)
-df
+raw_data_df = pd.read_parquet(raw_data_df_path)
+raw_data_df
 
 
 # In[15]:
@@ -30,10 +35,7 @@ all_groups = df.loc[df["group"] == "all"]
 
 high_vs_wt.rename(columns={"levene_p_value": "high_vs_wt_levene_p_value"}, inplace=True)
 unsel_vs_wt.rename(
-    columns={"levene_p_value": "unsel_vs_wt_levene_p_value"}, inplace=True
-)
-high_vs_unsel.rename(
-    columns={"levene_p_value": "high_vs_unsel_levene_p_value"}, inplace=True
+    columns={"levene_p_value": "udfnsedfgh_vs_unsel_levene_p_value"}, inplace=True
 )
 all_groups.rename(columns={"levene_p_value": "all_groups_levene_p_value"}, inplace=True)
 
