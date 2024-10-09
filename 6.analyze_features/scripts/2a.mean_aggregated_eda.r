@@ -16,7 +16,10 @@ if (!dir.exists(fig_path)) {
     dir.create(fig_path, recursive = TRUE)
 }
 pca_file_path <- file.path("..","..","data", "6.analysis_results","mean_aggregated_pca.parquet")
-
+# make the directory if it does not exist
+if (!dir.exists(file.path("..","..","data", "6.analysis_results"))) {
+    dir.create(pca_file_path, recursive = TRUE)
+}
 # read the data
 df <- arrow::read_parquet(file_path)
 df$Metadata_genotype <- gsub("wt", "Wild Type", df$Metadata_genotype)
