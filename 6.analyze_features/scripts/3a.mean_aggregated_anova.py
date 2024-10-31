@@ -17,6 +17,7 @@ from scipy.stats import levene
 # import anova and tukeyhsd
 from statsmodels.formula.api import ols
 from statsmodels.stats.multicomp import pairwise_tukeyhsd
+from statsmodels.stats.multitest import multipletests
 
 # In[2]:
 
@@ -108,7 +109,7 @@ output_file.parent.mkdir(exist_ok=True, parents=True)
 anova_output_df.to_parquet(output_file)
 
 
-# ## Levene's test for homogeneity of variance
+# ## Levene's test for homogeneity of variance across all groups
 
 # In[7]:
 
@@ -130,6 +131,7 @@ levene_test_results_df
 
 
 # ## Calculate the levenes test statistic for the equality of variances
+# ## Pairwise
 
 # In[8]:
 
@@ -142,7 +144,6 @@ group_dict = {
     "high_vs_unsel": [high_df, unsel_df],
     "high_vs_wt": [high_df, wt_df],
     "unsel_vs_wt": [wt_df, unsel_df],
-    "all": [high_df, unsel_df, wt_df],
 }
 
 
@@ -151,28 +152,31 @@ levene_test_results = {
     "levene_statistic": [],
     "levene_p_value": [],
     "group": [],
+    "holm_bonferroni_p_value": [],
 }
-for group in tqdm.tqdm(group_dict.keys()):
-    for feature in features_df.columns:
+
+for feature in tqdm.tqdm(features_df.columns):
+    levene_p_values = []
+    for group in group_dict.keys():
         # calculate the levene test for each feature
-        if not group == "all":
-            levene_results = levene(
-                group_dict[group][0][feature], group_dict[group][1][feature]
-            )
-            levene_test_results["feature"].append(feature)
-            levene_test_results["levene_statistic"].append(levene_results.statistic)
-            levene_test_results["levene_p_value"].append(levene_results.pvalue)
-            levene_test_results["group"].append(group)
-        else:
-            levene_results = levene(
-                group_dict[group][0][feature],
-                group_dict[group][1][feature],
-                group_dict[group][2][feature],
-            )
-            levene_test_results["feature"].append(feature)
-            levene_test_results["levene_statistic"].append(levene_results.statistic)
-            levene_test_results["levene_p_value"].append(levene_results.pvalue)
-            levene_test_results["group"].append(group)
+        levene_results = levene(
+            group_dict[group][0][feature], group_dict[group][1][feature]
+        )
+        levene_test_results["feature"].append(feature)
+        levene_test_results["levene_statistic"].append(levene_results.statistic)
+        levene_test_results["levene_p_value"].append(levene_results.pvalue)
+        levene_test_results["group"].append(group)
+        levene_p_values.append(levene_results.pvalue)
+    levene_holm_bonferroni_p_values = multipletests(levene_p_values, method="holm")[1]
+    # run holm-bonferroni correction on the p-values for each feature
+    [
+        levene_test_results["holm_bonferroni_p_value"].append(p_value)
+        for p_value in levene_holm_bonferroni_p_values
+    ]
+
+
+# In[9]:
+
 
 levene_test_results_df = pd.DataFrame(levene_test_results)
 
@@ -182,12 +186,12 @@ levene_test_results_df["levene_p_value"] = levene_test_results_df[
     "levene_p_value"
 ].astype(float)
 levene_test_results_df = levene_test_results_df.sort_values(
-    "levene_p_value", ascending=False
+    ["feature", "group"], ascending=[True, True]
 )
 levene_test_results_df
 
 
-# In[9]:
+# In[10]:
 
 
 # save the levene test results
@@ -203,7 +207,7 @@ levene_test_results_df.to_csv(levene_test_results_path)
 
 # ### Calculate the levene test statistic for the aggregated data across feature types and genotypes
 
-# In[10]:
+# In[11]:
 
 
 data_path = pathlib.Path(
@@ -234,7 +238,7 @@ features_long_df["Metadata_genotype"] = features_long_df["Metadata_genotype"].re
 features_long_df.head()
 
 
-# In[11]:
+# In[12]:
 
 
 # break each genotype and featuretype into a separate dataframe
@@ -320,7 +324,7 @@ levene_test_results_df = pd.DataFrame(levene_test_results)
 levene_test_results_df.head()
 
 
-# In[12]:
+# In[13]:
 
 
 # save the levene test results
@@ -334,7 +338,7 @@ levene_test_results_path = pathlib.Path(
 levene_test_results_df.to_csv(levene_test_results_path, index=False)
 
 
-# In[13]:
+# In[14]:
 
 
 # Drop all metadata except for the genotype data
@@ -345,10 +349,22 @@ features_df["Metadata_genotype"] = data["Metadata_genotype"]
 features_long_df = features_df.melt(
     id_vars="Metadata_genotype", var_name="feature", value_name="value"
 )
+# get the variance for each feature for each genotype
 features_long_df
+all_features_var = features_long_df.groupby(["Metadata_genotype", "feature"]).var()
+# reset the index
+all_features_var = all_features_var.reset_index()
+all_features_var.rename(columns={"value": "variance"}, inplace=True)
+
+# save the variance results
+var_each_feature_path = pathlib.Path(
+    out_dir / "mean_aggregated_variance_results_each_feature.csv"
+)
+all_features_var.to_csv(var_each_feature_path, index=False)
+all_features_var.head()
 
 
-# In[14]:
+# In[15]:
 
 
 # get the variance for each feature group
@@ -358,7 +374,7 @@ var_df.head()
 var_df.rename(columns={"value": "variance"}, inplace=True)
 
 
-# In[15]:
+# In[16]:
 
 
 var_df[
@@ -379,7 +395,7 @@ var_path = pathlib.Path(out_dir / "mean_aggregated_variance_results_feature_type
 var_df.to_csv(var_path, index=False)
 
 
-# In[16]:
+# In[17]:
 
 
 # get the mean and stdev for each feature group's variance
@@ -401,7 +417,7 @@ var_df.rename(
 var_df
 
 
-# In[17]:
+# In[18]:
 
 
 # save the variance results
