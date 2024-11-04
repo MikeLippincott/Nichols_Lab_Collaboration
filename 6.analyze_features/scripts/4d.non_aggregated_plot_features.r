@@ -224,6 +224,7 @@ areashape_plot <- (
         + ylim(0,max_var_plot)
     )
 areashape_plot
+
 ggsave(file="non_aggregated_variance_across_genotype_AreaShape.png", plot=areashape_plot, path= file.path(fig_path), dpi=600, width=width, height=height, units="in", limitsize = FALSE)
 
 WT_vs_high_significance <- levene_df_Intensity %>% filter(group == "high_intensity_v_wt_intensity")
