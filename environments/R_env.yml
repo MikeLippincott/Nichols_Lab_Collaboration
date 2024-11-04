@@ -6,9 +6,6 @@ dependencies:
   - python=3.10
   - conda-forge::pip
   - conda-forge::r-irkernel
-  - conda-forge::nb_conda_kernels
-  - conda-forge::widgetsnbextension
-  - conda-forge::jupyter_contrib_nbextensions
   - conda-forge::jupyter
   - conda-forge::jupyterlab
   - conda-forge::r-base=4.2.2
