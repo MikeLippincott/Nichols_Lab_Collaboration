@@ -52,6 +52,13 @@ papermill 8b.sum_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8b.sum_aggr
 papermill 8c.custom_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8c.custom_aggregated_PCA_calculate_mahalanobis_distance.ipynb
 papermill 8d.non_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8d.non_aggregated_PCA_calculate_mahalanobis_distance.ipynb
 
+papermill 9a.mean_aggregated_direct_hypothesis_test.ipynb 9a.mean_aggregated_direct_hypothesis_test.ipynb
+papermill 9b.sum_aggregated_direct_hypothesis_test.ipynb 9b.sum_aggregated_direct_hypothesis_test.ipynb
+papermill 9c.custom_aggregated_direct_hypothesis_test.ipynb 9c.custom_aggregated_direct_hypothesis_test.ipynb
+papermill 9d.non_aggregated_direct_hypothesis_test.ipynb 9d.non_aggregated_direct_hypothesis_test.ipynb
+
+papermill 10a.mean_aggregated_direct_hypothesis_viz.ipynb 10a.mean_aggregated_direct_hypothesis_viz.ipynb
+
 # return to the main directory
 cd ..
 
