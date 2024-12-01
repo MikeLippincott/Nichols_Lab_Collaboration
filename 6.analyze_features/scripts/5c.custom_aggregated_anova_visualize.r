@@ -187,7 +187,7 @@ for (i in 1:length(features)){
         ggplot(custom_aggregated_data_df, aes(x = Metadata_genotype, y = !!as.name(features[i]), fill = Metadata_genotype))
         + geom_boxplot()
         + labs(title = title, x = "Genotype", y = title, fill = "Genotype")
-        + geom_jitter(width = 0.5, alpha = 0.5)
+        + geom_jitter(width = 0.3, alpha = 0.5)
         + theme_bw()
         + figure_theme
         + theme(legend.position = "none")

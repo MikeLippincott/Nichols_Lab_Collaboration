@@ -256,7 +256,7 @@ for trial in tqdm.tqdm(range(num_trials)):
     )
 
 
-# In[10]:
+# In[ ]:
 
 
 print(
@@ -272,7 +272,7 @@ print(
 
 # ### Show the mahalanobis distance for each genotype
 
-# In[11]:
+# In[ ]:
 
 
 print(
@@ -282,7 +282,7 @@ print("Mahalanobis distance for Low-Severity: ", mean_low_severity_mahalanobis_d
 print("Mahalanobis distance for Wild Type: ", mean_wt_mahalanobis_distance)
 
 
-# In[12]:
+# In[ ]:
 
 
 # hypothesis testing the difference between the Mahalanobis distance of the sampled points and the actual points
@@ -311,7 +311,7 @@ print(
 )
 
 
-# In[13]:
+# In[ ]:
 
 
 # anova test the mahalanobis distance between the genotypes
@@ -352,7 +352,7 @@ tukeys_result_across_genotypes_df
 
 # ### write the Mahanobis distance stats to a file
 
-# In[14]:
+# In[ ]:
 
 
 # set the output dir
@@ -404,7 +404,7 @@ mahalanobis_results_df = pd.DataFrame(
 mahalanobis_results_df
 
 
-# In[15]:
+# In[ ]:
 
 
 # output the results
@@ -413,7 +413,7 @@ mahalanobis_results_df.to_csv(mahalanobis_output_file_path, index=False)
 
 # #### Visualization of the last trial's sampled points
 
-# In[16]:
+# In[ ]:
 
 
 # annotate the genotypes of the sampled points

@@ -133,7 +133,7 @@ min_plot_value <- min(raw_features_df_long_AreaShape$value)
 areashape_boxplot <- (
     ggplot(raw_features_df_long_AreaShape, aes(x = Metadata_genotype, y = value, fill = Metadata_genotype))
         + geom_boxplot()
-        + labs(x = "Genotype", y = "AreaShape feature \n normalized values", fill = "Genotype")
+        + labs(x = "Genotype", y = "AreaShape feature normalized values", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -246,7 +246,7 @@ min_plot_value <- min(raw_features_df_long_Intensity$value)
 Intensity_boxplot <- (
     ggplot(raw_features_df_long_Intensity, aes(x = Metadata_genotype, y = value, fill = Metadata_genotype))
         + geom_boxplot()
-        + labs(x = "Genotype", y = "Intensity feature \n normalized values", fill = "Genotype")
+        + labs(x = "Genotype", y = "Intensity feature normalized values", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -354,7 +354,7 @@ min_plot_value <- min(raw_features_df_long_Granularity$value)
 Granularity_boxplot <- (
     ggplot(raw_features_df_long_Granularity, aes(x = Metadata_genotype, y = value, fill = Metadata_genotype))
         + geom_boxplot()
-        + labs(x = "Genotype", y = "Granularity feature \n normalized values", fill = "Genotype")
+        + labs(x = "Genotype", y = "Granularity feature normalized values", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -462,7 +462,7 @@ min_plot_value <- min(raw_features_df_long_Neighbors$value)
 Neighbors_boxplot <- (
     ggplot(raw_features_df_long_Neighbors, aes(x = Metadata_genotype, y = value, fill = Metadata_genotype))
         + geom_boxplot()
-        + labs(x = "Genotype", y = "Neighbors feature \n normalized values", fill = "Genotype")
+        + labs(x = "Genotype", y = "Neighbors feature normalized values", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),
@@ -572,7 +572,7 @@ min_plot_value <- min(raw_features_df_long_RadialDistribution$value)
 RadialDistribution_boxplot <- (
     ggplot(raw_features_df_long_RadialDistribution, aes(x = Metadata_genotype, y = value, fill = Metadata_genotype))
         + geom_boxplot()
-        + labs(x = "Genotype", y = "RadialDistribution feature \n normalized values", fill = "Genotype")
+        + labs(x = "Genotype", y = "RadialDistribution feature normalized values", fill = "Genotype")
         # remove the x axis label
         + theme(
             axis.title.x=element_blank(),

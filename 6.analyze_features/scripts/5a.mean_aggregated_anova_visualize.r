@@ -188,7 +188,7 @@ for (i in 1:length(features)){
         + geom_boxplot()
         + labs(title = title, x = "Genotype", y = title, fill = "Genotype")
         # add every individual point
-        + geom_jitter(width = 0.5, alpha = 0.5)
+        + geom_jitter(width = 0.3, alpha = 0.5)
         + theme_bw()
         + figure_theme
         + theme(legend.position = "none")

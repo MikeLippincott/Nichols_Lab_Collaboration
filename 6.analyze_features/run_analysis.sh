@@ -1,11 +1,10 @@
 #!/bin/bash
 
+# change dir to the scripts directory
+cd notebooks || exit
+
 # activate env to run the analysis
 conda activate op_cell_processing_env
-
-# change dir to the scripts directory
-cd notebooks
-
 papermill 0.aggregate_bones.ipynb 0.aggregate_bones.ipynb
 papermill 1a.mean_aggregated_drop_manual_defined_blacklisted_features.ipynb 1a.mean_aggregated_drop_manual_defined_blacklisted_features.ipynb
 papermill 1b.sum_aggregated_drop_manual_defined_blacklisted_features.ipynb 1b.sum_aggregated_drop_manual_defined_blacklisted_features.ipynb
@@ -44,7 +43,7 @@ papermill 5d.non_aggregated_anova_visualize.ipynb 5d.non_aggregated_anova_visual
 papermill 6.object_distance_analysis.ipynb 6.object_distance_analysis.ipynb
 
 # change environment to op_cell_processing_env environment
-conda deactivate
+# conda deactivate
 conda activate op_cell_processing_env
 # run the mahalanobis distance analysis
 papermill 8a.mean_aggregated_PCA_calculate_mahalanobis_distance.ipynb 8a.mean_aggregated_PCA_calculate_mahalanobis_distance.ipynb
@@ -58,9 +57,11 @@ papermill 9c.custom_aggregated_direct_hypothesis_test.ipynb 9c.custom_aggregated
 papermill 9d.non_aggregated_direct_hypothesis_test.ipynb 9d.non_aggregated_direct_hypothesis_test.ipynb
 
 papermill 10a.mean_aggregated_direct_hypothesis_viz.ipynb 10a.mean_aggregated_direct_hypothesis_viz.ipynb
-
+papermill 10b.sum_aggregated_direct_hypothesis_viz.ipynb 10b.sum_aggregated_direct_hypothesis_viz.ipynb
+papermill 10c.custom_aggregated_direct_hypothesis_viz.ipynb 10c.custom_aggregated_direct_hypothesis_viz.ipynb
+papermill 10d.non_aggregated_direct_hypothesis_viz.ipynb 10d.non_aggregated_direct_hypothesis_viz.ipynb
 # return to the main directory
-cd ..
+cd .. || exit
 
 # convert all notebooks to scripts
 jupyter nbconvert --to=script --FilesWriter.build_directory=scripts notebooks/*.ipynb

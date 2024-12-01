@@ -155,13 +155,15 @@ levene_test_results = {
     "holm_bonferroni_p_value": [],
 }
 
+# for each feature
 for feature in tqdm.tqdm(features_df.columns):
     levene_p_values = []
+    # for each pairwise comparison
     for group_comparison in group_dict.keys():
         # calculate the levene test for each feature
         levene_results = levene(
-            group_dict[group_comparison][0][feature],
-            group_dict[group_comparison][1][feature],
+            group_dict[group_comparison][0][feature],  # group 1 feature n
+            group_dict[group_comparison][1][feature],  # group 2 feature n
         )
         levene_test_results["feature"].append(feature)
         levene_test_results["levene_statistic"].append(levene_results.statistic)

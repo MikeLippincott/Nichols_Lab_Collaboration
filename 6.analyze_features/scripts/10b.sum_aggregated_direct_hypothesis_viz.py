@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import pathlib
@@ -13,7 +13,7 @@ import pandas as pd
 # plot the results
 import seaborn as sns
 
-# In[ ]:
+# In[2]:
 
 
 # load the final enrichment df
@@ -24,7 +24,7 @@ final_enrichment_df = pd.read_csv(final_enrichment_df_path)
 final_enrichment_df.head()
 
 
-# In[ ]:
+# In[3]:
 
 
 df_non_permuted = final_enrichment_df.loc[
@@ -46,7 +46,7 @@ plt.savefig("../figures/sum_aggregated/feature_group_enrichment_heatmap.png")
 plt.show()
 
 
-# In[ ]:
+# In[4]:
 
 
 df_permuted = final_enrichment_df.loc[final_enrichment_df["permutation"] == "permuted"]
