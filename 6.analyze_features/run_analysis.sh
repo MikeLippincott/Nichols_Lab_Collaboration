@@ -60,6 +60,12 @@ papermill 10a.mean_aggregated_direct_hypothesis_viz.ipynb 10a.mean_aggregated_di
 papermill 10b.sum_aggregated_direct_hypothesis_viz.ipynb 10b.sum_aggregated_direct_hypothesis_viz.ipynb
 papermill 10c.custom_aggregated_direct_hypothesis_viz.ipynb 10c.custom_aggregated_direct_hypothesis_viz.ipynb
 papermill 10d.non_aggregated_direct_hypothesis_viz.ipynb 10d.non_aggregated_direct_hypothesis_viz.ipynb
+
+papermill 11a.mean_aggregated_variance_table_generation.ipynb 11a.mean_aggregated_variance_table_generation.ipynb
+papermill 11b.sum_aggregated_variance_table_generation.ipynb 11b.sum_aggregated_variance_table_generation.ipynb
+papermill 11c.custom_aggregated_variance_table_generation.ipynb 11c.custom_aggregated_variance_table_generation.ipynb
+papermill 11d.non_aggregated_variance_table_generation.ipynb 11d.non_aggregated_variance_table_generation.ipynb
+
 # return to the main directory
 cd .. || exit
 
