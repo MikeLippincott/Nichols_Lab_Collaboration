@@ -176,20 +176,14 @@ for data_shuffle_df in dict_of_dfs:
     )
 
     df["hypothesis_test_bool"] = np.where(
-        (
-            df["variance_pattern_bool"]
-            is True & df["significance_bool_holm_bonferroni"]
-            is True
-        ),
+        (df["variance_pattern_bool"] == True)
+        & (df["significance_bool_holm_bonferroni"] == True),
         True,
         False,
     )
     df["hypothesis_test_bool_half_baked"] = np.where(
-        (
-            df["variance_pattern_bool"]
-            is True & df["significance_bool_half_baked_holm_bonferroni"]
-            is True
-        ),
+        (df["variance_pattern_bool"] == True)
+        & (df["significance_bool_half_baked_holm_bonferroni"] == True),
         True,
         False,
     )
@@ -216,8 +210,52 @@ for data_shuffle_df in output_dfs:
     ] = df["feature"].str.split("_", expand=True)
 
     # get counts of each feature group and the hypothesis test bool
+    hypothesis_tests_half_baked_df = (
+        df.groupby(
+            [
+                "feature_group",
+                "variance_pattern_bool",
+                "significance_bool_half_baked_holm_bonferroni",
+                "hypothesis_test_bool_half_baked",
+            ]
+        )
+        .size()
+        .reset_index(name="counts")
+    )
+    hypothesis_tests_half_baked_df["permutation"] = data_shuffle_df
+    list_of_enrichment_dfs.append(hypothesis_tests_half_baked_df)
+final_enrichment_half_baked_df = pd.concat(list_of_enrichment_dfs)
+final_enrichment_half_baked_df.reset_index(drop=True, inplace=True)
+
+
+# In[12]:
+
+
+list_of_enrichment_dfs = []
+for data_shuffle_df in output_dfs:
+    df = output_dfs[data_shuffle_df]
+    # split the feature column
+    df[
+        [
+            "feature_group",
+            "measurement",
+            "bone",
+            "parameter1",
+            "parameter2",
+            "parameter3",
+        ]
+    ] = df["feature"].str.split("_", expand=True)
+
+    # get counts of each feature group and the hypothesis test bool
     hypothesis_tests_df = (
-        df.groupby(["feature_group", "hypothesis_test_bool"])
+        df.groupby(
+            [
+                "feature_group",
+                "variance_pattern_bool",
+                "significance_bool_holm_bonferroni",
+                "hypothesis_test_bool",
+            ]
+        )
         .size()
         .reset_index(name="counts")
     )
@@ -225,13 +263,29 @@ for data_shuffle_df in output_dfs:
     list_of_enrichment_dfs.append(hypothesis_tests_df)
 final_enrichment_df = pd.concat(list_of_enrichment_dfs)
 final_enrichment_df.reset_index(drop=True, inplace=True)
-final_enrichment_df.head(15)
 
 
-# In[12]:
+# In[13]:
+
+
+final_enrichment_half_baked_df.head(60)
+
+
+# In[14]:
+
+
+final_enrichment_df.head(60)
+
+
+# In[15]:
 
 
 # save the final enrichment df
+final_enrichment_half_baked_df.to_csv(
+    "../../data/6.analysis_results/mean_aggregated_feature_group_enrichment_half_baked.csv",
+    index=False,
+)
+
 final_enrichment_df.to_csv(
     "../../data/6.analysis_results/mean_aggregated_feature_group_enrichment.csv",
     index=False,
