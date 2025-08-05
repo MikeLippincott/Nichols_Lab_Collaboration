@@ -1,3 +1,7 @@
+[![DOI](https://zenodo.org/badge/739468035.svg)](https://doi.org/10.5281/zenodo.16747635)
+
+
+
 # Quantifying Zebrafish opercle bone morphology
 This repository contains the code for analysis performed by the Way Lab in collaboration with the [Nichols Lab](https://www.nicholslab.org/) at the University of Colorado Anschutz Medical Campus.
 The code is organized into folders that correspond to the order in which the analysis was performed.
@@ -15,3 +19,6 @@ To do so run the following commands in your terminal:
 conda env create -f Cell_profiling_env.yml
 conda env create -f SAM_env.yml
 ```
+
+## Data
+The raw and processed data can be accessed via figshare at the following link: [figshare](https://figshare.com/projects/Phenotypic_Variance_and_Severity/191640)
