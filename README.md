@@ -1,6 +1,5 @@
-
-
 [![DOI](https://zenodo.org/badge/739468035.svg)](https://doi.org/10.5281/zenodo.16747635)
+
 
 
 # Quantifying Zebrafish opercle bone morphology
